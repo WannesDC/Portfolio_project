@@ -9,6 +9,8 @@ import { MatListModule, MatCardModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     FlexLayoutModule,
     MatListModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
