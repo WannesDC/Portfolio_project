@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+.bg{
+    background-image: url("https://wallpaperhd.guru/wp-content/uploads/2017/04/wallpaper.wiki-Office-background-1920x1080-PIC-WPC008188.jpeg");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
