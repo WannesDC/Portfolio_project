@@ -11,6 +11,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
+import { ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
   ],
   imports: [
     BrowserModule,
+    //vv If you disable this project works again.vv
+    //ReactiveFormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatListModule,
