@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -174,5 +174,6 @@ namespace test.Data
 		}
 
 		public DbSet<User> Users { get; set; }
-	}
+    public DbSet<Portfolio> Portfolios { get; set; }
+  }
 }
