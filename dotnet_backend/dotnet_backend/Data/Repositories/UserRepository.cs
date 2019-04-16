@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+using dotnet_backend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using test.Models;
 
-namespace test.Data.Repositories
+
+namespace dotnet_backend.Data.Repositories
 {
 	public class UserRepository : IUserRepisitory
 	{
@@ -20,17 +20,7 @@ namespace test.Data.Repositories
 		{
 			_users.Add(user);
 		}
-
-		public void Delete(User user)
-		{
-			_users.Remove(user);
-		}
-
-		public IEnumerable<User> GetAll()
-		{
-			return _users.Include(u => u.Portfolio).ToList();
-		}
-		public User GetBy(int id)
+		public User GetBy(string email)
 		{
 			return _users
 				.Include(u => u.Portfolio)
@@ -43,7 +33,7 @@ namespace test.Data.Repositories
 					.ThenInclude(p => p.Skills)
 				.Include(u => u.Portfolio)
 					.ThenInclude(p => p.Works)
-				.SingleOrDefault(u => u.Id == id);
+				.SingleOrDefault(u => u.Email == email);
 		}
 
 		public void SaveChanges()
@@ -51,9 +41,6 @@ namespace test.Data.Repositories
 			_context.SaveChanges();
 		}
 
-		public void Update(User user)
-		{
-			_context.Update(user); 
-		}
+
 	}
 }

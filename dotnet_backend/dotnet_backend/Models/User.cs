@@ -1,17 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace test.Models
+namespace dotnet_backend.Models
 {
 	public class User
 	{
-		public int Id { get; set; }
-		public string UserName { get; set; }
-		public string Email { get; set; }
-		public string Password { private get; set; }
-		public Portfolio Portfolio { get; set; }
+		public int UserId { get; set; }
+		public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+		public ICollection<Portfolio> Portfolio { get; set; }
+
+    public void addPortfolio(Portfolio portfolio) => Portfolio.Add(portfolio);
 
 	}
 }

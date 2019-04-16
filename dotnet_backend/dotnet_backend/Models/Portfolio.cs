@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace test.Models
+namespace dotnet_backend.Models
 {
 	public class Portfolio
 	{
@@ -14,11 +14,10 @@ namespace test.Models
 		public string PicturePath { get; set; } //?
 		public string ResumePath { get; set; }
 		public Contact Contact { get; set; }
-		public IEnumerable<Experience> Experiences { get; set; }
-		public IEnumerable<Skill> Skills { get; set; }
-		public IEnumerable<Work> Works { get; set; }
-		public IEnumerable<Education> Educations { get; set; }
-		public int UserId { get; set; }
+		public ICollection<Experience> Experiences { get; set; }
+		public ICollection<Skill> Skills { get; set; }
+		public ICollection<Work> Works { get; set; }
+		public ICollection<Education> Educations { get; set; }
 		#endregion
 
 		#region Constructors
@@ -34,9 +33,20 @@ namespace test.Models
 		public Portfolio()
 		{
 		}
-		#endregion
+    #endregion
 
-		#region Methods
+    #region Methods
+    public void AddExperience(Experience experience) => Experiences.Add(experience);
+
+    public void AddSkill(Skill skill) => Skills.Add(skill);
+
+    public void AddWork(Work work) => Works.Add(work);
+    public void AddEducation(Education education) => Educations.Add(education);
+
+    public Experience GetExperience(int id) => Experiences.SingleOrDefault(e => e.Id == id);
+    public Skill GetSkill(int id) => Skills.SingleOrDefault(s => s.Id == id);
+    public Work GetWork(int id) => Works.SingleOrDefault(w => w.Id == id);
+    public Education GetEducation(int id) => Educations.SingleOrDefault(e => e.Id == id);
 		#endregion
 	}
 }

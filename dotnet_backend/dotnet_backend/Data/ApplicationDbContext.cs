@@ -1,13 +1,15 @@
+using dotnet_backend.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using test.Models;
 
-namespace test.Data
+
+namespace dotnet_backend.Data
 {
-	public class ApplicationDbContext : DbContext
+	public class ApplicationDbContext : IdentityDbContext
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){
 
@@ -20,24 +22,26 @@ namespace test.Data
 			//User
 			//associations
 			mb.Entity<User>()
-				.HasOne(u => u.Portfolio)
-				.WithOne()
-				.HasForeignKey<Portfolio>(p => p.UserId)
-				.IsRequired();
+				.HasMany(u => u.Portfolio)
+				.WithOne();
 			//mapping
-			mb.Entity<User>()
-				.Property(u => u.UserName)
-				.IsRequired()
-				.HasMaxLength(25);
 			mb.Entity<User>()
 				.Property(u => u.Email)
 				.IsRequired()
-				.HasMaxLength(50);
+				.HasMaxLength(100);
+      mb.Entity<User>()
+        .Property(u => u.FirstName)
+        .IsRequired()
+        .HasMaxLength(50);
+      mb.Entity<User>()
+        .Property(u => u.LastName)
+        .IsRequired()
+        .HasMaxLength(50);
 
 
-			//Portfolio
-			//associations
-			mb.Entity<Portfolio>()
+      //Portfolio
+      //associations
+      mb.Entity<Portfolio>()
 				.HasOne(p => p.Contact)
 				.WithOne()
 				.HasForeignKey<Contact>(c => c.PortfolioId);
@@ -62,19 +66,6 @@ namespace test.Data
 				.HasMaxLength(25);
 
 			//Seed Db:
-			byte[] data = System.Text.Encoding.ASCII.GetBytes("testjes");
-			data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-			String hash = System.Text.Encoding.ASCII.GetString(data);
-
-			mb.Entity<User>().HasData(
-				new User
-				{
-					Id = 1,
-					UserName = "Wannes",
-					Email = "wannes_decraene@hotmail.com",
-					Password = hash,				
-				}
-				);
 
 			mb.Entity<Portfolio>().HasData(
 				new Portfolio
@@ -83,7 +74,6 @@ namespace test.Data
 					Name="testjes",
 					PicturePath="randompath",
 					Description="test the db",
-					UserId=1
 				}
 				);
 
@@ -172,8 +162,8 @@ namespace test.Data
 
 
 		}
-
-		public DbSet<User> Users { get; set; }
     public DbSet<Portfolio> Portfolios { get; set; }
+    public DbSet<User> Users { get; set; }
+
   }
 }

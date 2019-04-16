@@ -1,17 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace test.Models
+namespace dotnet_backend.Models
 {
 	public interface IUserRepisitory
 	{
-		IEnumerable<User> GetAll();
-		User GetBy(int id);
+		User GetBy(string email);
 		void Add(User user);
-		void Update(User user);
-		void Delete(User user);
 		void SaveChanges();
 	}
 }

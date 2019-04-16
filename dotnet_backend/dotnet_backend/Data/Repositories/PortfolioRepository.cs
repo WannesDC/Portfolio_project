@@ -1,11 +1,11 @@
+using dotnet_backend.Models;
+
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using test.Models;
 
-namespace test.Data.Repositories
+
+namespace dotnet_backend.Data.Repositories
 {
   public class PortfolioRepository : IPortfolioRepository
   {
@@ -44,14 +44,26 @@ namespace test.Data.Repositories
 
     }
 
-    public void SaveChanges()
+    public bool TryGetPortfolio(int id, out Portfolio portfolio)
     {
-      _context.SaveChanges();
+      portfolio = _context.Portfolios
+        .Include(p => p.Contact)
+        .Include(p => p.Educations)
+        .Include(p => p.Experiences)
+        .Include(p => p.Skills)
+        .Include(p => p.Works).FirstOrDefault(t => t.Id == id);
+      return portfolio != null;
     }
 
     public void Update(Portfolio p)
     {
       _context.Update(p);
     }
+
+    public void SaveChanges()
+    {
+      _context.SaveChanges();
+    }
+
   }
 }

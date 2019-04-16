@@ -1,11 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using test.Models;
+using System;
 
-namespace test.Controllers
+using System.IdentityModel.Tokens.Jwt;
+
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using dotnet_backend.DTOs;
+using dotnet_backend.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
+
+namespace dotnet_backend.Controllers
 {
 	[ApiConventionType(typeof(DefaultApiConventions))]
 	[Produces("application/json")]
@@ -13,32 +22,89 @@ namespace test.Controllers
 	[ApiController]
     public class UsersController : ControllerBase
     {
-
+    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly UserManager<IdentityUser> _userManager;
 		private readonly IUserRepisitory _userRepository;
-		public UsersController(IUserRepisitory context)
+    private readonly IConfiguration _config;
+
+		public UsersController(SignInManager<IdentityUser> signInManager,
+          UserManager<IdentityUser> userManager,
+          IUserRepisitory context,
+          IConfiguration config)
 		{
+      _signInManager = signInManager;
+      _userManager = userManager;
 			_userRepository = context;
+      _config = config;
 		}
 
-		// GET: api/Users
-		/// <summary>
-		/// Get all users ordered by name
-		/// </summary>
-		/// <returns>array of users</returns>
-		/// 
-		[HttpGet]
-		public IEnumerable<User> GetUsers()
-		{
-			return _userRepository.GetAll().OrderBy(u => u.UserName);
-		}
-		[HttpGet("{id}")]
-		public ActionResult<User> GetUser(int id)
-		{
-			User user = _userRepository.GetBy(id);
-			if (user == null) return NotFound();
-			return user;
-		}
+    /// <summary>
+    /// Login
+    /// </summary>
+    /// <param name="model">the login details</param>
+    [AllowAnonymous]
+    [HttpPost]
+    public async Task<ActionResult<String>> CreateToken(LoginDTO model)
+    {
+      var user = await _userManager.FindByNameAsync(model.Email);
 
+      if (user != null)
+      {
+        var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+
+        if (result.Succeeded)
+        {
+          string token = GetToken(user);
+          return Created("", token); //returns only the token                    
+        }
+      }
+      return BadRequest();
+    }
+
+    /// <summary>
+    /// Register a user
+    /// </summary>
+    /// <param name="model">the user details</param>
+    /// <returns></returns>
+    [AllowAnonymous]
+    [HttpPost("register")]
+    public async Task<ActionResult<String>> Register(RegisterDTO model)
+    {
+      IdentityUser user = new IdentityUser { UserName = model.Email, Email = model.Email };
+      User u = new User { Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+      var result = await _userManager.CreateAsync(user, model.Password);
+
+      if (result.Succeeded)
+      {
+        _userRepository.Add(u);
+        _userRepository.SaveChanges();
+        string token = GetToken(user);
+        return Created("", token);
+      }
+      return BadRequest();
+    }
+
+    private String GetToken(IdentityUser user)
+    {
+      // Create the token
+      var claims = new[]
+      {
+              new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+              new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+            };
+
+      var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
+
+      var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+      var token = new JwtSecurityToken(
+        _config["Tokens:Issuer"], null,
+        claims,
+        expires: DateTime.Now.AddMinutes(30),
+        signingCredentials: creds);
+
+      return new JwtSecurityTokenHandler().WriteToken(token);
+    }
 
     }
 }
