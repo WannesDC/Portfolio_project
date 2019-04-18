@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .bg{
-    background-image: url("https://wallpaperhd.guru/wp-content/uploads/2017/04/wallpaper.wiki-Office-background-1920x1080-PIC-WPC008188.jpeg");
-    height: 100%;
-    background-repeat: no-repeat;
+    background: url("https://wallpaperhd.guru/wp-content/uploads/2017/04/wallpaper.wiki-Office-background-1920x1080-PIC-WPC008188.jpeg") no-repeat center center fixed;
     background-size: cover;
 }
 
