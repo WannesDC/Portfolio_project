@@ -1,87 +1,53 @@
-<main>
-  <div class="view" >
-      <!-- Mask & flexbox options-->
-      <div class="mask align-items-center">
-        <!-- Content -->
-        <div class="container">
-          <!--Grid row-->
-          <div class="row mt-5">
-            <!--Grid column-->
-            <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
-              <h1 class="h1-responsive font-weight-bold " >Sign up right now! </h1>
-              <hr class="hr-light " >
-              <h6 class="mb-3 " >Do you want to use an extremely simple to use platform to create your resume or portolio on? Look no further, as this site is just that!
-                  An extremely user friendly tool to make simple portfolios.
-              </h6>
-              <a class="btn btn-outline-dark" href="#">Learn more</a>
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-6 col-xl-5 mb-4">
-              <!--Form-->
-              <div class="card" >
-                <div class="card-body">
-                  <!--Header-->
-                  <div class="text-center">
-                    <h3 class="white-text">
-                      <i class="white-text"></i> Register:</h3>
-                    <hr class="hr-light">
-                  </div>
-                  <!--Body-->
-                  <form>
-                  <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">
-                                <mat-icon>person</mat-icon>
-                            </span>
-                          </div>
-                          <input type="text" class="form-control mr-sm-2" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                  </div>
-                  <br>
-                  <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">
-                                <mat-icon>email</mat-icon>
-                            </span>
-                          </div>
-                          <input type="email" class="form-control mr-sm-2" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
-                  </div>
-                  <br>
-                  <div class="input-group">
-                          <div class="input-group-prepend">
-                              <span class=" input-group-text" id="basic-addon2">
-                                
-                                <mat-icon>lock</mat-icon>
-                              </span>
-                            </div>
-                            <input type="password" class="form-control mr-sm-2" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
-                  </div>
-                  <div class="text-center mt-4">
-                          <button class="btn btn-outline-dark">Sign up</button>
-                  </div>
-                  </form>
-                  <div class="text-center mt-4">
-                    
-                    <hr class="hr-light mb-3 mt-4">
-                    <div class="inline-ul text-center">
-
-                      <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Contact support" href="#">
-                              <mat-icon>contact_support</mat-icon>
-                      </button>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--/.Form-->
-            </div>
-            <!--Grid column-->
-          </div>
-          <!--Grid row-->
-        </div>
-        <!-- Content -->
-      </div>
-      <!-- Mask & flexbox options-->
+<form [formGroup] = "user" (ngSubmit)="onSubmit()">
+<div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        <mat-icon>person</mat-icon>
+      </span>
     </div>
-
-</main>
+    <input type="text" class="form-control mr-sm-2" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" data-cy="register-firstname" formControlName="firstname">
+</div>
+<br>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">
+      <mat-icon>person</mat-icon>
+    </span>
+  </div>
+  <input type="text" class="form-control mr-sm-2" placeholder="Surname" aria-label="Surname" aria-describedby="basic-addon1" data-cy="register-lastname" formControlName="lastname">
+</div>
+<br>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">
+      <mat-icon>email</mat-icon>
+    </span>
+  </div>
+  <input type="email" class="form-control mr-sm-2" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" data-cy="register-email" formControlName="email"> 
+</div>
+<br>
+<span formGroupName="passwordGroup">
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class=" input-group-text" id="basic-addon2">
+                                
+      <mat-icon>lock</mat-icon>
+    </span>
+  </div>
+  <input type="password" class="form-control mr-sm-2" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" data-cy="register-password" formControlName="password">
+</div>
+<br>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class=" input-group-text" id="basic-addon2">
+                                
+      <mat-icon>lock</mat-icon>
+    </span>
+  </div>
+  <input type="password" class="form-control mr-sm-2" placeholder="Password Confirmation" aria-label="Password" aria-describedby="basic-addon2" data-cy="register-confirm-password" formControlName="confirmPassword">
+</div>
+</span>
+<div class="text-center mt-4">
+  <button type="submit" class="btn btn-outline-dark" data-cy="register-button">Sign up</button>
+</div>
+</form>                 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,14 +8,12 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  public user: FormGroup;
+
 
   constructor() { }
 
   ngOnInit() {
-   // this.user = new FormGroup({
-     // name: new FormControl('Wans')
-    //})
+
   }
 
 }

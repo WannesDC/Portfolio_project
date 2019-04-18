@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl,FormGroup, FormBuilder,ValidatorFn, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 function comparePasswords(control: AbstractControl): { [key: string]: any } {
   const password = control.get('password');
@@ -63,5 +63,57 @@ export class RegisterComponent implements OnInit {
       )
     })
   }
-
+  getErrorMessage(errors: any) {
+    if (!errors) {
+      return null;
+    }
+    if (errors.required) {
+      return 'is required';
+    } else if (errors.minlength) {
+      return `needs at least ${
+        errors.minlength.requiredLength
+      } characters (got ${errors.minlength.actualLength})`;
+    } else if (errors.userAlreadyExists) {
+      return `user already exists`;
+    } else if (errors.email) {
+      return `not a valid email address`;
+    } else if (errors.passwordsDiffer) {
+      return `passwords are not the same`;
+    }
+  }
+  onSubmit() {
+    this.authService
+      .register(
+        this.user.value.firstname,
+        this.user.value.lastname,
+        this.user.value.email,
+        this.user.value.passwordGroup.password
+      )
+      .subscribe(
+        val => {
+          if (val) {
+            if (this.authService.redirectUrl) {
+              this.router.navigateByUrl(this.authService.redirectUrl);
+              this.authService.redirectUrl = undefined;
+            } else {
+              this.router.navigate(['#']);
+            }
+          } else {
+            this.errorMsg = `Could not login`;
+          }
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+          if (err.error instanceof Error) {
+            this.errorMsg = `Error while trying to login user ${
+              this.user.value.email
+            }: ${err.error.message}`;
+          } else {
+            this.errorMsg = `Error ${err.status} while trying to login user ${
+              this.user.value.email
+            }: ${err.error}`;
+          }
+        }
+      );
+  }
 }

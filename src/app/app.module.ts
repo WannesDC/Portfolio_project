@@ -10,8 +10,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {HttpClientModule} from '@angular/common/http';
+import { UserModule } from './user/user.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,15 +23,17 @@ import { ReactiveFormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    RouterModule,
-    //vv If you disable this project works again.vv
-    //ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forRoot([]),
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatListModule,
     MatCardModule,
     MatIconModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    UserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

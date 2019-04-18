@@ -21,6 +21,7 @@ function parseJwt(token) {
 export class AuthenticationService {
   private readonly _tokenKey = 'currentUser';
   private _user$: BehaviorSubject<string>;
+  public redirectUrl: string;
 
   constructor(private http: HttpClient) {
     let parsedToken = parseJwt(localStorage.getItem(this._tokenKey));
@@ -71,10 +72,11 @@ export class AuthenticationService {
      }
    }
 
-   register(email: string, password: string): Observable<boolean>{
+   register(firstname: string,
+    lastname: string,email: string, password: string): Observable<boolean>{
      return this.http
      .post('${environment.apiUrl}/Users/register', 
-     {email, password})
+     {firstname, lastname,email, password, passwordConfirmation :password})
      .pipe(
        map((token: any) => {
          if(token){
