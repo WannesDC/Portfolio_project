@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace dotnet_backend.Data.Repositories
 {
@@ -20,7 +20,17 @@ namespace dotnet_backend.Data.Repositories
 		{
 			_users.Add(user);
 		}
-		public User GetBy(string email)
+
+    public Task<User> FindByEmailAsync(string email)
+    {
+      return Task.Run(() =>
+     {
+       return _users.SingleOrDefault(u => u.Email == email);
+     }
+      );
+    }
+
+    public User GetBy(string email)
 		{
 			return _users
 				.Include(u => u.Portfolio)

@@ -37,6 +37,17 @@ namespace dotnet_backend.Controllers
 			_userRepository = context;
       _config = config;
 		}
+    /// <summary>
+    /// check
+    /// </summary>
+    /// <param name="email">check whether an email is used or not</param>
+    [AllowAnonymous]
+    [HttpGet("checkusername")]
+    public async Task<ActionResult<Boolean>> CheckUsername(string email)
+    {
+      var user = await _userRepository.FindByEmailAsync(email);
+      return user == null;
+    }
 
     /// <summary>
     /// Login
