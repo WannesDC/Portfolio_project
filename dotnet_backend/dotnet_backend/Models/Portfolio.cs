@@ -18,12 +18,16 @@ namespace dotnet_backend.Models
 		public ICollection<Skill> Skills { get; set; }
 		public ICollection<Work> Works { get; set; }
 		public ICollection<Education> Educations { get; set; }
-		#endregion
 
-		#region Constructors
+    public int IdOfUser { get; set; }
+    public User User { get; set; }
+
+    #endregion
+
+    #region Constructors
 
 
-		public Portfolio(string name, string picturePath, string description) : this()
+    public Portfolio(string name, string picturePath, string description) : this()
 		{
 			Name = name;
 			PicturePath = picturePath;

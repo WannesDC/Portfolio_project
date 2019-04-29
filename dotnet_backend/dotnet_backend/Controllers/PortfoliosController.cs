@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using dotnet_backend.Models;
@@ -16,10 +17,12 @@ namespace dotnet_backend.Controllers
   [ApiController]
   public class PortfoliosController : ControllerBase
   {
-
+    private readonly IUserRepisitory _uRepository;
     private readonly IPortfolioRepository _pRepository;
-    public PortfoliosController(IPortfolioRepository context)
+    public PortfoliosController(IPortfolioRepository context, IUserRepisitory uContext)
     {
+      _uRepository = uContext;
+      
       _pRepository = context;
     }
     #region Portfolios
@@ -36,6 +39,24 @@ namespace dotnet_backend.Controllers
       return _pRepository.GetAll().OrderBy(p => p.Id);
     }
 
+    // GET: api/Portfolios
+    /// <summary>
+    /// Get a User's Portfolio
+    /// </summary>
+    /// <returns>a portfolio of a user</returns>
+    /// 
+    [HttpGet("byUser")]
+    [AllowAnonymous]
+    public ActionResult<Portfolio> GetPortfolioByUser()
+    {
+      string email = Request.HttpContext.User.Identity.Name;
+      User u = _uRepository.GetBy(email);
+
+      Portfolio p = u.Portfolio;
+      if (p == null) return NotFound();
+      return p;
+    }
+
     // GET: api/Portfolios/5
     /// <summary>
     /// Get the portfolio with given id
@@ -43,6 +64,7 @@ namespace dotnet_backend.Controllers
     /// <param name="id">the id of the Portfolio</param>
     /// <returns>The Portfolio</returns>
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public ActionResult<Portfolio> GetPortfolio(int id)
     {
       Portfolio p = _pRepository.GetBy(id);
@@ -59,6 +81,10 @@ namespace dotnet_backend.Controllers
     [HttpPost]
     public ActionResult<Portfolio> PostPortfolio(Portfolio p)
     {
+      string email = Request.HttpContext.User.Identity.Name;
+      User u = _uRepository.GetBy(email);
+     // Console.WriteLine(email);
+      u.Portfolio = p;
       _pRepository.Add(p);
       _pRepository.SaveChanges();
 

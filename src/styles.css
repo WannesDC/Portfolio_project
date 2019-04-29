@@ -1,7 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+/*@media screen and (min-width: 768px){*/
 .bg{
-    background: url("https://wallpaperhd.guru/wp-content/uploads/2017/04/wallpaper.wiki-Office-background-1920x1080-PIC-WPC008188.jpeg") no-repeat center center fixed;
+    background: url("/assets/images/sitebgL.jpg") no-repeat center center fixed;
     background-size: cover;
+}
+/*}*/
+
+/*@media screen and (max-width: 768px) {
+    .bg{
+        background: url("/assets/images/sitebg.jpeg") no-repeat center center fixed;
+        background-size: cover;
+    }
+
+}*/
+
+.card {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+h6 {
+    line-height: 1.7;
 }
 
 .btn-circle.btn-xl {

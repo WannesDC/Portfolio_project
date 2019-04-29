@@ -8,10 +8,10 @@ const appRoutes: Routes = [
   {
     path: 'portfolio',
     canActivate: [AuthGuard],
-    loadChildren: './portfolio/portfolio.module#RecipeModule',
+    loadChildren: './portfolio/portfolio.module#PortfolioModule',
     data: { preload: true }
   },
-  { path: '', redirectTo: 'recipe/list', pathMatch: 'full' },
+  { path: '', redirectTo: 'portfolio/main-portfolio', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

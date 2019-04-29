@@ -1,0 +1,64 @@
+<div class="row mt-5">
+  <div class="col-md-6 col-xl-5 mb-4 mx-auto">
+    <!--Form-->
+    <div class="card" >
+      <div class="card-body">
+        <!--Header-->
+        <div class="text-center">
+          <h3 class="white-text">
+            Add portfolio:</h3>
+          <hr class="hr-light">
+        </div>
+        <!--form starts here!!-->
+        <form [formGroup]="portfolio" (ngSubmit)="onSubmit()">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>person</mat-icon>
+                  </span>
+                </div>
+                <input type="text" class="form-control mr-sm-2"
+                 placeholder="Name" aria-label="Name"
+                aria-describedby="basic-addon1" formControlName="pName">
+            </div>
+            <br>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <mat-icon>description</mat-icon>
+                </span>
+              </div>
+              <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+               aria-describedby="basic-addon1" formControlName="description">
+            </div>
+            <br>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <mat-icon>image</mat-icon>
+                </span>
+              </div>
+              <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                formControlName="picturePath"> 
+            </div>
+            <br>
+            
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class=" input-group-text" id="basic-addon2">
+                                            
+                  <mat-icon>work</mat-icon>
+                </span>
+              </div>
+              <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+               aria-describedby="basic-addon2" formControlName="resumePath">
+            </div>
+            
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-outline-light ">Save</button>
+            </div>
+        </form>
+    </div>
+    </div>
+  </div>
+</div>
