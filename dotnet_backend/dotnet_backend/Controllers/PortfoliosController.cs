@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using dotnet_backend.DTOs;
 using dotnet_backend.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -39,22 +40,22 @@ namespace dotnet_backend.Controllers
       return _pRepository.GetAll().OrderBy(p => p.Id);
     }
 
-    // GET: api/Portfolios
+    // GET: api/PortfoliosByUser
     /// <summary>
     /// Get a User's Portfolio
     /// </summary>
     /// <returns>a portfolio of a user</returns>
     /// 
     [HttpGet("byUser")]
-    [AllowAnonymous]
-    public ActionResult<Portfolio> GetPortfolioByUser()
+    public ActionResult<PortfolioDTO> GetPortfolioByUser()
     {
       string email = Request.HttpContext.User.Identity.Name;
       User u = _uRepository.GetBy(email);
 
       Portfolio p = u.Portfolio;
-      if (p == null) return NotFound();
-      return p;
+      if (p == null) return NoContent();
+      PortfolioDTO pdto = new PortfolioDTO { Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
+      return pdto;
     }
 
     // GET: api/Portfolios/5
@@ -79,7 +80,7 @@ namespace dotnet_backend.Controllers
     /// </summary>
     /// <param name="portfolio">the new portfolio</param>
     [HttpPost]
-    public ActionResult<Portfolio> PostPortfolio(Portfolio p)
+    public ActionResult<PortfolioDTO> PostPortfolio(Portfolio p)
     {
       string email = Request.HttpContext.User.Identity.Name;
       User u = _uRepository.GetBy(email);
@@ -88,7 +89,9 @@ namespace dotnet_backend.Controllers
       _pRepository.Add(p);
       _pRepository.SaveChanges();
 
-      return CreatedAtAction(nameof(GetPortfolio), new { id = p.Id }, p);
+      PortfolioDTO pdto = new PortfolioDTO { Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
+
+      return CreatedAtAction(nameof(GetPortfolio), new { id = p.Id }, pdto);
     }
 
     //update

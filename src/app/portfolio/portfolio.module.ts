@@ -9,6 +9,7 @@ import { AddPortfolioComponent } from './add-portfolio/add-portfolio.component';
 import { ViewPortfolioComponent } from './view-portfolio/view-portfolio.component';
 import { PortfolioResolver } from './portfolio-resolver';
 import { ViewByUserComponent } from './view-by-user/view-by-user.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   { path: 'main-portfolio', component: MainPortfolioComponent },
@@ -22,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent],
+  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent],
   imports: [
     CommonModule,
     HttpClientModule,

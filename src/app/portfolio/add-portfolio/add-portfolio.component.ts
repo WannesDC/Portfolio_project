@@ -38,12 +38,13 @@ export class AddPortfolioComponent implements OnInit {
   }
 
   onSubmit(){
-    //console.log(this.loggedInUser$);
+    
     this._portfolioDataService
     .addNewPortfolio(this.loggedInUser$.value,new Portfolio(this.portfolio.value.pName, this.portfolio.value.description, this.portfolio.value.picturePath, this.portfolio.value.resumePath))
     .subscribe();
+    console.log("gelukt");
     this.router.navigate(['portfolio/view']);
-    // router.navigatebyurl kan je ook gebruiken, zou graag portfolio resolver willen gebruiken. Maar hoe? 
+    // router.navigatebyurl kan je ook gebruiken
   }
 
   getErrorMessage(errors: any) {

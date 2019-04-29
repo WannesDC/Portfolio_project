@@ -35,10 +35,8 @@ export class PortfolioDataService {
       console.log(email, portfolio.toJSON())
       var p = portfolio.toJSON();
       
-    return this.http // MAAK EEN PORTFOLIOVIEWMODEL AAN IN BACKEND??
-    .post(`${environment.apiUrl}/Portfolios/`,portfolio.toJSON() )
-    //.post(`${environment.apiUrl}/Portfolios/`,portfolio.toJSON())
-    ;
+    return this.http
+    .post(`${environment.apiUrl}/Portfolios/`,portfolio.toJSON());
   }
 
   getPortfolio$(id): Observable<Portfolio>{
@@ -48,6 +46,12 @@ export class PortfolioDataService {
 
   getPortfolioByUser$(): Observable<Portfolio>{
     return this.http.get(`${environment.apiUrl}/Portfolios/byUser`)
-    .pipe(map((por:any): Portfolio => Portfolio.fromJSON(por)));
+    .pipe(catchError(error => {
+      this.loadingError$.next(error.statusText);
+      return of(null);
+    })
+    ,map((por:any): Portfolio => {if(por===null){return null} else {return Portfolio.fromJSON(por)}})
+    );
+
   }
 }
