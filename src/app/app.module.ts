@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './interceptors';
 import { MaterialModule } from './material/material.module';
+import { NavbarService } from './navbar.service';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { MaterialModule } from './material/material.module';
     AppRoutingModule,
     MaterialModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, NavbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
