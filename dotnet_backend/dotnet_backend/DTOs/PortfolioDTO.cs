@@ -8,6 +8,8 @@ namespace dotnet_backend.DTOs
 {
   public class PortfolioDTO
   {
+    
+    public int Id { get; set; }
     [Required]
     public string Name { get; set; }
     [Required]

@@ -5,10 +5,12 @@ import { FormGroup,
   FormBuilder,
   FormArray } from '@angular/forms';
 import { PortfolioDataService } from '../portfolio-data.service';
-import { Portfolio } from '../portfolio.model';
+import { Portfolio } from '../portfolio';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AuthenticationService } from '../../user/authentication.service';
 import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-add-portfolio',
@@ -38,11 +40,16 @@ export class AddPortfolioComponent implements OnInit {
   }
 
   onSubmit(){
-    
-    this._portfolioDataService
-    .addNewPortfolio(this.loggedInUser$.value,new Portfolio(this.portfolio.value.pName, this.portfolio.value.description, this.portfolio.value.picturePath, this.portfolio.value.resumePath))
-    .subscribe();
-    console.log("gelukt");
+
+   this._portfolioDataService
+    .addNewPortfolio(this.loggedInUser$.value,
+      { 
+        name: this.portfolio.value.pName,
+        description: this.portfolio.value.description,
+        picturePath: this.portfolio.value.picturePath,
+        resumePath: this.portfolio.value.resumePath
+      } as Portfolio).subscribe();
+  
     this.router.navigate(['portfolio/view']);
     // router.navigatebyurl kan je ook gebruiken
   }

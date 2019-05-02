@@ -54,7 +54,7 @@ namespace dotnet_backend.Controllers
 
       Portfolio p = u.Portfolio;
       if (p == null) return NoContent();
-      PortfolioDTO pdto = new PortfolioDTO { Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
+      PortfolioDTO pdto = new PortfolioDTO { Id = p.Id, Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
       return pdto;
     }
 
@@ -89,7 +89,7 @@ namespace dotnet_backend.Controllers
       _pRepository.Add(p);
       _pRepository.SaveChanges();
 
-      PortfolioDTO pdto = new PortfolioDTO { Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
+      PortfolioDTO pdto = new PortfolioDTO {Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
 
       return CreatedAtAction(nameof(GetPortfolio), new { id = p.Id }, pdto);
     }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Portfolio } from './portfolio.model';
+import { Portfolio } from './portfolio';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { PortfolioDataService } from './portfolio-data.service';
 import { Observable } from 'rxjs';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, of } from 'rxjs';
-import { Portfolio } from './portfolio.model';
+import { Portfolio } from './portfolio';
 import { environment } from 'src/environments/environment';
 import { map, catchError, tap } from 'rxjs/operators';
 
@@ -20,7 +20,7 @@ export class PortfolioDataService {
     this.token = localStorage.getItem(this._tokenKey);
   }
 
-  get portfolios$(): Observable<Portfolio[]>{
+  /*get portfolios$(): Observable<Portfolio[]>{
     return this.http.get(`${environment.apiUrl}/Portfolios/`).pipe(
       catchError(error => {
         this.loadingError$.next(error.statusText);
@@ -28,23 +28,34 @@ export class PortfolioDataService {
       }),
       map((list: any[]): Portfolio[] => list.map(Portfolio.fromJSON))
     );
+  }*/
+
+  get portfolios$(): Observable<Portfolio[]>{
+    return this.http.get<Portfolio>(`${environment.apiUrl}/Portfolios/`).pipe(
+      catchError(error => {
+        this.loadingError$.next(error.statusText);
+        return of(null);
+      })
+    );
   }
 
   addNewPortfolio(email: string, portfolio: Portfolio){
 
-      console.log(email, portfolio.toJSON())
-      var p = portfolio.toJSON();
-      
     return this.http
-    .post(`${environment.apiUrl}/Portfolios/`,portfolio.toJSON());
+    .post<Portfolio>(`${environment.apiUrl}/Portfolios/`,portfolio);
   }
 
-  getPortfolio$(id): Observable<Portfolio>{
+  /*getPortfolio$(id): Observable<Portfolio>{
     return this.http.get(`${environment.apiUrl}/Portfolios/${id}`)
     .pipe(map((por:any): Portfolio => Portfolio.fromJSON(por)));
+  }*/
+
+  getPortfolio$(id): Observable<Portfolio>{
+    return this.http.get<Portfolio>(`${environment.apiUrl}/Portfolios/${id}`)
+    .pipe();
   }
 
-  getPortfolioByUser$(): Observable<Portfolio>{
+  /*getPortfolioByUser$(): Observable<Portfolio>{
     return this.http.get(`${environment.apiUrl}/Portfolios/byUser`)
     .pipe(catchError(error => {
       this.loadingError$.next(error.statusText);
@@ -52,6 +63,13 @@ export class PortfolioDataService {
     })
     ,map((por:any): Portfolio => {if(por===null){return null} else {return Portfolio.fromJSON(por)}})
     );
-
+  }
+*/
+getPortfolioByUser$(): Observable<Portfolio>{
+  return this.http.get(`${environment.apiUrl}/Portfolios/byUser`)
+  .pipe(catchError(error => {
+    this.loadingError$.next(error.statusText);
+    return of(null);
+  }));
   }
 }

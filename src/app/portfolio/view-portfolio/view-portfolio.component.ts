@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PortfolioDataService } from '../portfolio-data.service';
-import { Portfolio } from '../portfolio.model';
+import { Portfolio } from '../portfolio';
 import { ActivatedRoute } from '@angular/router';
 import { NavbarService } from 'src/app/navbar.service';
+
 
 @Component({
   selector: 'app-view-portfolio',
   templateUrl: './view-portfolio.component.html',
   styleUrls: ['./view-portfolio.component.css']
 })
+
 export class ViewPortfolioComponent implements OnInit, OnDestroy {
 
   public portfolio : Portfolio

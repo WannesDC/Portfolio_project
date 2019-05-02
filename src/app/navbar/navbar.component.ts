@@ -31,8 +31,10 @@ export class NavbarComponent {
   ngOnInit(){
     this.nav.visible.subscribe(x => this.visible$ = x);
   }
+
   logout() {
     this._authenticationService.logout();
+    location.reload();
   }
 
 }
