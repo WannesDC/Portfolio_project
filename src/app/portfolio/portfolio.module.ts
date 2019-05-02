@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'main-portfolio', component: MainPortfolioComponent },
   { path: 'add-portfolio', component: AddPortfolioComponent },
   { path: 'view', component: ViewByUserComponent },
-  { path: '', redirectTo: 'portfolio/main-portfolio', pathMatch: 'full' },
+  { path: '', redirectTo: 'main-portfolio', pathMatch: 'full' },
   { 
     path: 'viewPortfolio/:id',
     component: ViewPortfolioComponent,

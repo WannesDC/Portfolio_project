@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, of } from 'rxjs';
-import { Portfolio } from './portfolio';
+import { Portfolio } from './data-types/portfolio';
 import { environment } from 'src/environments/environment';
 import { map, catchError, tap } from 'rxjs/operators';
 

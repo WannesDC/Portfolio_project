@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
   ): boolean {
     var x = state.url.toString().split('/');
     if (this.authService.user$.getValue() || x[x.length-2] === "viewPortfolio") {
-      console.log("success");
+      //console.log("success");
       return true;
     }
     this.authService.redirectUrl = state.url;

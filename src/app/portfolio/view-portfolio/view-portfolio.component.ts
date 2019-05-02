@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PortfolioDataService } from '../portfolio-data.service';
-import { Portfolio } from '../portfolio';
+import { Portfolio } from '../data-types/portfolio';
 import { ActivatedRoute } from '@angular/router';
 import { NavbarService } from 'src/app/navbar.service';
 

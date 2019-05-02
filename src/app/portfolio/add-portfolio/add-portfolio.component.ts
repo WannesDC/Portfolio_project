@@ -5,7 +5,7 @@ import { FormGroup,
   FormBuilder,
   FormArray } from '@angular/forms';
 import { PortfolioDataService } from '../portfolio-data.service';
-import { Portfolio } from '../portfolio';
+import { Portfolio } from '../data-types/portfolio';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AuthenticationService } from '../../user/authentication.service';
 import { Router } from '@angular/router';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, throwError, of } from 'rxjs';
-import { Portfolio } from '../portfolio';
+import { Portfolio } from '../data-types/portfolio';
 import { PortfolioDataService } from '../portfolio-data.service';
 
 

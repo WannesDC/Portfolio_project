@@ -1,3 +1,649 @@
-<p>
-  view-by-user works!
-</p>
+<div class="row mt-3">
+  <div class="col-md-6 col-xl-8 mb-2 mx-auto">
+    <!--Form-->
+    <div class="card" >
+      <div class="card-body">
+        <!--Header-->
+        <div class="text-center">
+          <h3 class="white-text">
+            Your Contact Information:</h3>
+          <hr class="hr-light">
+        </div>
+        <!--form starts here!!-->
+        <form [formGroup]="contact" (ngSubmit)="onSubmit()">
+          <div class="row mt-5">
+            <div class="col-lg-6 mx-auto">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>person</mat-icon>
+                  </span>
+                </div>
+                <input type="text" class="form-control mr-sm-2"
+                 placeholder="Name" aria-label="Name"
+                aria-describedby="basic-addon1" formControlName="pName">
+            </div>
+            <br>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <mat-icon>person</mat-icon>
+                </span>
+              </div>
+              <input  type="text" class="form-control mr-sm-2" placeholder="Surname" aria-label="Description"
+               aria-describedby="basic-addon1" formControlName="description">
+            </div>
+            <br>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <mat-icon>email</mat-icon>
+                </span>
+              </div>
+              <input type="url" class="form-control mr-sm-2" placeholder="Email" aria-label="image" aria-describedby="basic-addon1"
+                formControlName="picturePath"> 
+            </div>
+            <br>
+            
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class=" input-group-text" id="basic-addon2">
+                                            
+                  <mat-icon>date</mat-icon>
+                </span>
+              </div>
+              <input type="url" class="form-control mr-sm-2" placeholder="Birth Date" aria-label="resume"
+               aria-describedby="basic-addon2" formControlName="resumePath">
+            </div>
+          </div>
+        
+        
+            <div class="col-lg-6 mx-auto">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>Street</mat-icon>
+                  </span>
+                </div>
+                <input type="text" class="form-control mr-sm-2"
+                 placeholder="Street" aria-label="Name"
+                aria-describedby="basic-addon1" formControlName="pName">
+            </div>
+            <br>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <mat-icon>City</mat-icon>
+                </span>
+              </div>
+              <input  type="text" class="form-control mr-sm-2" placeholder="City" aria-label="Description"
+               aria-describedby="basic-addon1" formControlName="description">
+            </div>
+            <br>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                  <mat-icon>country</mat-icon>
+                </span>
+              </div>
+              <input type="url" class="form-control mr-sm-2" placeholder="Country" aria-label="image" aria-describedby="basic-addon1"
+                formControlName="picturePath"> 
+            </div>
+            <br>
+            
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class=" input-group-text" id="basic-addon2">
+                                            
+                  <mat-icon>PostalCode</mat-icon>
+                </span>
+              </div>
+              <input type="url" class="form-control mr-sm-2" placeholder="PostalCode" aria-label="resume"
+               aria-describedby="basic-addon2" formControlName="resumePath">
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 ">
+            <button type="submit" class="btn btn-outline-light ">Save</button>
+          </div>
+        </form>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+    <div class=" row col-md-6 col-xl-8 mx-auto">
+        <div class="col-md-3 col-xl-6 mx-auto">
+      <!--Form-->
+      <div class="card" >
+        <div class="card-body">
+          <!--Header-->
+          <div class="text-center">
+            <h3 class="white-text">
+              Add Skill:</h3>
+            <hr class="hr-light">
+          </div>
+          <!--form starts here!!-->
+          
+          <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>person</mat-icon>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control mr-sm-2"
+                   placeholder="Name" aria-label="Name"
+                  aria-describedby="basic-addon1" formControlName="pName">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>description</mat-icon>
+                  </span>
+                </div>
+                <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                 aria-describedby="basic-addon1" formControlName="description">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>image</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                  formControlName="picturePath"> 
+              </div>
+              <br>
+              
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class=" input-group-text" id="basic-addon2">
+                                              
+                    <mat-icon>work</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                 aria-describedby="basic-addon2" formControlName="resumePath">
+              </div>
+              
+              <div class="mt-4">
+                <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+              </div>
+          </form>
+      </div>
+      </div>
+    
+        </div>
+        <div class="col-md-3 col-xl-6 mx-auto">
+        
+        <!--Form-->
+        <div class="card" >
+          <div class="card-body">
+            <!--Header-->
+            <div class="text-center">
+              <h3 class="white-text">
+                Add Skill:</h3>
+              <hr class="hr-light">
+            </div>
+            <!--form starts here!!-->
+            <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <mat-icon>person</mat-icon>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control mr-sm-2"
+                     placeholder="Name" aria-label="Name"
+                    aria-describedby="basic-addon1" formControlName="pName">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>description</mat-icon>
+                    </span>
+                  </div>
+                  <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                   aria-describedby="basic-addon1" formControlName="description">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>image</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                    formControlName="picturePath"> 
+                </div>
+                <br>
+                
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class=" input-group-text" id="basic-addon2">
+                                                
+                      <mat-icon>work</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                   aria-describedby="basic-addon2" formControlName="resumePath">
+                </div>
+                
+                <div class="mt-4">
+                  <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+                </div>
+            </form>
+        </div>
+        
+
+      </div>
+        </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+    <div class=" row col-md-6 col-xl-8 mx-auto">
+        <div class="col-md-3 col-xl-6 mx-auto">
+      <!--Form-->
+      <div class="card" >
+        <div class="card-body">
+          <!--Header-->
+          <div class="text-center">
+            <h3 class="white-text">
+              Add Education:</h3>
+            <hr class="hr-light">
+          </div>
+          <!--form starts here!!-->
+          
+          <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>person</mat-icon>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control mr-sm-2"
+                   placeholder="Name" aria-label="Name"
+                  aria-describedby="basic-addon1" formControlName="pName">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>description</mat-icon>
+                  </span>
+                </div>
+                <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                 aria-describedby="basic-addon1" formControlName="description">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>image</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                  formControlName="picturePath"> 
+              </div>
+              <br>
+              
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class=" input-group-text" id="basic-addon2">
+                                              
+                    <mat-icon>work</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                 aria-describedby="basic-addon2" formControlName="resumePath">
+              </div>
+              
+              <div class="mt-4">
+                <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+              </div>
+          </form>
+      </div>
+      </div>
+    
+        </div>
+        <div class="col-md-3 col-xl-6 mx-auto">
+        
+        <!--Form-->
+        <div class="card" >
+          <div class="card-body">
+            <!--Header-->
+            <div class="text-center">
+              <h3 class="white-text">
+                Add Education:</h3>
+              <hr class="hr-light">
+            </div>
+            <!--form starts here!!-->
+            <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <mat-icon>person</mat-icon>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control mr-sm-2"
+                     placeholder="Name" aria-label="Name"
+                    aria-describedby="basic-addon1" formControlName="pName">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>description</mat-icon>
+                    </span>
+                  </div>
+                  <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                   aria-describedby="basic-addon1" formControlName="description">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>image</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                    formControlName="picturePath"> 
+                </div>
+                <br>
+                
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class=" input-group-text" id="basic-addon2">
+                                                
+                      <mat-icon>work</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                   aria-describedby="basic-addon2" formControlName="resumePath">
+                </div>
+                
+                <div class="mt-4">
+                  <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+                </div>
+            </form>
+        </div>
+        
+
+      </div>
+        </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+    <div class=" row col-md-6 col-xl-8 mx-auto">
+        <div class="col-md-3 col-xl-6 mx-auto">
+      <!--Form-->
+      <div class="card" >
+        <div class="card-body">
+          <!--Header-->
+          <div class="text-center">
+            <h3 class="white-text">
+              Add Experience:</h3>
+            <hr class="hr-light">
+          </div>
+          <!--form starts here!!-->
+          
+          <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>person</mat-icon>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control mr-sm-2"
+                   placeholder="Name" aria-label="Name"
+                  aria-describedby="basic-addon1" formControlName="pName">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>description</mat-icon>
+                  </span>
+                </div>
+                <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                 aria-describedby="basic-addon1" formControlName="description">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>image</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                  formControlName="picturePath"> 
+              </div>
+              <br>
+              
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class=" input-group-text" id="basic-addon2">
+                                              
+                    <mat-icon>work</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                 aria-describedby="basic-addon2" formControlName="resumePath">
+              </div>
+              
+              <div class="mt-4">
+                <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+              </div>
+          </form>
+      </div>
+      </div>
+    
+        </div>
+        <div class="col-md-3 col-xl-6 mx-auto">
+        
+        <!--Form-->
+        <div class="card" >
+          <div class="card-body">
+            <!--Header-->
+            <div class="text-center">
+              <h3 class="white-text">
+                Add Experience:</h3>
+              <hr class="hr-light">
+            </div>
+            <!--form starts here!!-->
+            <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <mat-icon>person</mat-icon>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control mr-sm-2"
+                     placeholder="Name" aria-label="Name"
+                    aria-describedby="basic-addon1" formControlName="pName">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>description</mat-icon>
+                    </span>
+                  </div>
+                  <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                   aria-describedby="basic-addon1" formControlName="description">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>image</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                    formControlName="picturePath"> 
+                </div>
+                <br>
+                
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class=" input-group-text" id="basic-addon2">
+                                                
+                      <mat-icon>work</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                   aria-describedby="basic-addon2" formControlName="resumePath">
+                </div>
+                
+                <div class="mt-4">
+                  <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+                </div>
+            </form>
+        </div>
+        
+
+      </div>
+        </div>
+  </div>
+</div>
+
+<div class="row mt-3">
+    <div class=" row col-md-6 col-xl-8 mx-auto">
+        <div class="col-md-3 col-xl-6 mx-auto">
+      <!--Form-->
+      <div class="card" >
+        <div class="card-body">
+          <!--Header-->
+          <div class="text-center">
+            <h3 class="white-text">
+              Add Work:</h3>
+            <hr class="hr-light">
+          </div>
+          <!--form starts here!!-->
+          
+          <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+              <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>person</mat-icon>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control mr-sm-2"
+                   placeholder="Name" aria-label="Name"
+                  aria-describedby="basic-addon1" formControlName="pName">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>description</mat-icon>
+                  </span>
+                </div>
+                <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                 aria-describedby="basic-addon1" formControlName="description">
+              </div>
+              <br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>image</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                  formControlName="picturePath"> 
+              </div>
+              <br>
+              
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class=" input-group-text" id="basic-addon2">
+                                              
+                    <mat-icon>work</mat-icon>
+                  </span>
+                </div>
+                <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                 aria-describedby="basic-addon2" formControlName="resumePath">
+              </div>
+              
+              <div class="mt-4">
+                <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+              </div>
+          </form>
+      </div>
+      </div>
+    
+        </div>
+        <div class="col-md-3 col-xl-6 mx-auto">
+        
+        <!--Form-->
+        <div class="card" >
+          <div class="card-body">
+            <!--Header-->
+            <div class="text-center">
+              <h3 class="white-text">
+                Add Work:</h3>
+              <hr class="hr-light">
+            </div>
+            <!--form starts here!!-->
+            <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">
+                        <mat-icon>person</mat-icon>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control mr-sm-2"
+                     placeholder="Name" aria-label="Name"
+                    aria-describedby="basic-addon1" formControlName="pName">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>description</mat-icon>
+                    </span>
+                  </div>
+                  <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+                   aria-describedby="basic-addon1" formControlName="description">
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                      <mat-icon>image</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+                    formControlName="picturePath"> 
+                </div>
+                <br>
+                
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class=" input-group-text" id="basic-addon2">
+                                                
+                      <mat-icon>work</mat-icon>
+                    </span>
+                  </div>
+                  <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
+                   aria-describedby="basic-addon2" formControlName="resumePath">
+                </div>
+                
+                <div class="mt-4">
+                  <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+                </div>
+            </form>
+        </div>
+        
+
+      </div>
+        </div>
+  </div>
+</div>
