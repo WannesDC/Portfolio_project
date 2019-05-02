@@ -111,7 +111,7 @@ namespace dotnet_backend.Controllers
       var token = new JwtSecurityToken(
         _config["Tokens:Issuer"], null,
         claims,
-        expires: DateTime.Now.AddMinutes(30),
+        expires: DateTime.Now.AddMinutes(300),
         signingCredentials: creds);
 
       return new JwtSecurityTokenHandler().WriteToken(token);
