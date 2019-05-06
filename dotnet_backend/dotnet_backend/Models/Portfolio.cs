@@ -46,11 +46,14 @@ namespace dotnet_backend.Models
 
     public void AddWork(Work work) => Works.Add(work);
     public void AddEducation(Education education) => Educations.Add(education);
+    public void AddContact(Contact contact) => Contact = contact;
 
     public Experience GetExperience(int id) => Experiences.SingleOrDefault(e => e.Id == id);
     public Skill GetSkill(int id) => Skills.SingleOrDefault(s => s.Id == id);
     public Work GetWork(int id) => Works.SingleOrDefault(w => w.Id == id);
     public Education GetEducation(int id) => Educations.SingleOrDefault(e => e.Id == id);
-		#endregion
-	}
+    public Contact GetContact(int id) => Contact;
+
+    #endregion
+  }
 }

@@ -134,6 +134,90 @@ namespace dotnet_backend.Controllers
     }
     #endregion
 
+    #region Contact
+    /// <summary>
+    /// Get Contact for a Portfolio
+    /// </summary>
+    /// <param name="id">id of the Portfolio</param>
+    /// <param name="contactId">id of the Experience</param>
+    [HttpGet("{id}/contact/{contactId}")]
+    public ActionResult<Contact> GetContact(int id, int contactId)
+    {
+      if (!_pRepository.TryGetPortfolio(id, out var portfolio))
+      {
+        return NotFound();
+      }
+      Contact c = portfolio.GetContact(contactId);
+      if (c == null)
+        return NotFound();
+      return c;
+    }
+
+    /// <summary>
+    /// Adds contact to Portfolio
+    /// </summary>
+    /// <param name="id">the id of the Portfolio</param>
+    /// <param name="contact">the experience to be added</param>
+    [HttpPost("{id}/contact")]
+    public ActionResult<Contact> PostContact(int id, Contact contact)
+    {
+      if (!_pRepository.TryGetPortfolio(id, out var portfolio))
+      {
+        return NotFound();
+      }
+      Contact tempContact = new Contact(contact.Name, contact.Surname, contact.Email, contact.BirthDate, contact.Street, contact.City, contact.PostalCode, contact.Country);
+      portfolio.AddContact(tempContact);
+      _pRepository.SaveChanges();
+      return CreatedAtAction("GetContact", new { id = portfolio.Id, contactId = portfolio.Contact.Id }, portfolio.Contact);
+    }
+
+    /// <summary>
+    /// Modifies a contact
+    /// </summary>
+    /// <param name="id">id of the portfolio to be modified</param>
+    /// <param name="contactId">id of the contact to be modified</param>
+    /// <param name="contact">the modified Contact</param>
+    [HttpPut("{id}/contact/{contactId}")]
+    public IActionResult putContact(int id, Contact contact, int contactId)
+    {
+      if (!_pRepository.TryGetPortfolio(id, out var portfolio))
+      {
+        return NotFound();
+      }
+      Contact c = portfolio.Contact;
+      if (c == null)
+      {
+        return BadRequest("contact does not exist for portfolio.");
+      }
+      c.Update(contact);
+      _pRepository.SaveChanges();
+      return NoContent();
+    }
+
+    /// <summary>
+    /// Deletes a Contact
+    /// </summary>
+    /// <param name="id">the id of the portfolio on which the contact is deleted</param>
+    /// /// <param name="contactId">id of the contact to be modified</param>
+    [HttpDelete("{id}/contact/{contactId}")]
+    public ActionResult<Contact> DeleteContact(int id, int contactId)
+    {
+      Portfolio p = _pRepository.GetBy(id);
+      if (p == null)
+      {
+        return NotFound();
+
+      }
+      Contact contact = p.Contact;
+
+      p.Contact = null;
+      _pRepository.SaveChanges();
+      return contact;
+
+    }
+    #endregion
+
+
     #region Experience
     /// <summary>
     /// Get an experience for a Portfolio

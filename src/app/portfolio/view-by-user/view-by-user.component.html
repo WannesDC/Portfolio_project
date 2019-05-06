@@ -11,15 +11,17 @@
               Your Portfolio:</h3>
             <hr class="hr-light">
         </div>
-        <div class="card">
-            <img class="card-img" src="{{portfolio$.picturePath}}" alt="Card image cap">
+        <ng-container *ngIf="portfolio$ | async as item; else test">
+        <div class="card" style="width: 13rem">
+            <img class="card-img" src="http://bestvoyage.in/wp-content/uploads/profile.png" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">{{portfolio$.name}} </h5>
-              <p class="card-text">{{portfolio$.description}}</p>
-              <a href="{{portfolio$.resumePath}}" class="btn btn-primary">Resume</a>
-              <a href="#" class="btn btn-warning" (click)="delete(portfolio$.id)">Delete</a>
+              <h5 class="card-title">{{item.name}} </h5>
+              <p class="card-text">{{item.description}}</p>
+              <a href="{{item.resumePath}}" class="btn btn-primary">Resume</a>
+              <a class="btn btn-warning" (click)="delete(item.id)">Delete</a>
             </div>
           </div>
+
         <!--Header-->
         <div class="text-center">
           <h3 class="white-text">
@@ -27,7 +29,8 @@
           <hr class="hr-light">
         </div>
         <!--form starts here!!-->
-        <form [formGroup]="contact" (ngSubmit)="onSubmit()">
+        
+        <form [formGroup]="contact" (ngSubmit)="onSubmit(item.id)">
           <div class="row mt-5">
             <div class="col-lg-6 mx-auto">
             <div class="input-group">
@@ -172,10 +175,12 @@
             <hr class="hr-light">
           </div>
           <!--form starts here!!-->
-          
+          <app-work></app-work>
           
         </div>
         </div>
+      </ng-container>
+      <ng-template #test></ng-template>
     </div>
     </div>
   </div>

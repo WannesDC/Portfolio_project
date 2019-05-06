@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-experience',
@@ -9,9 +9,16 @@ import { FormGroup } from '@angular/forms';
 export class ExperienceComponent implements OnInit {
 
   public experience : FormGroup;
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.experience = this.fb.group({
+      company: ['', [Validators.required, Validators.minLength(2)]],
+      link:['', [Validators.required, Validators.minLength(2)]],
+      description:['', [Validators.required, Validators.minLength(2)]],
+      startYear:['', [Validators.required, Validators.minLength(2)]],
+      endYear:['', [Validators.required, Validators.minLength(2)]]
+    });
   }
 
   onSubmit(){}

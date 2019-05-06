@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-work',
@@ -9,9 +9,16 @@ import { FormGroup } from '@angular/forms';
 export class WorkComponent implements OnInit {
 
   public work: FormGroup;
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.work = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      description:['', [Validators.required, Validators.minLength(2)]],
+      picturePath:['', [Validators.required, Validators.minLength(2)]],
+      link:['', [Validators.required, Validators.minLength(2)]],
+      timePublished:['', [Validators.required, Validators.minLength(2)]]
+    });
   }
 
   onSubmit(){}

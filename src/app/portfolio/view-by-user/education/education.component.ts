@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-education',
@@ -9,9 +9,17 @@ import { FormGroup } from '@angular/forms';
 export class EducationComponent implements OnInit {
 
   public education: FormGroup;
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.education = this.fb.group({
+      institute: ['', [Validators.required, Validators.minLength(2)]],
+      description:['', [Validators.required, Validators.minLength(2)]],
+      link:['', [Validators.required, Validators.minLength(2)]],
+      course:['', [Validators.required, Validators.minLength(2)]],
+      startYear:['', [Validators.required, Validators.minLength(2)]],
+      endYear:['', [Validators.required, Validators.minLength(2)]]
+    });
   }
 
   onSubmit(){}
