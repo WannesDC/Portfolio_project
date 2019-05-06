@@ -1,0 +1,61 @@
+<form [formGroup]="work" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>person</mat-icon>
+          </span>
+        </div>
+        <input type="text" class="form-control mr-sm-2"
+         placeholder="Name" aria-label="Name"
+        aria-describedby="basic-addon1" formControlName="pName">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>description</mat-icon>
+        </span>
+      </div>
+      <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+       aria-describedby="basic-addon1" formControlName="description">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>image</mat-icon>
+        </span>
+      </div>
+      <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+        formControlName="picturePath"> 
+    </div>
+    <br>
+    
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+                                    
+          <mat-icon>work</mat-icon>
+        </span>
+      </div>
+      <input type="url" class="form-control mr-sm-2" placeholder="Link" aria-label="Link"
+       aria-describedby="basic-addon2" formControlName="link">
+    </div>
+
+    <br>
+    
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+                                    
+          <mat-icon>work</mat-icon>
+        </span>
+      </div>
+      <input type="datetime" class="form-control mr-sm-2" placeholder="Published" aria-label="Published"
+       aria-describedby="basic-addon2" formControlName="timePublished">
+    </div>
+    
+    <div class="mt-4">
+      <button type="submit" class="btn btn-outline-light ">Add Work</button>
+    </div>
+</form>

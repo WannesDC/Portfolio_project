@@ -10,6 +10,11 @@ import { ViewPortfolioComponent } from './view-portfolio/view-portfolio.componen
 import { PortfolioResolver } from './portfolio-resolver';
 import { ViewByUserComponent } from './view-by-user/view-by-user.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ContactComponent } from './view-by-user/contact/contact.component';
+import { SkillComponent } from './view-by-user/skill/skill.component';
+import { ExperienceComponent } from './view-by-user/experience/experience.component';
+import { EducationComponent } from './view-by-user/education/education.component';
+import { WorkComponent } from './view-by-user/work/work.component';
 
 const routes: Routes = [
   { path: 'main-portfolio', component: MainPortfolioComponent },
@@ -24,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent],
+  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent, ContactComponent, SkillComponent, ExperienceComponent, EducationComponent, WorkComponent],
   imports: [
     CommonModule,
     HttpClientModule,

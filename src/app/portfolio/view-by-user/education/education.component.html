@@ -1,0 +1,72 @@
+<form [formGroup]="education" (ngSubmit)="onSubmit()">
+    <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>person</mat-icon>
+          </span>
+        </div>
+        <input type="text" class="form-control mr-sm-2"
+         placeholder="School" aria-label="Institute"
+        aria-describedby="basic-addon1" formControlName="Institute">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>description</mat-icon>
+        </span>
+      </div>
+      <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+       aria-describedby="basic-addon1" formControlName="description">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>image</mat-icon>
+        </span>
+      </div>
+      <input type="url" class="form-control mr-sm-2" placeholder="Link" aria-label="Link" aria-describedby="basic-addon1"
+        formControlName="link"> 
+    </div>
+    <br>
+    
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+                                    
+          <mat-icon>work</mat-icon>
+        </span>
+      </div>
+      <input type="text" class="form-control mr-sm-2" placeholder="Course" aria-label="Course"
+       aria-describedby="basic-addon2" formControlName="course">
+    </div>
+    <br>
+    
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+                                    
+          <mat-icon>work</mat-icon>
+        </span>
+      </div>
+      <input type="date" class="form-control mr-sm-2" placeholder="Starting Year" aria-label="Starting Year"
+       aria-describedby="basic-addon2" formControlName="startYear">
+    </div>
+    <br>
+    
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+                                    
+          <mat-icon>work</mat-icon>
+        </span>
+      </div>
+      <input type="date" class="form-control mr-sm-2" placeholder="Ending Year" aria-label="Ending Year"
+       aria-describedby="basic-addon2" formControlName="endYear">
+    </div>
+    
+    <div class="mt-4">
+      <button type="submit" class="btn btn-outline-light ">Add Education</button>
+    </div>
+</form>

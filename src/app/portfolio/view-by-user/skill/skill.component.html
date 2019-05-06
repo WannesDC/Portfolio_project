@@ -1,0 +1,39 @@
+<form [formGroup]="skill" (ngSubmit)="onSubmit()">
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>person</mat-icon>
+          </span>
+        </div>
+        <input type="text" class="form-control mr-sm-2"
+         placeholder="Skill" aria-label="Type"
+        aria-describedby="basic-addon1" formControlName="type">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>description</mat-icon>
+        </span>
+      </div>
+      <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
+       aria-describedby="basic-addon1" formControlName="description">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>image</mat-icon>
+        </span>
+      </div>
+      <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
+        formControlName="iconPath"> 
+    </div>
+    
+    <div class="mt-4">
+      <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+    </div>
+        
+</form>
+</div>

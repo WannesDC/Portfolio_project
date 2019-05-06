@@ -1,0 +1,61 @@
+<form [formGroup]="experience" (ngSubmit)="onSubmit()">
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>person</mat-icon>
+          </span>
+        </div>
+        <input type="text" class="form-control mr-sm-2"
+         placeholder="Company" aria-label="Company"
+        aria-describedby="basic-addon1" formControlName="company">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>description</mat-icon>
+        </span>
+      </div>
+      <input  type="url" class="form-control mr-sm-2" placeholder="Link" aria-label="Link"
+       aria-describedby="basic-addon1" formControlName="link">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>description</mat-icon>
+        </span>
+      </div>
+      <input type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="description" aria-describedby="basic-addon1"
+        formControlName="description"> 
+    </div>
+    <br>
+    
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+                                    
+          <mat-icon>work</mat-icon>
+        </span>
+      </div>
+      <input type="date" class="form-control mr-sm-2" placeholder="Starting Date" aria-label="Starting Date"
+       aria-describedby="basic-addon2" formControlName="startYear">
+    </div>
+    <br>
+    <div class="input-group">
+        <div class="input-group-prepend">
+          <span class=" input-group-text" id="basic-addon2">
+                                      
+            <mat-icon>work</mat-icon>
+          </span>
+        </div>
+        <input type="date" class="form-control mr-sm-2" placeholder="Ending Date" aria-label="Ending Date"
+         aria-describedby="basic-addon2" formControlName="endYear">
+      </div>
+    
+    <div class="mt-4">
+      <button type="submit" class="btn btn-outline-light ">Add Experience</button>
+    </div>
+        
+</form>

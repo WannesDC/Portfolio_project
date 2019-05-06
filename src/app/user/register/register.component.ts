@@ -82,6 +82,7 @@ export class RegisterComponent implements OnInit {
     }
   }
   onSubmit() {
+    //ADD EXHAUST HERE IN CASE THEY SPAM LOGIN!!
     this.authService
       .register(
         this.user.value.firstname,
