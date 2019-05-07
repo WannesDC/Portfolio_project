@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { PortfolioDataService } from '../../portfolio-data.service';
+import { Work } from '../../data-types/work';
 
 @Component({
   selector: 'app-work',
@@ -8,8 +10,9 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class WorkComponent implements OnInit {
 
+  @Input() id:number;
   public work: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
     this.work = this.fb.group({
@@ -21,5 +24,15 @@ export class WorkComponent implements OnInit {
     });
   }
 
-  onSubmit(){}
+  onSubmit(){
+    this._portfolioDataService.postWork(this.id,
+      {
+        workName: this.work.value.name,
+        description: this.work.value.description,
+        picturePath: this.work.value.picturePath,
+        link: this.work.value.link,
+        timePublished: this.work.value.timePublished
+      } as Work
+    ).subscribe();
+  }
 }

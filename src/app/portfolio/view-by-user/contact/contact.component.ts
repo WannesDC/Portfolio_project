@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.css'],
+  template: `
+    Example {{ childExample }}
+  `
 })
 export class ContactComponent implements OnInit {
+
+  @Input() childExample: string;
 
   public contact: FormGroup;
   constructor() { }

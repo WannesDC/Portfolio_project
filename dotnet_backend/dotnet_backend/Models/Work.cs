@@ -17,17 +17,20 @@ namespace dotnet_backend.Models
 		public int PortfolioId { get; set; }
 
 
-    public Work(string workName, DateTime timePublished, string link, string imagePath):this()
-    {
-      WorkName = workName;
-      TimePublished = timePublished;
-      Link = link;
-      ImagePath = imagePath;
-    }
+ 
 
     public Work()
     {
 
+    }
+
+    public Work(string workName, string description, DateTime timePublished, string link, string imagePath):this()
+    {
+      WorkName = workName;
+      Description = description;
+      TimePublished = timePublished;
+      Link = link;
+      ImagePath = imagePath;
     }
 
     internal void Update(Work work)

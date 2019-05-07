@@ -252,7 +252,7 @@ namespace dotnet_backend.Controllers
       var experienceToCreate = new Experience(experience.Company, experience.Description, experience.StartYear, experience.EndYear, experience.Link);
       portfolio.AddExperience(experienceToCreate);
       _pRepository.SaveChanges();
-      return CreatedAtAction("GetExperience", new { id = portfolio.Id, ExperienceId = experienceToCreate.Id }, experienceToCreate);
+      return CreatedAtAction("GetExperience", new { id = portfolio.Id, experienceId = experienceToCreate.Id }, experienceToCreate);
     }
 
     /// <summary>
@@ -332,10 +332,10 @@ namespace dotnet_backend.Controllers
       {
         return NotFound();
       }
-      var workToCreate = new Work(work.WorkName, work.TimePublished, work.Link, work.ImagePath);
+      var workToCreate = new Work(work.WorkName, work.Description, work.TimePublished, work.Link, work.ImagePath);
       portfolio.AddWork(workToCreate);
       _pRepository.SaveChanges();
-      return CreatedAtAction("GetWork", new { id = portfolio.Id, WorkId = workToCreate.Id }, workToCreate);
+      return CreatedAtAction("GetWork", new { id = portfolio.Id, workId = workToCreate.Id }, workToCreate);
     }
 
     /// <summary>
@@ -417,7 +417,7 @@ namespace dotnet_backend.Controllers
       var eduToCreate = new Education(edu.Institute, edu.Description, edu.Course, edu.StartYear, edu.EndYear, edu.Link);
       portfolio.AddEducation(eduToCreate);
       _pRepository.SaveChanges();
-      return CreatedAtAction("GetEducation", new { id = portfolio.Id, WorkId = eduToCreate.Id }, eduToCreate);
+      return CreatedAtAction("GetEducation", new { id = portfolio.Id, educationId = eduToCreate.Id }, eduToCreate);
     }
 
     /// <summary>
@@ -499,7 +499,7 @@ namespace dotnet_backend.Controllers
       var skillToCreate = new Skill(skill.Type, skill.Description, skill.IconPath);
       portfolio.AddSkill(skillToCreate);
       _pRepository.SaveChanges();
-      return CreatedAtAction("GetSkill", new { id = portfolio.Id, WorkId = skillToCreate.Id }, skillToCreate);
+      return CreatedAtAction("GetSkill", new { id = portfolio.Id, skillId = skillToCreate.Id }, skillToCreate);
     }
 
     /// <summary>

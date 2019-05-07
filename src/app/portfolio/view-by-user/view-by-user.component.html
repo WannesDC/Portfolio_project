@@ -1,4 +1,7 @@
-<p>Show Basic Portfolio Data Here! In dit kaartje vind je ook link naar generated portfolio & delete knop om portfolio te deleten! ZIE MOCKUP</p>
+<p>Show Basic Portfolio Data Here! In dit kaartje vind je ook link naar generated portfolio & delete knop om portfolio te deleten! ZIE MOCKUP, put contact card next to profile card.</p>
+<p>Huisnummer & busnummer voor contact</p>
+<p>beschrijving voor skill?</p>
+<p>beschrijving voor school kan evt weg</p>
 <!--contact form-->
 <div class="row mt-3">
   <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto">
@@ -137,7 +140,7 @@
             <hr class="hr-light">
           </div>
           <!--form starts here!!-->
-          <app-skill></app-skill>
+          <app-skill [id]="item.id"></app-skill>
         </div>
           
 
@@ -149,7 +152,7 @@
             <hr class="hr-light">
           </div>
           <!--form starts here!!-->
-          <app-education></app-education>
+          <app-education [id]="item.id"></app-education>
 
         </div>
         </div>
@@ -164,7 +167,7 @@
           </div>
           <!--form starts here!!-->
           
-          <app-experience></app-experience>
+          <app-experience [id]="item.id"></app-experience>
         </div>
 
         
@@ -175,7 +178,7 @@
             <hr class="hr-light">
           </div>
           <!--form starts here!!-->
-          <app-work></app-work>
+          <app-work [id]="item.id"></app-work>
           
         </div>
         </div>

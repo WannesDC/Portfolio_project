@@ -5,7 +5,6 @@ import { PortfolioDataService } from '../portfolio-data.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { AuthenticationService } from 'src/app/user/authentication.service';
 import { Contact } from '../data-types/contact';
 
 
@@ -33,7 +32,7 @@ export class ViewByUserComponent implements OnInit {
     this.contact = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       surname:['', [Validators.required, Validators.minLength(2)]],
-      email:['', [Validators.required, Validators.minLength(2)]],
+      email:['', [Validators.required, Validators.email]],
       birthDate:['', [Validators.required, Validators.minLength(2)]],
       street:['', [Validators.required, Validators.minLength(2)]],
       city:['', [Validators.required, Validators.minLength(2)]],

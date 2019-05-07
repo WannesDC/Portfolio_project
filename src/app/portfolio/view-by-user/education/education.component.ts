@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PortfolioDataService } from '../../portfolio-data.service';
+import { Education } from '../../data-types/education';
 
 @Component({
   selector: 'app-education',
@@ -8,8 +10,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class EducationComponent implements OnInit {
 
+  @Input() id:number;
   public education: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
     this.education = this.fb.group({
@@ -22,6 +25,17 @@ export class EducationComponent implements OnInit {
     });
   }
 
-  onSubmit(){}
+  onSubmit(){
+    
+    this._portfolioDataService.postEducation(this.id,
+      {
+        institute: this.education.value.institute,
+        description: this.education.value.description,
+        link: this.education.value.link,
+        course: this.education.value.course,
+        startYear: this.education.value.startYear,
+        endYear: this.education.value.endYear
+      } as Education).subscribe();
+  }
 
 }

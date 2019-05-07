@@ -1,8 +1,9 @@
 export interface Education extends Readonly<{
     id?: number,
-    company?: string,
-    link?: string,
+    insitute?: string,
     description?: string,
+    link?: string,
+    course?: string,
     startYear?: Date,
     endYear?: Date,
     position?: number,

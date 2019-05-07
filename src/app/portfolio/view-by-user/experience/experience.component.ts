@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PortfolioDataService } from '../../portfolio-data.service';
+import { Experience } from '../../data-types/experience';
 
 @Component({
   selector: 'app-experience',
@@ -8,8 +10,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ExperienceComponent implements OnInit {
 
+  @Input() id:number;
   public experience : FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
     this.experience = this.fb.group({
@@ -21,5 +24,14 @@ export class ExperienceComponent implements OnInit {
     });
   }
 
-  onSubmit(){}
+  onSubmit(){
+    this._portfolioDataService.postExperience(this.id,
+      {
+        company: this.experience.value.company,
+        link: this.experience.value.link,
+        description: this.experience.value.description,
+        startYear: this.experience.value.startYear,
+        endYear: this.experience.value.endYear
+      }as Experience).subscribe()
+  }
 }
