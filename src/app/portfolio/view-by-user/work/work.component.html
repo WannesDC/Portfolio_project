@@ -2,7 +2,7 @@
     <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
-            <mat-icon>person</mat-icon>
+            <mat-icon>assignment</mat-icon>
           </span>
         </div>
         <input type="text" class="form-control mr-sm-2"
@@ -16,14 +16,14 @@
           <mat-icon>description</mat-icon>
         </span>
       </div>
-      <input  type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="Description"
-       aria-describedby="basic-addon1" formControlName="description">
+      <textarea class="form-control mr-sm-2" rows="5" id="comment" placeholder="What is this work about, Why did you make it, what technologies did you use..." aria-label="About Me"
+      aria-describedby="basic-addon1" formControlName="description"></textarea>
     </div>
     <br>
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">
-          <mat-icon>image</mat-icon>
+          <mat-icon>add_a_photo</mat-icon>
         </span>
       </div>
       <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
@@ -35,7 +35,7 @@
       <div class="input-group-prepend">
         <span class=" input-group-text" id="basic-addon2">
                                     
-          <mat-icon>work</mat-icon>
+          <mat-icon>link</mat-icon>
         </span>
       </div>
       <input type="url" class="form-control mr-sm-2" placeholder="Link" aria-label="Link"
@@ -48,10 +48,10 @@
       <div class="input-group-prepend">
         <span class=" input-group-text" id="basic-addon2">
                                     
-          <mat-icon>work</mat-icon>
+          <mat-icon>timeline</mat-icon>
         </span>
       </div>
-      <input type="date" class="form-control mr-sm-2" placeholder="Published" aria-label="Published"
+      <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mr-sm-2" placeholder="Published" aria-label="Published"
        aria-describedby="basic-addon2" formControlName="timePublished">
     </div>
     

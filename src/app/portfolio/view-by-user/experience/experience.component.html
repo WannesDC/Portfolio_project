@@ -3,7 +3,7 @@
     <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
-            <mat-icon>person</mat-icon>
+            <mat-icon>business</mat-icon>
           </span>
         </div>
         <input type="text" class="form-control mr-sm-2"
@@ -14,7 +14,17 @@
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">
-          <mat-icon>description</mat-icon>
+          <mat-icon>person</mat-icon>
+        </span>
+      </div>
+      <input  type="url" class="form-control mr-sm-2" placeholder="Position" aria-label="Position"
+       aria-describedby="basic-addon1" formControlName="jobPos">
+    </div>
+    <br>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <mat-icon>link</mat-icon>
         </span>
       </div>
       <input  type="url" class="form-control mr-sm-2" placeholder="Link" aria-label="Link"
@@ -27,8 +37,8 @@
           <mat-icon>description</mat-icon>
         </span>
       </div>
-      <input type="text" class="form-control mr-sm-2" placeholder="Description" aria-label="description" aria-describedby="basic-addon1"
-        formControlName="description"> 
+      <textarea class="form-control mr-sm-2" rows="5" id="comment" placeholder="Why was this experience useful to you, what did this job position include..." aria-label="About Me"
+      aria-describedby="basic-addon1" formControlName="description"></textarea>
     </div>
     <br>
     
@@ -36,23 +46,16 @@
       <div class="input-group-prepend">
         <span class=" input-group-text" id="basic-addon2">
                                     
-          <mat-icon>work</mat-icon>
+          <mat-icon>date_range</mat-icon>
         </span>
       </div>
-      <input type="date" class="form-control mr-sm-2" placeholder="Starting Date" aria-label="Starting Date"
+      <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mr-sm-2" placeholder="Starting Date" aria-label="Starting Date"
        aria-describedby="basic-addon2" formControlName="startYear">
+       <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mr-sm-2" placeholder="Ending Date" aria-label="Ending Date"
+       aria-describedby="basic-addon2" formControlName="endYear">
     </div>
     <br>
-    <div class="input-group">
-        <div class="input-group-prepend">
-          <span class=" input-group-text" id="basic-addon2">
-                                      
-            <mat-icon>work</mat-icon>
-          </span>
-        </div>
-        <input type="date" class="form-control mr-sm-2" placeholder="Ending Date" aria-label="Ending Date"
-         aria-describedby="basic-addon2" formControlName="endYear">
-      </div>
+    
     
     <div class="mt-4">
       <button type="submit" class="btn btn-outline-light ">Add Experience</button>

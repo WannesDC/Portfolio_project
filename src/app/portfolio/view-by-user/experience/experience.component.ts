@@ -11,12 +11,14 @@ import { Experience } from '../../data-types/experience';
 export class ExperienceComponent implements OnInit {
 
   @Input() id:number;
+  @Input() exp:Experience;
   public experience : FormGroup;
   constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
     this.experience = this.fb.group({
       company: ['', [Validators.required, Validators.minLength(2)]],
+      jobPos: ['', [Validators.required, Validators.minLength(2)]],
       link:['', [Validators.required, Validators.minLength(2)]],
       description:['', [Validators.required, Validators.minLength(2)]],
       startYear:['', [Validators.required, Validators.minLength(2)]],
@@ -28,6 +30,7 @@ export class ExperienceComponent implements OnInit {
     this._portfolioDataService.postExperience(this.id,
       {
         company: this.experience.value.company,
+        jobPos: this.experience.value.jobPos,
         link: this.experience.value.link,
         description: this.experience.value.description,
         startYear: this.experience.value.startYear,

@@ -21,14 +21,6 @@ namespace dotnet_backend.Data.Repositories
 			_users.Add(user);
 		}
 
-    public Task<User> FindByEmailAsync(string email)
-    {
-      return Task.Run(() =>
-     {
-       return _users.SingleOrDefault(u => u.Email == email);
-     }
-      );
-    }
 
     public User GetBy(string email)
 		{

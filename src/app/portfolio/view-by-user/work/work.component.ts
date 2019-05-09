@@ -11,6 +11,7 @@ import { Work } from '../../data-types/work';
 export class WorkComponent implements OnInit {
 
   @Input() id:number;
+  @Input() wrk:Work;
   public work: FormGroup;
   constructor(private fb: FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 

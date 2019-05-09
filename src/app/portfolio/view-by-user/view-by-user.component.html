@@ -1,7 +1,4 @@
-<p>Show Basic Portfolio Data Here! In dit kaartje vind je ook link naar generated portfolio & delete knop om portfolio te deleten! ZIE MOCKUP, put contact card next to profile card.</p>
-<p>Huisnummer & busnummer voor contact</p>
-<p>beschrijving voor skill?</p>
-<p>beschrijving voor school kan evt weg</p>
+
 <!--contact form-->
 <div class="row mt-3">
   <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 mx-auto">
@@ -15,16 +12,35 @@
             <hr class="hr-light">
         </div>
         <ng-container *ngIf="portfolio$ | async as item; else test">
-        <div class="card" style="width: 13rem">
+        <div class="row">
+        <div class="card col-sm-3 " style="min-width: 265px;">
             <img class="card-img" src="http://bestvoyage.in/wp-content/uploads/profile.png" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{item.name}} </h5>
               <p class="card-text">{{item.description}}</p>
-              <a href="{{item.resumePath}}" class="btn btn-primary">Resume</a>
-              <a class="btn btn-warning" (click)="delete(item.id)">Delete</a>
+              <div class="btn-group" role="group">
+              <a href="{{item.resumePath}}" class="btn btn-sm btn-outline-light">Resume</a>
+              <a href="/portfolio/viewPortfolio/{{item.id}}" class="btn btn-sm  btn-outline-light">Portfolio</a>
+              <a class="btn btn-sm  btn-outline-warning" (click)="delete(item.id)">Delete</a>
+            </div>
             </div>
           </div>
 
+          <div class="card col-sm-9" >
+              <div class="card-body">
+                <h5 class="card-title">Portfolio Details </h5>
+                <p class="card-text">{{item.description}}</p>
+                <div class="btn-group" role="group">
+                    <a href="#" class="btn btn-sm  btn-outline-light">Add Skill</a>
+                    <a href="#" class="btn btn-sm  btn-outline-light">Add Education</a>
+                    <a href="#" class="btn btn-sm  btn-outline-light">Add Experience</a>
+                    <a href="#" class="btn btn-sm  btn-outline-light">Add Work</a>
+                <a href="#" class="btn btn-sm  btn-outline-light">Add Contact Details</a>
+                <a class="btn btn-sm  btn-outline-warning" (click)="delete(item.id)">Delete</a>
+              </div>
+              </div>
+            </div>
+          </div>
         <!--Header-->
         <div class="text-center">
           <h3 class="white-text">
@@ -45,22 +61,15 @@
                 <input type="text" class="form-control mr-sm-2"
                  placeholder="Name" aria-label="Name"
                 aria-describedby="basic-addon1" formControlName="name">
+                <input  type="text" class="form-control mr-sm-2" placeholder="Surname" aria-label="Surname"
+                aria-describedby="basic-addon1" formControlName="surname">
             </div>
             <br>
+
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">
-                  <mat-icon>person</mat-icon>
-                </span>
-              </div>
-              <input  type="text" class="form-control mr-sm-2" placeholder="Surname" aria-label="Surname"
-               aria-describedby="basic-addon1" formControlName="surname">
-            </div>
-            <br>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <mat-icon>email</mat-icon>
+                  <mat-icon>contact_mail</mat-icon>
                 </span>
               </div>
               <input type="email" class="form-control mr-sm-2" placeholder="Email" aria-label="email" aria-describedby="basic-addon1"
@@ -72,10 +81,10 @@
               <div class="input-group-prepend">
                 <span class=" input-group-text" id="basic-addon2">
                                             
-                  <mat-icon>date</mat-icon>
+                  <mat-icon>cake</mat-icon>
                 </span>
               </div>
-              <input type="date" class="form-control mr-sm-2" placeholder="Birth Date" aria-label="Birth Date"
+              <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mr-sm-2" placeholder="Birth Date" aria-label="Birth Date"
                aria-describedby="basic-addon2" formControlName="birthDate">
             </div>
             <br>
@@ -86,45 +95,37 @@
             <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="basic-addon1">
-                    <mat-icon>Street</mat-icon>
+                      <mat-icon>home</mat-icon>
                   </span>
                 </div>
                 <input type="text" class="form-control mr-sm-2"
-                 placeholder="Street" aria-label="Street"
+                 placeholder="Street & House Number" aria-label="Street"
                 aria-describedby="basic-addon1" formControlName="street">
             </div>
             <br>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">
-                  <mat-icon>City</mat-icon>
+                  <mat-icon>location_city</mat-icon>
                 </span>
               </div>
               <input  type="text" class="form-control mr-sm-2" placeholder="City" aria-label="City"
                aria-describedby="basic-addon1" formControlName="city">
+               <input type="number" class="form-control mr-sm-2" placeholder="PostalCode" aria-label="PostalCode"
+               aria-describedby="basic-addon2" formControlName="postalCode">
             </div>
+            
             <br>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">
-                  <mat-icon>country</mat-icon>
+                  <mat-icon>public</mat-icon>
                 </span>
               </div>
               <input type="url" class="form-control mr-sm-2" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1"
                 formControlName="country"> 
             </div>
-            <br>
-            
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class=" input-group-text" id="basic-addon2">
-                                            
-                  <mat-icon>PostalCode</mat-icon>
-                </span>
-              </div>
-              <input type="number" class="form-control mr-sm-2" placeholder="PostalCode" aria-label="PostalCode"
-               aria-describedby="basic-addon2" formControlName="postalCode">
-            </div>
+
           </div>
         </div>
         <div class="mt-4 ">
@@ -140,7 +141,7 @@
             <hr class="hr-light">
           </div>
           <!--form starts here!!-->
-          <app-skill [id]="item.id"></app-skill>
+          <app-skill [id]="item.id" [sk]="item.skills"></app-skill>
         </div>
           
 
@@ -152,7 +153,7 @@
             <hr class="hr-light">
           </div>
           <!--form starts here!!-->
-          <app-education [id]="item.id"></app-education>
+          <app-education [id]="item.id" [edu]="item.educations"></app-education>
 
         </div>
         </div>
@@ -167,7 +168,7 @@
           </div>
           <!--form starts here!!-->
           
-          <app-experience [id]="item.id"></app-experience>
+          <app-experience [id]="item.id" [exp]="item.experiences"></app-experience>
         </div>
 
         
@@ -178,12 +179,19 @@
             <hr class="hr-light">
           </div>
           <!--form starts here!!-->
-          <app-work [id]="item.id"></app-work>
+          <app-work [id]="item.id" [wrk]="item.works"></app-work>
           
         </div>
         </div>
       </ng-container>
-      <ng-template #test></ng-template>
+      <ng-template #test>
+        
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </ng-template>
     </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Portfolio } from '../data-types/portfolio';
 import { PortfolioDataService } from '../portfolio-data.service';
@@ -18,8 +18,8 @@ import { Contact } from '../data-types/contact';
 export class ViewByUserComponent implements OnInit {
 
   public contact: FormGroup;
-  portfolio$ : Observable<Portfolio>;
-  
+  portfolio$: Observable<Portfolio>;
+  @Input() id:number;
   
 
 
@@ -39,8 +39,9 @@ export class ViewByUserComponent implements OnInit {
       country:['', [Validators.required, Validators.minLength(2)]],
       postalCode:['', [Validators.required, Validators.minLength(2)]]
     });
-    this.portfolio$=this._portfolioDataService.getPortfolioByUser$();
-    this.portfolio$.pipe(tap(x => console.log(x)));
+    
+    this.portfolio$=this._portfolioDataService.getPortfolio$(this.id);
+
   }
 
   onSubmit(id:number){
@@ -62,6 +63,6 @@ export class ViewByUserComponent implements OnInit {
   delete(id:number){
     this._portfolioDataService.deletePortfolio(id);
    
-    //this.router.navigate(['portfolio']);
+    this.router.navigate(['portfolio']);
   }
 }

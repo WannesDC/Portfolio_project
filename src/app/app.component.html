@@ -1,6 +1,13 @@
 <!--make sure navbar doesn't show when you're viewing a portfolio by link!!!-->
 <app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div class="app-loading"  *ngIf="loadingRouteConfig">
+        <div class="logo"></div>
+        <svg class="spinner" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </div>
+<router-outlet>
+</router-outlet>
 
 
 

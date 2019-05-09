@@ -45,7 +45,7 @@ namespace dotnet_backend.Controllers
     [HttpGet("checkusername")]
     public async Task<ActionResult<Boolean>> CheckUsername(string email)
     {
-      var user = await _userRepository.FindByEmailAsync(email);
+      var user = await _userManager.FindByEmailAsync(email);
       return user == null;
     }
 
@@ -109,9 +109,9 @@ namespace dotnet_backend.Controllers
       var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
       var token = new JwtSecurityToken(
-        _config["Tokens:Issuer"], null,
+        null, null,
         claims,
-        expires: DateTime.Now.AddMinutes(300),
+        expires: DateTime.Now.AddMinutes(30),
         signingCredentials: creds);
 
       return new JwtSecurityTokenHandler().WriteToken(token);

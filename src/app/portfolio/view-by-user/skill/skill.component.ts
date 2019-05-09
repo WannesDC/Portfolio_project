@@ -11,6 +11,7 @@ import { Skill } from '../../data-types/skill';
 export class SkillComponent implements OnInit {
 
   @Input() id:number;
+  @Input() sk:Skill;
   public skill: FormGroup;
   constructor(private fb:FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 

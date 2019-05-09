@@ -10,11 +10,13 @@ import { ViewPortfolioComponent } from './view-portfolio/view-portfolio.componen
 import { PortfolioResolver } from './portfolio-resolver';
 import { ViewByUserComponent } from './view-by-user/view-by-user.component';
 import { SettingsComponent } from './settings/settings.component';
-import { ContactComponent } from './view-by-user/contact/contact.component';
 import { SkillComponent } from './view-by-user/skill/skill.component';
 import { ExperienceComponent } from './view-by-user/experience/experience.component';
 import { EducationComponent } from './view-by-user/education/education.component';
 import { WorkComponent } from './view-by-user/work/work.component';
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
+import { AppModule } from '../app.module';
+import { NotFoundComponent } from './view-portfolio/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'main-portfolio', component: MainPortfolioComponent },
@@ -29,13 +31,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent, ContactComponent, SkillComponent, ExperienceComponent, EducationComponent, WorkComponent],
+  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent, SkillComponent, ExperienceComponent, EducationComponent, WorkComponent, NotFoundComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    MaterialModule, 
+    MaterialModule,
     RouterModule.forChild(routes),
   ]
 })

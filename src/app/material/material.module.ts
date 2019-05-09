@@ -16,6 +16,7 @@ import {
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,9 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    AngularFontAwesomeModule
+    
   ],
   exports: [
     MatButtonModule,
@@ -50,7 +53,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    AngularFontAwesomeModule
   ]
 })
 export class MaterialModule {}

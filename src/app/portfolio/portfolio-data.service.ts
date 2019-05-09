@@ -54,7 +54,10 @@ export class PortfolioDataService {
 
   getPortfolio$(id): Observable<Portfolio>{
     return this.http.get<Portfolio>(`${environment.apiUrl}/Portfolios/${id}`)
-    .pipe();
+    .pipe(catchError(error => {
+      this.loadingError$.next(error.statusText);
+      return of(null);
+    }));
   }
 
   getPortfolioByUser$(): Observable<Portfolio>{

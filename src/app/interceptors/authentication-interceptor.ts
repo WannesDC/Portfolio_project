@@ -11,17 +11,11 @@ import {
   @Injectable()
   export class AuthenticationInterceptor implements HttpInterceptor {
     constructor(private authService: AuthenticationService) {}
-  
-    intercept(
-      req: HttpRequest<any>,
-      next: HttpHandler
-    ): Observable<HttpEvent<any>> {
+
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       if (this.authService.token.length) {
         const clonedRequest = req.clone({
-          headers: req.headers.set(
-            'Authorization',
-            `Bearer ${this.authService.token}`
-          )
+          headers: req.headers.set('Authorization',`Bearer ${this.authService.token}`)
         });
         return next.handle(clonedRequest);
       }

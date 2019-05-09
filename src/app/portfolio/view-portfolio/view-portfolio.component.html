@@ -1,1 +1,229 @@
-<p>stuff works I guess</p>
+<div *ngIf="!portfolio else weergave"><app-not-found></app-not-found></div>
+<ng-template #weergave>
+<body >
+    <header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+          <div class="card my-2" style="width: 13rem">
+              <img class="card-img" src="{{portfolio.picturePath}}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title text-white">{{portfolio.name}}</h5>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Resume</button>
+                
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" >
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Resume</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          
+                        </div>
+                        <div class="modal-body ">
+                            <embed src="http://www.africau.edu/images/default/sample.pdf" frameborder="0" width="100%" height="500px">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </div>
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About Me</h4>
+          <p class="text-white">{{portfolio.description}}</p>
+          <div *ngIf="portfolio.contact">
+          <h4 class="text-white">Contact Details</h4>
+          <ul class="list-unstyled text-white">
+            <li>{{portfolio.contact.name}} {{portfolio.contact.surname}}</li>
+            <li>{{portfolio.contact.birthdate}}</li>
+            <li>{{portfolio.contact.street}}</li>
+            <li>{{portfolio.contact.postalcode}} {{portfolio.contact.city}}</li>
+            <li>{{portfolio.contact.country}}</li>
+            <li>{{portfolio.contact.email}}</li>
+          </ul>
+        </div>
+        </div>
+        
+
+        
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        <strong>Portfolio</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main role="main ">
+
+  <div *ngIf="portfolio.educations.length != 0">
+    <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Education</h1>
+          <p class="lead text-muted">Here you can see all my educations...</p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+    <div class="row education">
+        <div class="nine columns main-col">
+
+          <div *ngFor="let edu of portfolio.educations">
+           <div class="row item">
+
+              <div class="twelve columns">
+
+                 <h3>{{edu.institute}}</h3>
+                 <p class="info">{{edu.course}} <span>&bull;</span> <em class="date"> {{getYear(edu.startYear)}} - {{getYear(edu.endYear)}}</em></p>
+
+                 <p> {{edu.description}} </p>
+                 <a href="{{edu.link}}"> {{edu.link}} </a>
+
+              </div>
+
+           </div> <!-- item end -->
+          </div>
+
+        </div> <!-- main-col end -->
+
+     </div> <!-- End Education -->
+        </div>
+    </div>
+  </div>
+
+     <!-- Work
+     ----------------------------------------------- -->
+     <div *ngIf="portfolio.experiences.length != 0">
+     <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Work Experience</h1>
+          <p class="lead text-muted">Here you can see all my work experience...</p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+     <div class="row work">
+
+
+        <div class="nine columns main-col">
+            <div *ngFor="let exp of portfolio.experiences">
+           <div class="row item">
+
+              <div class="twelve columns">
+
+                 <h3>{{exp.company}}</h3>
+                 <p class="info">{{exp.jobPos}} <span>&bull;</span> <em class="date">{{getYear(exp.startYear)}} - {{getYear(exp.endYear)}}</em></p>
+                  <p>{{exp.description}}</p>
+                 <a href="{{exp.link}}">{{exp.link}}</a>
+                 
+                 
+
+              </div>
+
+           </div> <!-- item end -->
+      </div>
+        </div> <!-- main-col end -->
+
+     </div> <!-- End Work -->
+     </div>
+     </div>
+    </div>
+    
+    <!--SKILLS-->
+    <div *ngIf="portfolio.skills.length != 0"> 
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Skills</h1>
+      <p class="lead text-muted">Here you can see all my skills...</p>
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+         
+            <div class="col-md-3" *ngFor="let sk of portfolio.skills">
+              <div class="card mb-4 shadow-sm" >
+                  <img class="card-img" src="{{sk.iconPath}}" height="200" alt="{{sk.type}}" >
+                  
+                <div class="card-body">
+                  <h5 class="card-title">{{sk.type}}</h5>
+                  <p class="card-text">{{sk.description}}</p>
+                </div>
+              </div>
+            </div>
+
+          
+</div>
+</div>
+</div>
+</div>
+
+<!--WORKS-->
+<div *ngIf="portfolio.skills.length != 0"> 
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Works</h1>
+      <p class="lead text-muted">Here you can see all my works...</p>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+      <div class="container">
+
+      <div class="row">
+          
+        <div class="col-md-4" *ngFor="let work of portfolio.works">
+          <div class="card mb-4 shadow-sm" >
+            <img class="card-img" src="{{work.imagePath}}" height="225" alt="{{work.workName}}">
+            <div class="card-body" >
+                <h5 class="card-title">{{work.workName}}</h5>
+              <p class="card-text">{{work.description}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{{work.link}}" class="btn btn-sm btn-outline-secondary">View</a>
+                  
+                </div>
+                <small class="text-muted">{{work.timePublished}}</small>
+              </div>
+            </div>
+          </div>
+        
+
+          </div>  
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+</main>
+
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a (click)="click()" class="btn btn-outline-dark">Back to top</a>
+    </p>
+    <p *ngIf="portfolio.contact">Copyright © Wannes De Craene - Portfolio of {{portfolio.contact.name}} {{portfolio.contact.surname}} </p>
+    <p>Would you like to create your own portfolio? Do not hesitate to create your own account <a href="#">here</a>!</p>
+  </div>
+</footer>
+
+</body>
+</ng-template>

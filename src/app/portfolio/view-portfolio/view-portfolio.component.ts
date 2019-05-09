@@ -13,12 +13,21 @@ import { NavbarService } from 'src/app/navbar.service';
 
 export class ViewPortfolioComponent implements OnInit, OnDestroy {
 
-  public portfolio : Portfolio
+  public portfolio : Portfolio;
+  
 
   constructor(private route: ActivatedRoute, private nav: NavbarService) { 
     
   }
 
+  getYear(date:Date){
+    let d = new Date(date);
+    return d.getFullYear();
+  }
+
+  click(){
+    window.scroll(0,0);
+  }
   ngOnInit() {
     this.nav.hide();
     console.log(this.nav.visible.getValue());

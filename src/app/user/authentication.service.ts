@@ -9,9 +9,9 @@ function parseJwt(token) {
   if(!token){
     return null;
   }
-  const base64Token = token.split('.')[1];
-  const base64 = base64Token.replace(/-/g, '+').replace(/_/g, '/');
-  return JSON.parse(window.atob(base64));    
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  return JSON.parse(window.atob(base64));
 }
 
 @Injectable({
@@ -49,13 +49,12 @@ export class AuthenticationService {
      return this.http
      .post(
        `${environment.apiUrl}/Users`,
-       {email, password},
-       {responseType: 'text'}
+       {email, password}
      )
      .pipe(
        map((token: any) => {
          if (token){
-           localStorage.setItem(this._tokenKey,token);
+           localStorage.setItem(this._tokenKey, token);
            this._user$.next(email);
            return true;
          } else {

@@ -249,7 +249,7 @@ namespace dotnet_backend.Controllers
       {
         return NotFound();
       }
-      var experienceToCreate = new Experience(experience.Company, experience.Description, experience.StartYear, experience.EndYear, experience.Link);
+      var experienceToCreate = new Experience(experience.Company,experience.JobPos, experience.Description, experience.StartYear, experience.EndYear, experience.Link);
       portfolio.AddExperience(experienceToCreate);
       _pRepository.SaveChanges();
       return CreatedAtAction("GetExperience", new { id = portfolio.Id, experienceId = experienceToCreate.Id }, experienceToCreate);

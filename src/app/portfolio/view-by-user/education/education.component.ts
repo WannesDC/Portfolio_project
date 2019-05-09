@@ -11,6 +11,8 @@ import { Education } from '../../data-types/education';
 export class EducationComponent implements OnInit {
 
   @Input() id:number;
+  @Input() edu:Education;
+  
   public education: FormGroup;
   constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
 
 
 
@@ -19,12 +19,13 @@ export class AppComponent {
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
 
+  loadingRouteConfig: boolean;
 
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private _authenticationService: AuthenticationService, 
-    private r:ActivatedRoute
+    private router:Router
   ) {
 
     
@@ -32,6 +33,13 @@ export class AppComponent {
 
   ngOnInit(){
 
+    this.router.events.subscribe(event => {
+      if (event instanceof RouteConfigLoadStart) {
+          this.loadingRouteConfig = true;
+      } else if (event instanceof RouteConfigLoadEnd) {
+          this.loadingRouteConfig = false;
+      }
+  });
   }
 
 }

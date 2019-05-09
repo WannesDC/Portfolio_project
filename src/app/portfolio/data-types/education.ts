@@ -1,6 +1,6 @@
 export interface Education extends Readonly<{
     id?: number,
-    insitute?: string,
+    institute?: string,
     description?: string,
     link?: string,
     course?: string,
