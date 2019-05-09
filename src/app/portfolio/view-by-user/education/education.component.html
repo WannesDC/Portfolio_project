@@ -1,4 +1,6 @@
 <form [formGroup]="education" (ngSubmit)="onSubmit()">
+    <div class="row mt-2">
+        <div class="col-lg-6 mx-auto">
     <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
@@ -16,10 +18,12 @@
           <mat-icon>description</mat-icon>
         </span>
       </div>
-      <textarea class="form-control mr-sm-2" rows="5" id="comment" placeholder="Give your viewer an explanation of your course, why did you choose this course..." aria-label="About Me"
+      <textarea class="form-control mr-sm-2" rows="4" id="comment" placeholder="Give your viewer an explanation of your course, why did you choose this course..." aria-label="About Me"
       aria-describedby="basic-addon1" formControlName="description"></textarea>
     </div>
     <br>
+    </div>
+    <div class="col-lg-6 mx-auto">
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">
@@ -56,8 +60,8 @@
        aria-describedby="basic-addon2" formControlName="endYear">
     </div>
     <br>
-    
-
+  </div>
+    </div>
     
     <div class="mt-4">
       <button type="submit" class="btn btn-outline-light ">Add Education</button>

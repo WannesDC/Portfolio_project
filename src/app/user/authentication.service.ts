@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
   
 function parseJwt(token) {
@@ -23,7 +24,7 @@ export class AuthenticationService {
   private _user$: BehaviorSubject<string>;
   public redirectUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     let parsedToken = parseJwt(localStorage.getItem(this._tokenKey));
     if (parsedToken){
       const expires = new Date(parseInt(parsedToken.exp,10)*1000) < new Date();
@@ -68,6 +69,7 @@ export class AuthenticationService {
      if (this._user$.getValue()){
        localStorage.removeItem(this._tokenKey);
        this._user$.next(null);
+       this.router.navigateByUrl("");
      }
    }
 

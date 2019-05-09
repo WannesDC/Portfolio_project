@@ -12,6 +12,7 @@ export class WorkComponent implements OnInit {
 
   @Input() id:number;
   @Input() wrk:Work;
+
   public work: FormGroup;
   constructor(private fb: FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 
@@ -19,7 +20,7 @@ export class WorkComponent implements OnInit {
     this.work = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       description:['', [Validators.required, Validators.minLength(2)]],
-      picturePath:['', [Validators.required, Validators.minLength(2)]],
+      imagePath:['', [Validators.required, Validators.minLength(2)]],
       link:['', [Validators.required, Validators.minLength(2)]],
       timePublished:['', [Validators.required, Validators.minLength(2)]]
     });
@@ -30,7 +31,7 @@ export class WorkComponent implements OnInit {
       {
         workName: this.work.value.name,
         description: this.work.value.description,
-        picturePath: this.work.value.picturePath,
+        imagePath: this.work.value.imagePath,
         link: this.work.value.link,
         timePublished: this.work.value.timePublished
       } as Work

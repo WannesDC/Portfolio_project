@@ -41,12 +41,17 @@ export class ViewByUserComponent implements OnInit {
     });
     
     this.portfolio$=this._portfolioDataService.getPortfolio$(this.id);
+    
+    
 
   }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+}
+
   onSubmit(id:number){
     
-
     this._portfolioDataService.postContact(id,
     { 
       name: this.contact.value.name,
@@ -58,11 +63,28 @@ export class ViewByUserComponent implements OnInit {
       country: this.contact.value.country,
       postalcode: this.contact.value.postalCode
     } as Contact).subscribe();
+    
+    
   }
 
+  formatDate(date:Date){
+    let d = new Date(date);
+    return d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear();
+  }
+
+
   delete(id:number){
-    this._portfolioDataService.deletePortfolio(id);
-   
-    this.router.navigate(['portfolio']);
+    if(confirm("Are you sure you want to delete your portfolio?")) {
+      this._portfolioDataService.deletePortfolio(id);
+      this.router.navigate(['portfolio']);
+    }
+    
+  }
+  deleteC(id:number,cid:number){
+    if(confirm("Are you sure you want to delete your contact details?")) {
+      this._portfolioDataService.deleteContact(id, cid);
+      
+    }
+    
   }
 }

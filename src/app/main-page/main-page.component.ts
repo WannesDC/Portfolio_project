@@ -13,7 +13,11 @@ export class MainPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
+  }
 
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
   }
 
 }

@@ -24,7 +24,8 @@ export class NavbarComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private _authenticationService: AuthenticationService,
-    private nav: NavbarService
+    private nav: NavbarService,
+    private router: Router
   ) {
   }
 

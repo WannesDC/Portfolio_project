@@ -1,5 +1,4 @@
 
-
 .modal.in .modal-dialog {
   transform: none; /*translate(0px, 0px);*/
 }
@@ -204,6 +203,7 @@
   footer {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    background-color: white;
   }
   
   footer p {

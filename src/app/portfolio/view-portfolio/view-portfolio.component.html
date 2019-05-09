@@ -83,7 +83,7 @@
         <div class="nine columns main-col">
 
           <div *ngFor="let edu of portfolio.educations">
-           <div class="row item">
+           <div class="row item mt-2">
 
               <div class="twelve columns">
 
@@ -122,12 +122,12 @@
 
         <div class="nine columns main-col">
             <div *ngFor="let exp of portfolio.experiences">
-           <div class="row item">
+           <div class="row item mt-2">
 
               <div class="twelve columns">
 
                  <h3>{{exp.company}}</h3>
-                 <p class="info">{{exp.jobPos}} <span>&bull;</span> <em class="date">{{getYear(exp.startYear)}} - {{getYear(exp.endYear)}}</em></p>
+                 <p class="info">{{exp.jobPos}} <span>&bull;</span> <em class="date"> {{getYear(exp.startYear)}} - {{getYear(exp.endYear)}}</em></p>
                   <p>{{exp.description}}</p>
                  <a href="{{exp.link}}">{{exp.link}}</a>
                  
@@ -176,7 +176,7 @@
 </div>
 
 <!--WORKS-->
-<div *ngIf="portfolio.skills.length != 0"> 
+<div *ngIf="portfolio.works.length != 0"> 
   <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading">Works</h1>

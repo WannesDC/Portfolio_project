@@ -1,4 +1,6 @@
 <form [formGroup]="work" (ngSubmit)="onSubmit()">
+    <div class="row mt-2">
+        <div class="col-lg-6 mx-auto">
     <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
@@ -16,10 +18,13 @@
           <mat-icon>description</mat-icon>
         </span>
       </div>
-      <textarea class="form-control mr-sm-2" rows="5" id="comment" placeholder="What is this work about, Why did you make it, what technologies did you use..." aria-label="About Me"
+      <textarea class="form-control mr-sm-2" rows="4" id="comment" placeholder="What is this work about, Why did you make it, what technologies did you use..." aria-label="About Me"
       aria-describedby="basic-addon1" formControlName="description"></textarea>
     </div>
     <br>
+    
+    </div>
+    <div class="col-lg-6 mx-auto">
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">
@@ -27,7 +32,7 @@
         </span>
       </div>
       <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
-        formControlName="picturePath"> 
+        formControlName="imagePath"> 
     </div>
     <br>
     
@@ -54,7 +59,8 @@
       <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mr-sm-2" placeholder="Published" aria-label="Published"
        aria-describedby="basic-addon2" formControlName="timePublished">
     </div>
-    
+  </div>
+    </div>
     <div class="mt-4">
       <button type="submit" class="btn btn-outline-light ">Add Work</button>
     </div>

@@ -120,7 +120,7 @@ namespace dotnet_backend
       app.UseSwaggerUi3();
       app.UseSwagger();
 
-      dataInitializer.InitializeData().Wait();
+      //dataInitializer.InitializeData().Wait();
 		}
 	}
 }

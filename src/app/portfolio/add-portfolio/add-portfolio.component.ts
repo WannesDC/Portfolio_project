@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup,
   FormControl,
   Validators,
@@ -21,6 +21,7 @@ export class AddPortfolioComponent implements OnInit {
 
   public portfolio: FormGroup;
   public loggedInUser$ = this._authenticationService.user$;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +51,7 @@ export class AddPortfolioComponent implements OnInit {
         resumePath: this.portfolio.value.resumePath
       } as Portfolio).subscribe();
   
-    this.router.navigate(['portfolio/view']);
+    this.router.navigate(['portfolio']);
     // router.navigatebyurl kan je ook gebruiken
   }
 
