@@ -16,11 +16,11 @@ const routes: Routes = [
   declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    MaterialModule 
+    MaterialModule,
+    RouterModule.forChild(routes)
   ],
   exports:[LoginComponent, RegisterComponent]
 })

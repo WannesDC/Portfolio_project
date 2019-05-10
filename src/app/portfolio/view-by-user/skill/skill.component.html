@@ -1,38 +1,88 @@
+<div *ngIf="skill$ | async as skill">
+<div class="text-center">
+    <h3 class="white-text text-white">
+      Skills:
+    </h3>
+    <hr class="hr-light" />
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6" *ngFor="let sk of skill$ | async">
+                <div class="card mb-4 shadow-sm">
+                  <img
+                    class="card-img"
+                    src="{{ sk.iconPath }}"
+                    height="200"
+                    alt="{{ sk.type }}"
+                  />
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{ sk.type }}</h5>
+                    <p class="card-text">{{ sk.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>
+
+<div class="text-center">
+    <h3 class="white-text text-white">
+      Add Skill:
+    </h3>
+    <hr class="hr-light" />
+</div>
 <form [formGroup]="skill" (ngSubmit)="onSubmit()">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        <mat-icon>build</mat-icon>
+      </span>
+    </div>
+    <input
+      type="text"
+      class="form-control mr-sm-2"
+      placeholder="Skill"
+      aria-label="Type"
+      aria-describedby="basic-addon1"
+      formControlName="type"
+    />
+  </div>
+  <br />
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        <mat-icon>description</mat-icon>
+      </span>
+    </div>
+    <textarea
+      class="form-control mr-sm-2"
+      rows="5"
+      id="comment"
+      placeholder="What is this skill about, How well do you know this skill..."
+      aria-label="About Me"
+      aria-describedby="basic-addon1"
+      formControlName="description"
+    ></textarea>
+  </div>
+  <br />
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        <mat-icon>add_a_photo</mat-icon>
+      </span>
+    </div>
+    <input
+      type="url"
+      class="form-control mr-sm-2"
+      placeholder="image"
+      aria-label="image"
+      aria-describedby="basic-addon1"
+      formControlName="iconPath"
+    />
+  </div>
 
-    <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">
-            <mat-icon>build</mat-icon>
-          </span>
-        </div>
-        <input type="text" class="form-control mr-sm-2"
-         placeholder="Skill" aria-label="Type"
-        aria-describedby="basic-addon1" formControlName="type">
-    </div>
-    <br>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">
-          <mat-icon>description</mat-icon>
-        </span>
-      </div>
-      <textarea class="form-control mr-sm-2" rows="5" id="comment" placeholder="What is this skill about, How well do you know this skill..." aria-label="About Me"
-      aria-describedby="basic-addon1" formControlName="description"></textarea>
-    </div>
-    <br>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">
-          <mat-icon>add_a_photo</mat-icon>
-        </span>
-      </div>
-      <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
-        formControlName="iconPath"> 
-    </div>
-    
-    <div class="mt-4">
-      <button type="submit" class="btn btn-outline-light ">Add Skill</button>
-    </div>     
+  <div class="mt-4">
+    <button type="submit" class="btn btn-outline-light ">Add Skill</button>
+  </div>
 </form>
-

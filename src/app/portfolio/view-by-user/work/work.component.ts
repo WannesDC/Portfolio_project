@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { PortfolioDataService } from '../../portfolio-data.service';
 import { Work } from '../../data-types/work';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-work',
@@ -11,7 +12,7 @@ import { Work } from '../../data-types/work';
 export class WorkComponent implements OnInit {
 
   @Input() id:number;
-  @Input() wrk:Work;
+  work$: Observable<Work>
 
   public work: FormGroup;
   constructor(private fb: FormBuilder,private _portfolioDataService : PortfolioDataService) { }
@@ -24,6 +25,7 @@ export class WorkComponent implements OnInit {
       link:['', [Validators.required, Validators.minLength(2)]],
       timePublished:['', [Validators.required, Validators.minLength(2)]]
     });
+    this.work$ = this._portfolioDataService.getWork(this.id);
   }
 
   onSubmit(){

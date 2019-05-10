@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Portfolio } from '../data-types/portfolio';
 import { PortfolioDataService } from '../portfolio-data.service';
-import { Router } from '@angular/router';
+import { Router, RouteConfigLoadStart, RouteConfigLoadEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Contact } from '../data-types/contact';
 import { map, concatMap, mergeMap } from 'rxjs/operators';
@@ -18,10 +18,10 @@ import { map, concatMap, mergeMap } from 'rxjs/operators';
 export class ViewByUserComponent implements OnInit {
 
   public contact: FormGroup;
-  portfolio$: Observable<Portfolio>;
   contact$: Observable<Contact>;
-
+  loadingRouteConfig: boolean;
   @Input() id:number;
+  @Input() portfolio$: Observable<Portfolio>
   
 
 
@@ -31,6 +31,15 @@ export class ViewByUserComponent implements OnInit {
     }
 
   ngOnInit() {
+    
+    this.router.events.subscribe(event => {
+      if (event instanceof RouteConfigLoadStart) {
+          this.loadingRouteConfig = true;
+      } else if (event instanceof RouteConfigLoadEnd) {
+          this.loadingRouteConfig = false;
+      }
+  });
+
     this.contact = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       surname:['', [Validators.required, Validators.minLength(2)]],
@@ -43,13 +52,6 @@ export class ViewByUserComponent implements OnInit {
     });
 
     this.contact$=this._portfolioDataService.getContact(this.id);
-    this.portfolio$=this._portfolioDataService.getPortfolio$(this.id);
-    /*this.portfolio$.pipe(
-      mergeMap(
-        val => this.contact$ = val.contact
-      )
-    );*/
-    
     
   }
 

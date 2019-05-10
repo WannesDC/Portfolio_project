@@ -1,5 +1,5 @@
 <!--contact form-->
-<ng-container *ngIf="portfolio$ | async as item; else test">
+<ng-container *ngIf="portfolio$ | async as item">
   <div class="container">
     <div class="row">
       <div class="col-sm-12 mx-auto">
@@ -108,6 +108,7 @@
                 </div>
                 <div class="btn-group flex-wrap mt-auto" role="group">
                   <button
+                    
                     class="btn btn-sm  btn-outline-light"
                     data-toggle="collapse"
                     data-target="#collapseSk"
@@ -350,14 +351,8 @@
               </button>
               <div class="row mt-5">
                 <div class=" col-lg-6 mx-auto">
-                  <div class="text-center">
-                    <h3 class="white-text text-white">
-                      Add Skill:
-                    </h3>
-                    <hr class="hr-light" />
-                  </div>
                   <!--form starts here!!-->
-                  <app-skill [id]="item.id" [sk]="item.skills"></app-skill>
+                  <app-skill [id]="item.id"></app-skill>
                 </div>
               </div>
             </div>
@@ -375,16 +370,9 @@
               </button>
               <div class="row mt-5 ">
                 <div class=" col-lg-12 mx-auto">
-                  <div class="text-center">
-                    <h3 class="white-text text-white">
-                      Add Education:
-                    </h3>
-                    <hr class="hr-light" />
-                  </div>
                   <!--form starts here!!-->
                   <app-education
                     [id]="item.id"
-                    [edu]="item.educations"
                   ></app-education>
                 </div>
               </div>
@@ -404,17 +392,9 @@
               </button>
               <div class="row mt-5 ">
                 <div class=" col-lg-12 mx-auto">
-                  <div class="text-center">
-                    <h3 class="white-text text-white">
-                      Add Experience:
-                    </h3>
-                    <hr class="hr-light" />
-                  </div>
                   <!--form starts here!!-->
-
                   <app-experience
                     [id]="item.id"
-                    [exp]="item.experiences"
                   ></app-experience>
                 </div>
               </div>
@@ -434,14 +414,8 @@
               </button>
               <div class="row mt-5 ">
                 <div class=" col-lg-12 mx-auto">
-                  <div class="text-center">
-                    <h3 class="white-text text-white">
-                      Add Work:
-                    </h3>
-                    <hr class="hr-light" />
-                  </div>
                   <!--form starts here!!-->
-                  <app-work [id]="item.id" [wrk]="item.works"></app-work>
+                  <app-work [id]="item.id"></app-work>
                 </div>
               </div>
             </div>
@@ -451,10 +425,19 @@
     </div>
   </div>
 </ng-container>
-<ng-template #test>
-  <div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
+
+
+<div class="app-loading" *ngIf="loadingRouteConfig">
+    <div class="logo"></div>
+    <svg class="spinner" viewBox="25 25 50 50">
+      <circle
+        class="path"
+        cx="50"
+        cy="50"
+        r="20"
+        fill="none"
+        stroke-width="2"
+        stroke-miterlimit="10"
+      />
+    </svg>
   </div>
-</ng-template>

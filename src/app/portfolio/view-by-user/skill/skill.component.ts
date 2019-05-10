@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PortfolioDataService } from '../../portfolio-data.service';
 import { Skill } from '../../data-types/skill';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-skill',
@@ -11,7 +12,7 @@ import { Skill } from '../../data-types/skill';
 export class SkillComponent implements OnInit {
 
   @Input() id:number;
-  @Input() sk:Skill;
+  skill$:Observable<Skill>
   public skill: FormGroup;
   constructor(private fb:FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 
@@ -22,6 +23,9 @@ export class SkillComponent implements OnInit {
       iconPath:['', [Validators.required, Validators.minLength(2)]]
       
     });
+
+      this.skill$ = this._portfolioDataService.getSkill(this.id);
+
   }
 
   onSubmit(){
@@ -30,6 +34,7 @@ export class SkillComponent implements OnInit {
       description: this.skill.value.description,
       iconPath: this.skill.value.iconPath
     } as Skill).subscribe();
+    this.skill$ = this._portfolioDataService.getSkill(this.id);
 
   }
 }

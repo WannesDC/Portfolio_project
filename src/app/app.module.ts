@@ -30,8 +30,8 @@ import { NavbarService } from './navbar.service';
     UserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [httpInterceptorProviders, NavbarService],
   bootstrap: [AppComponent]

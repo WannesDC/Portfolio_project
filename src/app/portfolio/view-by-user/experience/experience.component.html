@@ -1,3 +1,51 @@
+<div *ngIf="experience$ | async as ex">
+
+
+    <div class="text-center">
+        <h3 class="white-text text-white">
+          Work Experiences:
+        </h3>
+        <hr class="hr-light" />
+      </div>
+
+
+      <div class="container text-white">
+        <div class="row work">
+          <div class="nine columns main-col">
+            <div *ngFor="let exp of experience$ | async">
+              <div class="row item mt-2">
+                <div class="twelve columns">
+                  <h3>{{ exp.company }}</h3>
+                  <p class="info">
+                    {{ exp.jobPos }} <span>&bull;</span>
+                    <em class="date">
+                      {{ getYear(exp.startYear) }} -
+                      {{ getYear(exp.endYear) }}</em
+                    >
+                  </p>
+                  <p>{{ exp.description }}</p>
+                  <a href="{{ exp.link }}">{{ exp.link }}</a>
+                </div>
+              </div>
+              <!-- item end -->
+            </div>
+          </div>
+          <!-- main-col end -->
+        </div>
+        <!-- End Work -->
+      </div>
+    </div>
+
+
+
+
+
+<div class="text-center">
+    <h3 class="white-text text-white">
+      Add Work Experience:
+    </h3>
+    <hr class="hr-light" />
+  </div>
 <form [formGroup]="experience" (ngSubmit)="onSubmit()">
   <div class="row mt-2">
     <div class="col-lg-6 mx-auto">

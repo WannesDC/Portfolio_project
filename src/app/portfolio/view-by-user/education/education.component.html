@@ -1,3 +1,45 @@
+<div *ngIf="education$ | async as ed">
+    <div class="text-center">
+        <h3 class="white-text text-white">
+          Educations:
+        </h3>
+        <hr class="hr-light" />
+      </div>
+      <div class="container text-white">
+        <div class="row education">
+          <div class="nine columns main-col">
+            <div *ngFor="let edu of education$ | async">
+              <div class="row item mt-2">
+                <div class="twelve columns">
+                  <h3>{{ edu.institute }}</h3>
+                  <p class="info">
+                    {{ edu.course }} <span>&bull;</span>
+                    <em class="date">
+                      {{ getYear(edu.startYear) }} -
+                      {{ getYear(edu.endYear) }}</em
+                    >
+                  </p>
+
+                  <p>{{ edu.description }}</p>
+                  <a href="{{ edu.link }}"> {{ edu.link }} </a>
+                </div>
+              </div>
+              <!-- item end -->
+            </div>
+          </div>
+          <!-- main-col end -->
+        </div>
+        <!-- End Education -->
+      </div>
+    </div>
+
+
+<div class="text-center">
+    <h3 class="white-text text-white">
+      Add Education:
+    </h3>
+    <hr class="hr-light" />
+  </div>
 <form [formGroup]="education" (ngSubmit)="onSubmit()">
   <div class="row mt-2">
     <div class="col-lg-6 mx-auto">

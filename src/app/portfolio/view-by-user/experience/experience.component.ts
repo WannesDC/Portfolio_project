@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PortfolioDataService } from '../../portfolio-data.service';
 import { Experience } from '../../data-types/experience';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-experience',
@@ -11,7 +12,7 @@ import { Experience } from '../../data-types/experience';
 export class ExperienceComponent implements OnInit {
 
   @Input() id:number;
-  @Input() exp:Experience;
+  experience$: Observable<Experience>;
   public experience : FormGroup;
   constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
@@ -24,6 +25,9 @@ export class ExperienceComponent implements OnInit {
       startYear:['', [Validators.required, Validators.minLength(2)]],
       endYear:['', [Validators.required, Validators.minLength(2)]]
     });
+
+    this.experience$ = this._portfolioDataService.getExperience(this.id);
+
   }
 
   onSubmit(){
@@ -36,5 +40,10 @@ export class ExperienceComponent implements OnInit {
         startYear: this.experience.value.startYear,
         endYear: this.experience.value.endYear
       }as Experience).subscribe()
+  }
+
+  getYear(date:Date){
+    let d = new Date(date);
+    return d.getFullYear();
   }
 }

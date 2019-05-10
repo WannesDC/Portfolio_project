@@ -22,10 +22,10 @@ export class NavbarComponent {
     visible$: boolean;
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
     private _authenticationService: AuthenticationService,
+    private breakpointObserver: BreakpointObserver,
     private nav: NavbarService,
-    private router: Router
+    
   ) {
   }
 

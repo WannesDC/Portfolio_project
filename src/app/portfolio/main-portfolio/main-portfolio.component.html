@@ -1,5 +1,5 @@
 <div *ngIf="portfolio$ | async as portfolio; else firstTime">
-  <app-view-by-user [id]="portfolio.id"></app-view-by-user>
+  <app-view-by-user [id]="portfolio.id" [portfolio$]="portfolio$"></app-view-by-user>
 </div>
 
 <ng-template #firstTime>

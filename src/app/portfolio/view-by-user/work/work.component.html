@@ -1,96 +1,141 @@
-<form [formGroup]="work" (ngSubmit)="onSubmit()">
-  <div class="row mt-2">
-    <div class="col-lg-6 mx-auto">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">
-            <mat-icon>assignment</mat-icon>
-          </span>
-        </div>
-        <input
-          type="text"
-          class="form-control mr-sm-2"
-          placeholder="Name"
-          aria-label="Name"
-          aria-describedby="basic-addon1"
-          formControlName="name"
-        />
-      </div>
-      <br />
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">
-            <mat-icon>description</mat-icon>
-          </span>
-        </div>
-        <textarea
-          class="form-control mr-sm-2"
-          rows="4"
-          id="comment"
-          placeholder="What is this work about, Why did you make it, what technologies did you use..."
-          aria-label="About Me"
-          aria-describedby="basic-addon1"
-          formControlName="description"
-        ></textarea>
-      </div>
-      <br />
-    </div>
-    <div class="col-lg-6 mx-auto">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">
-            <mat-icon>add_a_photo</mat-icon>
-          </span>
-        </div>
-        <input
-          type="url"
-          class="form-control mr-sm-2"
-          placeholder="image"
-          aria-label="image"
-          aria-describedby="basic-addon1"
-          formControlName="imagePath"
-        />
-      </div>
-      <br />
+<div *ngIf="work$ | async as wrk">
+  <div class="text-center">
+    <h3 class="white-text text-white">
+      Works
+    </h3>
+    <hr class="hr-light" />
+  </div>
 
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class=" input-group-text" id="basic-addon2">
-            <mat-icon>link</mat-icon>
-          </span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let work of work$ | async">
+          <div class="card mb-4 shadow-sm">
+            <img
+              class="card-img"
+              src="{{ work.imagePath }}"
+              height="225"
+              alt="{{ work.workName }}"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ work.workName }}</h5>
+              <p class="card-text">{{ work.description }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a
+                    href="{{ work.link }}"
+                    class="btn btn-sm btn-outline-secondary"
+                    >View</a
+                  >
+                </div>
+                <small class="text-muted">{{ work.timePublished }}</small>
+              </div>
+            </div>
+          </div>
         </div>
-        <input
-          type="url"
-          class="form-control mr-sm-2"
-          placeholder="Link"
-          aria-label="Link"
-          aria-describedby="basic-addon2"
-          formControlName="link"
-        />
-      </div>
-
-      <br />
-
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class=" input-group-text" id="basic-addon2">
-            <mat-icon>timeline</mat-icon>
-          </span>
-        </div>
-        <input
-          type="text"
-          onfocus="(this.type='date')"
-          onblur="(this.type='text')"
-          class="form-control mr-sm-2"
-          placeholder="Published"
-          aria-label="Published"
-          aria-describedby="basic-addon2"
-          formControlName="timePublished"
-        />
       </div>
     </div>
+
+
+  <div class="text-center">
+    <h3 class="white-text text-white">
+      Add Work:
+    </h3>
+    <hr class="hr-light" />
   </div>
-  <div class="mt-4">
-    <button type="submit" class="btn btn-outline-light ">Add Work</button>
-  </div>
-</form>
+  <form [formGroup]="work" (ngSubmit)="onSubmit()">
+    <div class="row mt-2">
+      <div class="col-lg-6 mx-auto">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <mat-icon>assignment</mat-icon>
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control mr-sm-2"
+            placeholder="Name"
+            aria-label="Name"
+            aria-describedby="basic-addon1"
+            formControlName="name"
+          />
+        </div>
+        <br />
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <mat-icon>description</mat-icon>
+            </span>
+          </div>
+          <textarea
+            class="form-control mr-sm-2"
+            rows="4"
+            id="comment"
+            placeholder="What is this work about, Why did you make it, what technologies did you use..."
+            aria-label="About Me"
+            aria-describedby="basic-addon1"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <br />
+      </div>
+      <div class="col-lg-6 mx-auto">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+              <mat-icon>add_a_photo</mat-icon>
+            </span>
+          </div>
+          <input
+            type="url"
+            class="form-control mr-sm-2"
+            placeholder="image"
+            aria-label="image"
+            aria-describedby="basic-addon1"
+            formControlName="imagePath"
+          />
+        </div>
+        <br />
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class=" input-group-text" id="basic-addon2">
+              <mat-icon>link</mat-icon>
+            </span>
+          </div>
+          <input
+            type="url"
+            class="form-control mr-sm-2"
+            placeholder="Link"
+            aria-label="Link"
+            aria-describedby="basic-addon2"
+            formControlName="link"
+          />
+        </div>
+
+        <br />
+
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class=" input-group-text" id="basic-addon2">
+              <mat-icon>timeline</mat-icon>
+            </span>
+          </div>
+          <input
+            type="text"
+            onfocus="(this.type='date')"
+            onblur="(this.type='text')"
+            class="form-control mr-sm-2"
+            placeholder="Published"
+            aria-label="Published"
+            aria-describedby="basic-addon2"
+            formControlName="timePublished"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
+      <button type="submit" class="btn btn-outline-light ">Add Work</button>
+    </div>
+  </form>
+</div>
