@@ -1,5 +1,5 @@
 <div *ngIf="work$ | async as wrk">
-  <div class="text-center">
+  <div class="text-center" *ngIf="wrk.length != 0">
     <h3 class="white-text text-white">
       Works
     </h3>
@@ -8,8 +8,8 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4" *ngFor="let work of work$ | async">
-          <div class="card mb-4 shadow-sm">
+        <div class="col-md-4 mb-4" *ngFor="let work of work$ | async">
+          <div class="card h-100 mb-4 shadow-sm">
             <img
               class="card-img"
               src="{{ work.imagePath }}"

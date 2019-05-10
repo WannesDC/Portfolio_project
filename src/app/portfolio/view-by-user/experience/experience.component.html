@@ -1,7 +1,5 @@
 <div *ngIf="experience$ | async as ex">
-
-
-    <div class="text-center">
+    <div class="text-center" *ngIf="ex.length !=0">
         <h3 class="white-text text-white">
           Work Experiences:
         </h3>

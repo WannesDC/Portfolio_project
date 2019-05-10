@@ -1,13 +1,13 @@
 <div *ngIf="skill$ | async as skill">
-<div class="text-center">
+<div class="text-center" *ngIf="skill.length != 0">
     <h3 class="white-text text-white">
       Skills:
     </h3>
     <hr class="hr-light" />
           <div class="container">
             <div class="row">
-              <div class="col-md-6" *ngFor="let sk of skill$ | async">
-                <div class="card mb-4 shadow-sm">
+              <div class="col-md-3 mb-4" *ngFor="let sk of skill$ | async">
+                <div class="card h-100 mb-4 shadow-sm">
                   <img
                     class="card-img"
                     src="{{ sk.iconPath }}"
@@ -32,8 +32,8 @@
     </h3>
     <hr class="hr-light" />
 </div>
-<form [formGroup]="skill" (ngSubmit)="onSubmit()">
-  <div class="input-group">
+<form class="col-md-6 mx-auto" [formGroup]="skill" (ngSubmit)="onSubmit()">
+  <div class="input-group ">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">
         <mat-icon>build</mat-icon>

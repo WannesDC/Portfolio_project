@@ -1,5 +1,5 @@
 <div *ngIf="education$ | async as ed">
-    <div class="text-center">
+    <div class="text-center" *ngIf="ed.length != 0">
         <h3 class="white-text text-white">
           Educations:
         </h3>
