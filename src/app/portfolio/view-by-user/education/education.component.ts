@@ -32,7 +32,7 @@ export class EducationComponent implements OnInit {
 
   onSubmit(){
     
-    this._portfolioDataService.postEducation(this.id,
+    this.education$=this._portfolioDataService.postEducation(this.id,
       {
         institute: this.education.value.institute,
         description: this.education.value.description,
@@ -40,13 +40,18 @@ export class EducationComponent implements OnInit {
         course: this.education.value.course,
         startYear: this.education.value.startYear,
         endYear: this.education.value.endYear
-      } as Education).subscribe();
+      } as Education).pipe();
   }
 
   
   getYear(date:Date){
     let d = new Date(date);
     return d.getFullYear();
+  }
+
+  delete(id:number){
+    this._portfolioDataService.deleteEducation(this.id, id);
+    this._portfolioDataService.getEducation(this.id);
   }
 
 }

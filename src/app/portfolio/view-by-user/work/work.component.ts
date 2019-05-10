@@ -29,7 +29,7 @@ export class WorkComponent implements OnInit {
   }
 
   onSubmit(){
-    this._portfolioDataService.postWork(this.id,
+    this.work$ = this._portfolioDataService.postWork(this.id,
       {
         workName: this.work.value.name,
         description: this.work.value.description,
@@ -37,6 +37,11 @@ export class WorkComponent implements OnInit {
         link: this.work.value.link,
         timePublished: this.work.value.timePublished
       } as Work
-    ).subscribe();
+    ).pipe();
+  }
+
+  delete(id:number){
+    this._portfolioDataService.deleteWork(this.id, id);
+    this.work$ = this._portfolioDataService.getWork(this.id);
   }
 }

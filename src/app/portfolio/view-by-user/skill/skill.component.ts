@@ -29,12 +29,17 @@ export class SkillComponent implements OnInit {
   }
 
   onSubmit(){
-    this._portfolioDataService.postSkill(this.id,{
+    this.skill$=this._portfolioDataService.postSkill(this.id,{
       type: this.skill.value.type,
       description: this.skill.value.description,
       iconPath: this.skill.value.iconPath
-    } as Skill).subscribe();
+    } as Skill).pipe();
     this.skill$ = this._portfolioDataService.getSkill(this.id);
 
+  }
+
+  delete(id:number){
+    this._portfolioDataService.deleteSkill(this.id, id);
+    this.skill$ = this._portfolioDataService.getSkill(this.id);
   }
 }

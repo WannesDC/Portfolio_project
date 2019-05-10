@@ -31,7 +31,7 @@ export class ExperienceComponent implements OnInit {
   }
 
   onSubmit(){
-    this._portfolioDataService.postExperience(this.id,
+    this.experience$ = this._portfolioDataService.postExperience(this.id,
       {
         company: this.experience.value.company,
         jobPos: this.experience.value.jobPos,
@@ -39,11 +39,16 @@ export class ExperienceComponent implements OnInit {
         description: this.experience.value.description,
         startYear: this.experience.value.startYear,
         endYear: this.experience.value.endYear
-      }as Experience).subscribe()
+      }as Experience).pipe()
   }
 
   getYear(date:Date){
     let d = new Date(date);
     return d.getFullYear();
+  }
+
+  delete(id:number){
+    this._portfolioDataService.deleteExperience(this.id, id);
+    this.experience$ = this._portfolioDataService.getExperience(this.id);
   }
 }

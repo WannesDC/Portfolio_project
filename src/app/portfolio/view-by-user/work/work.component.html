@@ -26,6 +26,11 @@
                     class="btn btn-sm btn-outline-secondary"
                     >View</a
                   >
+                  <a
+                  (click)="delete(work.id)"
+                  class="btn btn-sm btn-outline-warning"
+                  >delete</a
+                >
                 </div>
                 <small class="text-muted">{{ work.timePublished }}</small>
               </div>
