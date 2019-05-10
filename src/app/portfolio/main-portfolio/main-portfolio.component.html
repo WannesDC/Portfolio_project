@@ -1,31 +1,37 @@
-
-<div *ngIf="(portfolio$ | async) as portfolio; else firstTime">
-        <app-view-by-user [id]="portfolio.id"></app-view-by-user>
+<div *ngIf="portfolio$ | async as portfolio; else firstTime">
+  <app-view-by-user [id]="portfolio.id"></app-view-by-user>
 </div>
 
 <ng-template #firstTime>
-        <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="error-template">
-                            <h1>
-                                Welcome!</h1>
-                            <h2>
-                                Here you can make your first Portfolio!</h2>
-                            <div class="error-details">
-                                <!--Sorry, it looks like you do not have a portfolio yet, would you like to make one?-->
-                                Would you like to create one now?
-                            </div>
-                            <div class="error-actions">
-                                <a href="#" class="btn btn-outline-dark mr-sm-2" data-toggle="collapse" data-target="#collapseExample">
-                                    Make my Portfolio! </a>
-                            </div>
-                            <div class="collapse" id="collapseExample">
-                                <app-add-portfolio></app-add-portfolio>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="error-template">
+          <h1>
+            Welcome!
+          </h1>
+          <h2>
+            Here you can make your first Portfolio!
+          </h2>
+          <div class="error-details">
+            <!--Sorry, it looks like you do not have a portfolio yet, would you like to make one?-->
+            Would you like to create one now?
+          </div>
+          <div class="error-actions">
+            <a
+              href="#"
+              class="btn btn-outline-dark mr-sm-2"
+              data-toggle="collapse"
+              data-target="#collapseExample"
+            >
+              Make my Portfolio!
+            </a>
+          </div>
+          <div class="collapse" id="collapseExample">
+            <app-add-portfolio></app-add-portfolio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-template>
-

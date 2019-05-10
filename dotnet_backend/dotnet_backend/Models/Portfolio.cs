@@ -48,11 +48,11 @@ namespace dotnet_backend.Models
     public void AddEducation(Education education) => Educations.Add(education);
     public void AddContact(Contact contact) => Contact = contact;
 
-    public Experience GetExperience(int id) => Experiences.SingleOrDefault(e => e.Id == id);
-    public Skill GetSkill(int id) => Skills.SingleOrDefault(s => s.Id == id);
-    public Work GetWork(int id) => Works.SingleOrDefault(w => w.Id == id);
-    public Education GetEducation(int id) => Educations.SingleOrDefault(e => e.Id == id);
-    public Contact GetContact(int id) => Contact;
+    public ICollection<Experience> GetExperience() => Experiences.ToList();
+    public ICollection<Skill> GetSkill() => Skills.ToList();
+    public ICollection<Work> GetWork() => Works.ToList();
+    public ICollection<Education> GetEducation() => Educations.ToList();
+    public Contact GetContact() => Contact;
 
     #endregion
   }

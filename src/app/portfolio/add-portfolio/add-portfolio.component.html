@@ -1,64 +1,88 @@
 <div class="row mt-5">
   <div class="col-md-6 col-xl-5 mb-4 mx-auto">
     <!--Form-->
-    <div class="card" >
+    <div class="card">
       <div class="card-body">
         <!--Header-->
         <div class="text-center">
           <h3 class="white-text">
-            Add portfolio:</h3>
-          <hr class="hr-light">
+            Add portfolio:
+          </h3>
+          <hr class="hr-light" />
         </div>
         <!--form starts here!!-->
         <form [formGroup]="portfolio" (ngSubmit)="onSubmit()">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">
-                    <mat-icon>person</mat-icon>
-                  </span>
-                </div>
-                <input type="text" class="form-control mr-sm-2"
-                 placeholder="Name" aria-label="Name"
-                aria-describedby="basic-addon1" formControlName="pName">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <mat-icon>person</mat-icon>
+              </span>
             </div>
-            <br>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <mat-icon>description</mat-icon>
-                </span>
-              </div>
-              <textarea class="form-control mr-sm-2" rows="5" id="comment" placeholder="About Me" aria-label="About Me"
-              aria-describedby="basic-addon1" formControlName="description"></textarea>
+            <input
+              type="text"
+              class="form-control mr-sm-2"
+              placeholder="Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+              formControlName="pName"
+            />
+          </div>
+          <br />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <mat-icon>description</mat-icon>
+              </span>
             </div>
-            <br>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">
-                  <mat-icon>add_a_photo</mat-icon>
-                </span>
-              </div>
-              <input type="url" class="form-control mr-sm-2" placeholder="image" aria-label="image" aria-describedby="basic-addon1"
-                formControlName="picturePath"> 
+            <textarea
+              class="form-control mr-sm-2"
+              rows="5"
+              id="comment"
+              placeholder="About Me"
+              aria-label="About Me"
+              aria-describedby="basic-addon1"
+              formControlName="description"
+            ></textarea>
+          </div>
+          <br />
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">
+                <mat-icon>add_a_photo</mat-icon>
+              </span>
             </div>
-            <br>
-            
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class=" input-group-text" id="basic-addon2">
-                                            
-                  <mat-icon>attach_file</mat-icon>
-                </span>
-              </div>
-              <input type="url" class="form-control mr-sm-2" placeholder="resume" aria-label="resume"
-               aria-describedby="basic-addon2" formControlName="resumePath">
+            <input
+              type="url"
+              class="form-control mr-sm-2"
+              placeholder="image"
+              aria-label="image"
+              aria-describedby="basic-addon1"
+              formControlName="picturePath"
+            />
+          </div>
+          <br />
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class=" input-group-text" id="basic-addon2">
+                <mat-icon>attach_file</mat-icon>
+              </span>
             </div>
-            
-            <div class="text-center mt-4">
-              <button type="submit" class="btn btn-outline-light ">Save</button>
-            </div>
+            <input
+              type="url"
+              class="form-control mr-sm-2"
+              placeholder="resume"
+              aria-label="resume"
+              aria-describedby="basic-addon2"
+              formControlName="resumePath"
+            />
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-outline-light ">Save</button>
+          </div>
         </form>
-    </div>
+      </div>
     </div>
   </div>
 </div>

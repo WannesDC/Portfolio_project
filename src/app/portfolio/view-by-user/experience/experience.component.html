@@ -1,69 +1,106 @@
 <form [formGroup]="experience" (ngSubmit)="onSubmit()">
-
-    <div class="row mt-2">
-        <div class="col-lg-6 mx-auto">
-    <div class="input-group">
+  <div class="row mt-2">
+    <div class="col-lg-6 mx-auto">
+      <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>business</mat-icon>
           </span>
         </div>
-        <input type="text" class="form-control mr-sm-2"
-         placeholder="Company" aria-label="Company"
-        aria-describedby="basic-addon1" formControlName="company">
-    </div>
-    <br>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">
-          <mat-icon>person</mat-icon>
-        </span>
+        <input
+          type="text"
+          class="form-control mr-sm-2"
+          placeholder="Company"
+          aria-label="Company"
+          aria-describedby="basic-addon1"
+          formControlName="company"
+        />
       </div>
-      <input  type="url" class="form-control mr-sm-2" placeholder="Position" aria-label="Position"
-       aria-describedby="basic-addon1" formControlName="jobPos">
-    </div>
-    <br>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">
-          <mat-icon>link</mat-icon>
-        </span>
+      <br />
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>person</mat-icon>
+          </span>
+        </div>
+        <input
+          type="url"
+          class="form-control mr-sm-2"
+          placeholder="Position"
+          aria-label="Position"
+          aria-describedby="basic-addon1"
+          formControlName="jobPos"
+        />
       </div>
-      <input  type="url" class="form-control mr-sm-2" placeholder="Link" aria-label="Link"
-       aria-describedby="basic-addon1" formControlName="link">
-    </div>
-    <br>
+      <br />
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>link</mat-icon>
+          </span>
+        </div>
+        <input
+          type="url"
+          class="form-control mr-sm-2"
+          placeholder="Link"
+          aria-label="Link"
+          aria-describedby="basic-addon1"
+          formControlName="link"
+        />
+      </div>
+      <br />
     </div>
     <div class="col-lg-6 mx-auto">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="basic-addon1">
-          <mat-icon>description</mat-icon>
-        </span>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>description</mat-icon>
+          </span>
+        </div>
+        <textarea
+          class="form-control mr-sm-2"
+          rows="4"
+          id="comment"
+          placeholder="Why was this experience useful to you, what did this job position include..."
+          aria-label="About Me"
+          aria-describedby="basic-addon1"
+          formControlName="description"
+        ></textarea>
       </div>
-      <textarea class="form-control mr-sm-2" rows="4" id="comment" placeholder="Why was this experience useful to you, what did this job position include..." aria-label="About Me"
-      aria-describedby="basic-addon1" formControlName="description"></textarea>
-    </div>
-    <br>
-    
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class=" input-group-text" id="basic-addon2">
-                                    
-          <mat-icon>date_range</mat-icon>
-        </span>
+      <br />
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class=" input-group-text" id="basic-addon2">
+            <mat-icon>date_range</mat-icon>
+          </span>
+        </div>
+        <input
+          type="text"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')"
+          class="form-control mr-sm-2"
+          placeholder="Starting Date"
+          aria-label="Starting Date"
+          aria-describedby="basic-addon2"
+          formControlName="startYear"
+        />
+        <input
+          type="text"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')"
+          class="form-control mr-sm-2"
+          placeholder="Ending Date"
+          aria-label="Ending Date"
+          aria-describedby="basic-addon2"
+          formControlName="endYear"
+        />
       </div>
-      <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mr-sm-2" placeholder="Starting Date" aria-label="Starting Date"
-       aria-describedby="basic-addon2" formControlName="startYear">
-       <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" class="form-control mr-sm-2" placeholder="Ending Date" aria-label="Ending Date"
-       aria-describedby="basic-addon2" formControlName="endYear">
+      <br />
     </div>
-    <br>
   </div>
-    </div>
-    
-    <div class="mt-4">
-      <button type="submit" class="btn btn-outline-light ">Add Experience</button>
-    </div>
-        
+
+  <div class="mt-4">
+    <button type="submit" class="btn btn-outline-light ">Add Experience</button>
+  </div>
 </form>

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Portfolio } from '../data-types/portfolio';
 import { PortfolioDataService } from '../portfolio-data.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { Contact } from '../data-types/contact';
+import { map, concatMap, mergeMap } from 'rxjs/operators';
 
 
 
@@ -19,6 +19,8 @@ export class ViewByUserComponent implements OnInit {
 
   public contact: FormGroup;
   portfolio$: Observable<Portfolio>;
+  contact$: Observable<Contact>;
+
   @Input() id:number;
   
 
@@ -39,20 +41,25 @@ export class ViewByUserComponent implements OnInit {
       country:['', [Validators.required, Validators.minLength(2)]],
       postalCode:['', [Validators.required, Validators.minLength(2)]]
     });
-    
-    this.portfolio$=this._portfolioDataService.getPortfolio$(this.id);
-    
-    
 
+    this.contact$=this._portfolioDataService.getContact(this.id);
+    this.portfolio$=this._portfolioDataService.getPortfolio$(this.id);
+    /*this.portfolio$.pipe(
+      mergeMap(
+        val => this.contact$ = val.contact
+      )
+    );*/
+    
+    
   }
 
   scroll(el: HTMLElement) {
     el.scrollIntoView();
-}
+  }
 
   onSubmit(id:number){
     
-    this._portfolioDataService.postContact(id,
+    this.contact$ = this._portfolioDataService.postContact(id,
     { 
       name: this.contact.value.name,
       surname: this.contact.value.surname,
@@ -62,7 +69,7 @@ export class ViewByUserComponent implements OnInit {
       city: this.contact.value.city,
       country: this.contact.value.country,
       postalcode: this.contact.value.postalCode
-    } as Contact).subscribe();
+    } as Contact).pipe();
     
     
   }
@@ -83,7 +90,7 @@ export class ViewByUserComponent implements OnInit {
   deleteC(id:number,cid:number){
     if(confirm("Are you sure you want to delete your contact details?")) {
       this._portfolioDataService.deleteContact(id, cid);
-      
+      this.contact$=null;
     }
     
   }

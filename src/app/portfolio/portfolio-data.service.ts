@@ -108,36 +108,61 @@ export class PortfolioDataService {
   //PUT PORTFOLIO DETAILS
 
   putContact(pid:number, contact:Contact, cid:number){
-    return this.http.put<Contact>(`${environment.apiUrl}/Portfolios/${pid}/contact/${cid}`, contact).subscribe();
+    return this.http.put<Contact>(`${environment.apiUrl}/Portfolios/${pid}/contact/${cid}`, contact);
   }
   putExperience(pid:number, experience:Experience, cid:number){
-    return this.http.put<Experience>(`${environment.apiUrl}/Portfolios/${pid}/experiences/${cid}`, experience).subscribe();
+    return this.http.put<Experience>(`${environment.apiUrl}/Portfolios/${pid}/experiences/${cid}`, experience);
   }
   putEducation(pid:number, education:Education, cid:number){
-    return this.http.put<Education>(`${environment.apiUrl}/Portfolios/${pid}/educations/${cid}`, education).subscribe();
+    return this.http.put<Education>(`${environment.apiUrl}/Portfolios/${pid}/educations/${cid}`, education);
   }
   putWork(pid:number, work:Work, cid:number){
-    return this.http.put<Work>(`${environment.apiUrl}/Portfolios/${pid}/works/${cid}`, work).subscribe();
+    return this.http.put<Work>(`${environment.apiUrl}/Portfolios/${pid}/works/${cid}`, work);
   }  
   putSkill(pid:number, skill:Skill, cid:number){
-    return this.http.put<Skill>(`${environment.apiUrl}/Portfolios/${pid}/skills/${cid}`, skill).subscribe();
+    return this.http.put<Skill>(`${environment.apiUrl}/Portfolios/${pid}/skills/${cid}`, skill);
   }
 
   //GET PORTFOLIO DETAILS
 
-  getContact(pid:number, cid:number){
-    return this.http.get<Contact>(`${environment.apiUrl}/Portfolios/${pid}/contact/${cid}`).pipe();
+  getContact(pid:number){
+    return this.http.get<Contact>(`${environment.apiUrl}/Portfolios/${pid}/contact/`).pipe(
+      catchError(error => {
+        this.loadingError$.next(error.statusText);
+        return of(null);
+      })
+    );
   }
-  getExperience(pid:number, cid:number){
-    return this.http.get<Experience>(`${environment.apiUrl}/Portfolios/${pid}/experiences/${cid}`).pipe();
+  getExperience(pid:number){
+    return this.http.get<Experience>(`${environment.apiUrl}/Portfolios/${pid}/experiences/`).pipe(
+      catchError(error => {
+        this.loadingError$.next(error.statusText);
+        return of(null);
+      })
+    );
   }
-  getEducation(pid:number, cid:number){
-    return this.http.get<Education>(`${environment.apiUrl}/Portfolios/${pid}/educations/${cid}`).pipe();
+  getEducation(pid:number){
+    return this.http.get<Education>(`${environment.apiUrl}/Portfolios/${pid}/educations/`).pipe(
+      catchError(error => {
+        this.loadingError$.next(error.statusText);
+        return of(null);
+      })
+    );
   }
-  getWork(pid:number, cid:number){
-    return this.http.get<Work>(`${environment.apiUrl}/Portfolios/${pid}/works/${cid}`).pipe();
+  getWork(pid:number){
+    return this.http.get<Work>(`${environment.apiUrl}/Portfolios/${pid}/works/`).pipe(
+      catchError(error => {
+        this.loadingError$.next(error.statusText);
+        return of(null);
+      })
+    );
   }
-  getSkill(pid:number, cid:number){
-    return this.http.get<Skill>(`${environment.apiUrl}/Portfolios/${pid}/skills/${cid}`).pipe();
+  getSkill(pid:number){
+    return this.http.get<Skill>(`${environment.apiUrl}/Portfolios/${pid}/skills/`).pipe(
+      catchError(error => {
+        this.loadingError$.next(error.statusText);
+        return of(null);
+      })
+    );
   }
 }

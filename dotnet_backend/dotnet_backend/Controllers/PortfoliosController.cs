@@ -139,15 +139,14 @@ namespace dotnet_backend.Controllers
     /// Get Contact for a Portfolio
     /// </summary>
     /// <param name="id">id of the Portfolio</param>
-    /// <param name="contactId">id of the Experience</param>
-    [HttpGet("{id}/contact/{contactId}")]
-    public ActionResult<Contact> GetContact(int id, int contactId)
+    [HttpGet("{id}/contact/")]
+    public ActionResult<Contact> GetContact(int id)
     {
       if (!_pRepository.TryGetPortfolio(id, out var portfolio))
       {
         return NotFound();
       }
-      Contact c = portfolio.GetContact(contactId);
+      Contact c = portfolio.GetContact();
       if (c == null)
         return NotFound();
       return c;
@@ -223,18 +222,17 @@ namespace dotnet_backend.Controllers
     /// Get an experience for a Portfolio
     /// </summary>
     /// <param name="id">id of the Portfolio</param>
-    /// <param name="experienceId">id of the Experience</param>
-    [HttpGet("{id}/experiences/{experienceId}")]
-    public ActionResult<Experience> GetExperience(int id, int experienceId)
+    [HttpGet("{id}/experiences/")]
+    public ActionResult<Experience[]> GetExperience(int id)
     {
       if (!_pRepository.TryGetPortfolio(id, out var portfolio))
       {
         return NotFound();
       }
-      Experience e = portfolio.GetExperience(experienceId);
+      ICollection<Experience> e = portfolio.GetExperience();
       if (e == null)
         return NotFound();
-      return e;
+      return e.ToArray();
     }
 
     /// <summary>
@@ -307,18 +305,18 @@ namespace dotnet_backend.Controllers
     /// Get a work for a Portfolio
     /// </summary>
     /// <param name="id">id of the Portfolio</param>
-    /// <param name="workId">id of the Work</param>
-    [HttpGet("{id}/works/{workId}")]
-    public ActionResult<Work> GetWork(int id, int workId)
+
+    [HttpGet("{id}/works/")]
+    public ActionResult<Work[]> GetWork(int id)
     {
       if (!_pRepository.TryGetPortfolio(id, out var portfolio))
       {
         return NotFound();
       }
-      Work e = portfolio.GetWork(workId);
+      ICollection<Work> e = portfolio.GetWork();
       if (e == null)
         return NotFound();
-      return e;
+      return e.ToArray();
     }
     /// <summary>
     /// Adds a work to Portfolio
@@ -389,18 +387,17 @@ namespace dotnet_backend.Controllers
     /// Get an education for a Portfolio
     /// </summary>
     /// <param name="id">id of the Portfolio</param>
-    /// <param name="educationId">id of the Education</param>
-    [HttpGet("{id}/educations/{educationId}")]
-    public ActionResult<Education> GetEducation(int id, int educationId)
+    [HttpGet("{id}/educations/")]
+    public ActionResult<Education[]> GetEducation(int id)
     {
       if (!_pRepository.TryGetPortfolio(id, out var portfolio))
       {
         return NotFound();
       }
-      Education e = portfolio.GetEducation(educationId);
+      ICollection<Education> e = portfolio.GetEducation();
       if (e == null)
         return NotFound();
-      return e;
+      return e.ToArray();
     }
     /// <summary>
     /// Adds an education to Portfolio
@@ -471,18 +468,17 @@ namespace dotnet_backend.Controllers
     /// Get a skill for a Portfolio
     /// </summary>
     /// <param name="id">id of the Portfolio</param>
-    /// <param name="skillId">id of the skill</param>
-    [HttpGet("{id}/skills/{skillId}")]
-    public ActionResult<Skill> GetSkill(int id, int skillId)
+    [HttpGet("{id}/skills/")]
+    public ActionResult<Skill[]> GetSkill(int id)
     {
       if (!_pRepository.TryGetPortfolio(id, out var portfolio))
       {
         return NotFound();
       }
-      Skill e = portfolio.GetSkill(skillId);
+      ICollection<Skill> e = portfolio.GetSkill();
       if (e == null)
         return NotFound();
-      return e;
+      return e.ToArray();
     }
     /// <summary>
     /// Adds a skill to Portfolio

@@ -1,383 +1,448 @@
 <!--contact form-->
 <ng-container *ngIf="portfolio$ | async as item; else test">
   <div class="container">
-  <div class="row">
-    <div class="col-sm-12 mx-auto">
-      <div class="container ">
-        <div class="row">
-          <div
-            class="card col-md-3 ml-3 mr-sm-3 mr-lg-5 mt-3"
-          >
-            <img class="card-img mt-3" src="{{ item.picturePath }}" alt="Image" />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title text-white">{{ item.name }}</h5>
-              <div class="btn-group flex-wrap mt-auto" role="group">
-                <a
-                  href="{{ item.resumePath }}"
-                  class="btn btn-sm btn-outline-light"
-                  data-toggle="modal" data-target="#myModal"
-                  >Resume</a
-                >
+    <div class="row">
+      <div class="col-sm-12 mx-auto">
+        <div class="container ">
+          <div class="row">
+            <div class="card col-md-3 ml-3 mr-sm-3 mr-lg-5 mt-3">
+              <img
+                class="card-img mt-3"
+                src="{{ item.picturePath }}"
+                alt="Image"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-white">{{ item.name }}</h5>
+                <div class="btn-group flex-wrap mt-auto" role="group">
+                  <!-- CHANGE THIS PLZ -->
+                  <a
+                    href=""
+                    class="btn btn-sm btn-outline-light"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                    >Resume</a
+                  >
 
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" >
+                  <div
+                    class="modal fade"
+                    id="myModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="myModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="myModalLabel">Resume</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          
+                          <h4 class="modal-title" id="myModalLabel">Resume</h4>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-hidden="true"
+                          >
+                            &times;
+                          </button>
                         </div>
                         <div class="modal-body ">
-                            <embed src="{{item.resumePath}}" frameborder="0" width="100%" height="500px">
+                          <embed
+                            src="https://drive.google.com/file/d/1vdNLtVsEdYyNZ1pwvRiiETTfN3vdLKCa/view"
+                            frameborder="0"
+                            width="100%"
+                            height="500px"
+                          />
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          
+                          <button
+                            type="button"
+                            class="btn btn-default"
+                            data-dismiss="modal"
+                          >
+                            Close
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                <a
-                  href="/portfolio/viewPortfolio/{{ item.id }}"
-                  class="btn btn-sm  btn-outline-light"
-                  target="_blank"
-                  >Portfolio</a
-                >
-                <button
-                  class="btn btn-sm  btn-outline-warning"
-                  (click)="delete(item.id)"
-                  >Delete</button
-                >
+                  <a
+                    href="/portfolio/viewPortfolio/{{ item.id }}"
+                    class="btn btn-sm  btn-outline-light"
+                    target="_blank"
+                    >Portfolio</a
+                  >
+                  <button
+                    class="btn btn-sm  btn-outline-warning"
+                    (click)="delete(item.id)"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
+            <div class="card col-md-8 ml-3 mt-3">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-white">Portfolio Details</h5>
+                <p class="card-text text-white">{{ item.description }}</p>
 
-
-          <div class="card col-md-8 ml-3 mt-3">
-            <div class="card-body d-flex flex-column">
-
-              <h5 class="card-title text-white">Portfolio Details</h5>
-              <p class="card-text text-white">{{ item.description }}</p>
-
-              <div *ngIf="item.contact">
-                <h5 class="card-title text-white">Contact Details</h5>
-                <div class="card-text">
-                  <ul class="list-unstyled text-light">
-                    <li>
-                      Name: {{ item.contact.name }} {{ item.contact.surname }}
-                    </li>
-                    <li>Email: {{ item.contact.email }}</li>
-                    <li>Birthdate: {{ formatDate(item.contact.birthDate) }}</li>
-                    <li>Address: {{ item.contact.street }}</li>
-                    <li>
-                      City: {{ item.contact.postalCode }}
-                      {{ item.contact.city }}
-                    </li>
-                    <li>Country: {{ item.contact.country }}</li>
-                  </ul>
+                <div *ngIf="contact$ | async as c">
+                  <h5 class="card-title text-white">Contact Details</h5>
+                  <div class="card-text">
+                    <ul class="list-unstyled text-light">
+                      <li>Name: {{ c.name }} {{ c.surname }}</li>
+                      <li>Email: {{ c.email }}</li>
+                      <li>Birthdate: {{ formatDate(c.birthDate) }}</li>
+                      <li>Address: {{ c.street }}</li>
+                      <li>
+                        City: {{ c.postalCode }}
+                        {{ c.city }}
+                      </li>
+                      <li>Country: {{ c.country }}</li>
+                    </ul>
+                  </div>
+                  <p class="card-text"></p>
+                  <p class="card-text"></p>
+                  <p class="card-text"></p>
+                  <p class="card-text"></p>
                 </div>
-                <p class="card-text"></p>
-                <p class="card-text"></p>
-                <p class="card-text"></p>
-                <p class="card-text"></p>
+                <div class="btn-group flex-wrap mt-auto" role="group">
+                  <button
+                    class="btn btn-sm  btn-outline-light"
+                    data-toggle="collapse"
+                    data-target="#collapseSk"
+                    (click)="scroll(targetSkills)"
+                  >
+                    Skills
+                  </button>
+                  <button
+                    class="btn btn-sm  btn-outline-light"
+                    data-toggle="collapse"
+                    data-target="#collapseEdu"
+                    (click)="scroll(targetEdu)"
+                  >
+                    Educations
+                  </button>
+                  <button
+                    class="btn btn-sm  btn-outline-light"
+                    data-toggle="collapse"
+                    data-target="#collapseExp"
+                    (click)="scroll(targetExp)"
+                  >
+                    Work Experiences
+                  </button>
+                  <button
+                    class="btn btn-sm  btn-outline-light"
+                    data-toggle="collapse"
+                    data-target="#collapseWork"
+                    (click)="scroll(targetWorks)"
+                  >
+                    Works
+                  </button>
+                  <button
+                    class="btn btn-sm  btn-outline-light"
+                    data-toggle="collapse"
+                    data-target="#collapseContact"
+                    (click)="scroll(targetContact)"
+                  >
+                    Contact Details
+                  </button>
+                </div>
               </div>
-              <div class="btn-group flex-wrap mt-auto" role="group">
-                <button
-                  class="btn btn-sm  btn-outline-light"
-                  data-toggle="collapse"
-                  data-target="#collapseSk"
-                  (click)="scroll(targetSkills)"
-                  >Skills</button
-                >
-                <button
-                  class="btn btn-sm  btn-outline-light"
-                  data-toggle="collapse"
-                  data-target="#collapseEdu"
-                  (click)="scroll(targetEdu)"
-                  >Educations</button
-                >
-                <button
-                  class="btn btn-sm  btn-outline-light"
-                  data-toggle="collapse"
-                  data-target="#collapseExp"
-                  (click)="scroll(targetExp)"
-                  >Work Experiences</button
-                >
-                <button
-                  class="btn btn-sm  btn-outline-light"
-                  data-toggle="collapse"
-                  data-target="#collapseWork"
-                  (click)="scroll(targetWorks)"
-                  >Works</button
-                >
-                <button
-                  class="btn btn-sm  btn-outline-light"
-                  data-toggle="collapse"
-                  data-target="#collapseContact"
-                  (click)="scroll(targetContact)"
-                  >Contact Details</button
-                >
-              </div>
-              
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="row mt-3">
-    <div class="col-sm-12 mx-auto">
-      <div class="container ">
-        <!--Form-->
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-sm-12 mx-auto">
+        <div class="container ">
+          <!--Form-->
 
-        <!--Header-->
-        <div #targetContact class="card col-md-12 mb-3 collapse" id="collapseContact">
-          <div class="card-body">
-              <button type="button" class="close" data-toggle="collapse"
-              data-target="#collapseContact" aria-label="Close">
-              <mat-icon [ngStyle]="{'color':'white'}">close</mat-icon>
-                </button>
-            <div class="text-center">
-              <h3 class="white-text mt-5 text-white">
-                Your Contact Information:
-              </h3>
-              <hr class="hr-white" />
-            </div>
-            <!--form starts here!!-->
-
-            <form [formGroup]="contact" (ngSubmit)="onSubmit(item.id)">
-              <div class="row mt-2">
-                <div class="col-lg-6 mx-auto">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <mat-icon>person</mat-icon>
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control mr-sm-2"
-                      placeholder="Name"
-                      aria-label="Name"
-                      aria-describedby="basic-addon1"
-                      formControlName="name"
-                    />
-                    <input
-                      type="text"
-                      class="form-control mr-sm-2"
-                      placeholder="Surname"
-                      aria-label="Surname"
-                      aria-describedby="basic-addon1"
-                      formControlName="surname"
-                    />
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <mat-icon>contact_mail</mat-icon>
-                      </span>
-                    </div>
-                    <input
-                      type="email"
-                      class="form-control mr-sm-2"
-                      placeholder="Email"
-                      aria-label="email"
-                      aria-describedby="basic-addon1"
-                      formControlName="email"
-                    />
-                  </div>
-                  <br />
-
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class=" input-group-text" id="basic-addon2">
-                        <mat-icon>cake</mat-icon>
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      onfocus="(this.type='date')"
-                      onblur="(this.type='text')"
-                      class="form-control mr-sm-2"
-                      placeholder="Birth Date"
-                      aria-label="Birth Date"
-                      aria-describedby="basic-addon2"
-                      formControlName="birthDate"
-                    />
-                  </div>
-                  <br />
-                </div>
-
-                <div class="col-lg-6 mx-auto">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <mat-icon>home</mat-icon>
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control mr-sm-2"
-                      placeholder="Street & House Number"
-                      aria-label="Street"
-                      aria-describedby="basic-addon1"
-                      formControlName="street"
-                    />
-                  </div>
-                  <br />
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <mat-icon>location_city</mat-icon>
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      class="form-control mr-sm-2"
-                      placeholder="City"
-                      aria-label="City"
-                      aria-describedby="basic-addon1"
-                      formControlName="city"
-                    />
-                    <input
-                      type="number"
-                      class="form-control mr-sm-2"
-                      placeholder="PostalCode"
-                      aria-label="PostalCode"
-                      aria-describedby="basic-addon2"
-                      formControlName="postalCode"
-                    />
-                  </div>
-
-                  <br />
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">
-                        <mat-icon>public</mat-icon>
-                      </span>
-                    </div>
-                    <input
-                      type="url"
-                      class="form-control mr-sm-2"
-                      placeholder="Country"
-                      aria-label="Country"
-                      aria-describedby="basic-addon1"
-                      formControlName="country"
-                    />
-                  </div>
-                </div>
-              </div>
-              
-                <div class="btn-group mt-auto" data-toggle="buttons" role="group">
-
-                <button type="submit" (click)="onSubmit(item.id)" class="btn btn-outline-light ">
-                  Add Contact
-                </button>
-
-                <button
-                class="btn btn-outline-warning"
+          <!--Header-->
+          <div
+            #targetContact
+            class="card col-md-12 mb-3 collapse"
+            id="collapseContact"
+          >
+            <div class="card-body ">
+              <button
                 type="button"
-                (click)="deleteC(item.id,item.contact.id)"
-                >Delete Contact Details</button
+                class="close"
+                data-toggle="collapse"
+                data-target="#collapseContact"
+                aria-label="Close"
               >
+                <mat-icon [ngStyle]="{ color: 'white' }">close</mat-icon>
+              </button>
+              <div class="text-center">
+                <h3 class="white-text mt-5 text-white">
+                  Your Contact Information:
+                </h3>
+                <hr class="hr-white" />
               </div>
-              
-            </form>
-          </div>
-        </div>
+              <!--form starts here!!-->
 
-        <div #targetSkills class="card collapse mb-3 " id="collapseSk">
-          <div class="card-body">
-              <button  type="button" class="close" data-toggle="collapse"
-              data-target="#collapseSk" aria-label="Close">
-              <mat-icon [ngStyle]="{'color':'white'}">close</mat-icon>
-                </button>
-            <div class="row mt-5">
-              <div class=" col-lg-6 mx-auto">
-                <div class="text-center">
-                  <h3 class="white-text text-white">
-                    Add Skill:
-                  </h3>
-                  <hr class="hr-light" />
+              <form [formGroup]="contact" (ngSubmit)="onSubmit(item.id)">
+                <div class="row mt-2">
+                  <div class="col-lg-6 mx-auto">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <mat-icon>person</mat-icon>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mr-sm-2"
+                        placeholder="Name"
+                        aria-label="Name"
+                        aria-describedby="basic-addon1"
+                        formControlName="name"
+                      />
+                      <input
+                        type="text"
+                        class="form-control mr-sm-2"
+                        placeholder="Surname"
+                        aria-label="Surname"
+                        aria-describedby="basic-addon1"
+                        formControlName="surname"
+                      />
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <mat-icon>contact_mail</mat-icon>
+                        </span>
+                      </div>
+                      <input
+                        type="email"
+                        class="form-control mr-sm-2"
+                        placeholder="Email"
+                        aria-label="email"
+                        aria-describedby="basic-addon1"
+                        formControlName="email"
+                      />
+                    </div>
+                    <br />
+
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class=" input-group-text" id="basic-addon2">
+                          <mat-icon>cake</mat-icon>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        onfocus="(this.type='date')"
+                        onblur="(this.type='text')"
+                        class="form-control mr-sm-2"
+                        placeholder="Birth Date"
+                        aria-label="Birth Date"
+                        aria-describedby="basic-addon2"
+                        formControlName="birthDate"
+                      />
+                    </div>
+                    <br />
+                  </div>
+
+                  <div class="col-lg-6 mx-auto">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <mat-icon>home</mat-icon>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mr-sm-2"
+                        placeholder="Street & House Number"
+                        aria-label="Street"
+                        aria-describedby="basic-addon1"
+                        formControlName="street"
+                      />
+                    </div>
+                    <br />
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <mat-icon>location_city</mat-icon>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control mr-sm-2"
+                        placeholder="City"
+                        aria-label="City"
+                        aria-describedby="basic-addon1"
+                        formControlName="city"
+                      />
+                      <input
+                        type="number"
+                        class="form-control mr-sm-2"
+                        placeholder="PostalCode"
+                        aria-label="PostalCode"
+                        aria-describedby="basic-addon2"
+                        formControlName="postalCode"
+                      />
+                    </div>
+
+                    <br />
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                          <mat-icon>public</mat-icon>
+                        </span>
+                      </div>
+                      <input
+                        type="url"
+                        class="form-control mr-sm-2"
+                        placeholder="Country"
+                        aria-label="Country"
+                        aria-describedby="basic-addon1"
+                        formControlName="country"
+                      />
+                    </div>
+                    <br />
+                  </div>
                 </div>
-                <!--form starts here!!-->
-                <app-skill [id]="item.id" [sk]="item.skills"></app-skill>
+
+                <div
+                  class="btn-group flex-wrap mt-auto"
+                  data-toggle="buttons"
+                  role="group"
+                >
+                  <button
+                    type="submit"
+                    (click)="onSubmit(item.id)"
+                    class="btn btn-sm btn-outline-light "
+                  >
+                    Add Contact
+                  </button>
+
+                  <button
+                    class="btn btn-sm btn-outline-warning"
+                    type="button"
+                    (click)="deleteC(item.id, item.contact.id)"
+                  >
+                    Delete Contact Details
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div #targetSkills class="card collapse mb-3 " id="collapseSk">
+            <div class="card-body">
+              <button
+                type="button"
+                class="close"
+                data-toggle="collapse"
+                data-target="#collapseSk"
+                aria-label="Close"
+              >
+                <mat-icon [ngStyle]="{ color: 'white' }">close</mat-icon>
+              </button>
+              <div class="row mt-5">
+                <div class=" col-lg-6 mx-auto">
+                  <div class="text-center">
+                    <h3 class="white-text text-white">
+                      Add Skill:
+                    </h3>
+                    <hr class="hr-light" />
+                  </div>
+                  <!--form starts here!!-->
+                  <app-skill [id]="item.id" [sk]="item.skills"></app-skill>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div #targetEdu class="card collapse mb-3 " id="collapseEdu">
-          <div class="card-body">
-              <button type="button" class="close" data-toggle="collapse"
-              data-target="#collapseEdu" aria-label="Close">
-              <mat-icon [ngStyle]="{'color':'white'}">close</mat-icon>
-                </button>
-            <div class="row mt-5 ">
-              <div class=" col-lg-12 mx-auto">
-                <div class="text-center">
-                  <h3 class="white-text text-white">
-                    Add Education:
-                  </h3>
-                  <hr class="hr-light" />
+          <div #targetEdu class="card collapse mb-3 " id="collapseEdu">
+            <div class="card-body">
+              <button
+                type="button"
+                class="close"
+                data-toggle="collapse"
+                data-target="#collapseEdu"
+                aria-label="Close"
+              >
+                <mat-icon [ngStyle]="{ color: 'white' }">close</mat-icon>
+              </button>
+              <div class="row mt-5 ">
+                <div class=" col-lg-12 mx-auto">
+                  <div class="text-center">
+                    <h3 class="white-text text-white">
+                      Add Education:
+                    </h3>
+                    <hr class="hr-light" />
+                  </div>
+                  <!--form starts here!!-->
+                  <app-education
+                    [id]="item.id"
+                    [edu]="item.educations"
+                  ></app-education>
                 </div>
-                <!--form starts here!!-->
-                <app-education
-                  [id]="item.id"
-                  [edu]="item.educations"
-                ></app-education>
               </div>
             </div>
           </div>
-        </div>
 
-        <div #targetExp class="card collapse mb-3 " id="collapseExp">
-          <div class="card-body">
-              <button type="button" class="close" data-toggle="collapse"
-              data-target="#collapseExp" aria-label="Close">
-              <mat-icon [ngStyle]="{'color':'white'}">close</mat-icon>
-                </button>
-            <div class="row mt-5 ">
-              <div class=" col-lg-12 mx-auto">
-                <div class="text-center">
-                  <h3 class="white-text text-white">
-                    Add Experience:
-                  </h3>
-                  <hr class="hr-light" />
+          <div #targetExp class="card collapse mb-3 " id="collapseExp">
+            <div class="card-body">
+              <button
+                type="button"
+                class="close"
+                data-toggle="collapse"
+                data-target="#collapseExp"
+                aria-label="Close"
+              >
+                <mat-icon [ngStyle]="{ color: 'white' }">close</mat-icon>
+              </button>
+              <div class="row mt-5 ">
+                <div class=" col-lg-12 mx-auto">
+                  <div class="text-center">
+                    <h3 class="white-text text-white">
+                      Add Experience:
+                    </h3>
+                    <hr class="hr-light" />
+                  </div>
+                  <!--form starts here!!-->
+
+                  <app-experience
+                    [id]="item.id"
+                    [exp]="item.experiences"
+                  ></app-experience>
                 </div>
-                <!--form starts here!!-->
-
-                <app-experience
-                  [id]="item.id"
-                  [exp]="item.experiences"
-                ></app-experience>
               </div>
             </div>
           </div>
-        </div>
 
-        <div #targetWorks class="card collapse mb-3 " id="collapseWork">
-          <div class="card-body">
-              <button type="button" class="close" data-toggle="collapse"
-              data-target="#collapseWork" aria-label="Close">
-              <mat-icon [ngStyle]="{'color':'white'}">close</mat-icon>
-                </button>
-            <div class="row mt-5 ">
-              <div class=" col-lg-12 mx-auto">
-                <div class="text-center">
-                  <h3 class="white-text text-white">
-                    Add Work:
-                  </h3>
-                  <hr class="hr-light" />
+          <div #targetWorks class="card collapse mb-3 " id="collapseWork">
+            <div class="card-body">
+              <button
+                type="button"
+                class="close"
+                data-toggle="collapse"
+                data-target="#collapseWork"
+                aria-label="Close"
+              >
+                <mat-icon [ngStyle]="{ color: 'white' }">close</mat-icon>
+              </button>
+              <div class="row mt-5 ">
+                <div class=" col-lg-12 mx-auto">
+                  <div class="text-center">
+                    <h3 class="white-text text-white">
+                      Add Work:
+                    </h3>
+                    <hr class="hr-light" />
+                  </div>
+                  <!--form starts here!!-->
+                  <app-work [id]="item.id" [wrk]="item.works"></app-work>
                 </div>
-                <!--form starts here!!-->
-                <app-work [id]="item.id" [wrk]="item.works"></app-work>
               </div>
             </div>
           </div>
@@ -385,7 +450,6 @@
       </div>
     </div>
   </div>
-</div>
 </ng-container>
 <ng-template #test>
   <div class="d-flex justify-content-center">

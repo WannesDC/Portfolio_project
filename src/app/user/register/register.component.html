@@ -1,50 +1,99 @@
-<div class="alert alert-danger mr-sm-2"
-*ngIf="user.get('passwordGroup').errors && user.get('passwordGroup').get('confirmPassword').touched && user.get('passwordGroup').get('password').touched">
-{{ getErrorMessage(user.get('passwordGroup').errors) }}
+<div
+  class="alert alert-danger mr-sm-2"
+  *ngIf="
+    user.get('passwordGroup').errors &&
+    user.get('passwordGroup').get('confirmPassword').touched &&
+    user.get('passwordGroup').get('password').touched
+  "
+>
+  {{ getErrorMessage(user.get("passwordGroup").errors) }}
 </div>
-<form [formGroup] = "user" (ngSubmit)="onSubmit()">
-<div class="input-group">
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
+  <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">
         <mat-icon>account_circle</mat-icon>
       </span>
     </div>
-    <input type="text" class="form-control mr-sm-2" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1" data-cy="register-firstname" formControlName="firstname">
-    <input type="text" class="form-control mr-sm-2" placeholder="Surname" aria-label="Surname" aria-describedby="basic-addon1" data-cy="register-lastname" formControlName="lastname">
-
+    <input
+      type="text"
+      class="form-control mr-sm-2"
+      placeholder="Firstname"
+      aria-label="Firstname"
+      aria-describedby="basic-addon1"
+      data-cy="register-firstname"
+      formControlName="firstname"
+    />
+    <input
+      type="text"
+      class="form-control mr-sm-2"
+      placeholder="Surname"
+      aria-label="Surname"
+      aria-describedby="basic-addon1"
+      data-cy="register-lastname"
+      formControlName="lastname"
+    />
   </div>
-<br>
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">
-      <mat-icon>email</mat-icon>
-    </span>
+  <br />
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">
+        <mat-icon>email</mat-icon>
+      </span>
+    </div>
+    <input
+      type="email"
+      class="form-control mr-sm-2"
+      placeholder="Email"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      data-cy="register-email"
+      formControlName="email"
+    />
   </div>
-  <input type="email" class="form-control mr-sm-2" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1" data-cy="register-email" formControlName="email"> 
-</div>
-<br>
-<span formGroupName="passwordGroup">
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class=" input-group-text" id="basic-addon2">
-                                
-      <mat-icon>lock</mat-icon>
-    </span>
+  <br />
+  <span formGroupName="passwordGroup">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+          <mat-icon>lock</mat-icon>
+        </span>
+      </div>
+      <input
+        type="password"
+        class="form-control mr-sm-2"
+        placeholder="Password"
+        aria-label="Password"
+        aria-describedby="basic-addon2"
+        data-cy="register-password"
+        formControlName="password"
+      />
+    </div>
+    <br />
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class=" input-group-text" id="basic-addon2">
+          <mat-icon>lock</mat-icon>
+        </span>
+      </div>
+      <input
+        type="password"
+        class="form-control mr-sm-2"
+        placeholder="Password Confirmation"
+        aria-label="Password"
+        aria-describedby="basic-addon2"
+        data-cy="register-confirm-password"
+        formControlName="confirmPassword"
+      />
+    </div>
+  </span>
+  <div class="text-center mt-4">
+    <button
+      type="submit"
+      class="btn btn-outline-dark"
+      data-cy="register-button"
+    >
+      Sign up
+    </button>
   </div>
-  <input type="password" class="form-control mr-sm-2" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" data-cy="register-password" formControlName="password">
-</div>
-<br>
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class=" input-group-text" id="basic-addon2">
-                                
-      <mat-icon>lock</mat-icon>
-    </span>
-  </div>
-  <input type="password" class="form-control mr-sm-2" placeholder="Password Confirmation" aria-label="Password" aria-describedby="basic-addon2" data-cy="register-confirm-password" formControlName="confirmPassword">
-</div>
-</span>
-<div class="text-center mt-4">
-  <button type="submit" class="btn btn-outline-dark" data-cy="register-button">Sign up</button>
-</div>
-</form>                 
+</form>
