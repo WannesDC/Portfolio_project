@@ -59,6 +59,8 @@ export class LoginComponent implements OnInit {
             this.errorMsg = `Error ${err.status} while trying to login user ${
               this.user.value.username
             }: ${err.error}`;
+
+            this.errorMsg = `Are you sure you entered the right Email and Password?`
           }
         }
       );

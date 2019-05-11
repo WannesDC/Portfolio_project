@@ -82,13 +82,13 @@ export class RegisterComponent implements OnInit {
         errors.minlength.requiredLength
       } characters (got ${errors.minlength.actualLength})`;
     } else if (errors.userAlreadyExists) {
-      return `User already exists`;
+      return `already exists`;
     } else if (errors.email) {
-      return `Not a valid email address`;
+      return `Not valid`;
     } else if (errors.passwordsDiffer) {
       return `Passwords are not the same`;
     } else if (errors.pattern){
-      return `Passwords need at least 8 characters, one number, one capital, one lower case and one special symbol`
+      return ` need at least 8 characters, one number, one capital, one lower case and one special symbol`
     }
   }
   onSubmit() {

@@ -1,9 +1,9 @@
 <div *ngIf="user.invalid">
 <div *ngIf="user.dirty">
-<div class="alert alert-warning mr-sm-2" role="alert">
+<div class="alert alert-danger mr-sm-2" role="alert">
     <div *ngIf="isValid('lastname')"> Surname {{getErrorMessage(user.get("lastname").errors)}} </div>
     <div *ngIf="isValid('firstname')"> Firstname {{getErrorMessage(user.get("firstname").errors)}} </div>
-    <div *ngIf="isValid('email')">{{getErrorMessage(user.get("email").errors)}} </div>
+    <div *ngIf="isValid('email')"> User {{getErrorMessage(user.get("email").errors)}} </div>
     <div *ngIf="isValid('passwordGroup.password')"> Password {{getErrorMessage(user.get("passwordGroup.password").errors)}} </div>
     <div *ngIf="isValid('passwordGroup.confirmPassword')"> Password Confirmation {{getErrorMessage(user.get("passwordGroup.confirmPassword").errors)}} </div>
     <div
@@ -17,6 +17,10 @@
 </div>
 </div>
 </div>
+</div>
+
+<div class="alert alert-danger mr-sm-2" *ngIf="errorMsg">
+  {{errorMsg}}
 </div>
 
 <form [formGroup]="user" (ngSubmit)="onSubmit()">
