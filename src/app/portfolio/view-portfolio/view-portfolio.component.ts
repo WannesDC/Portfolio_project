@@ -24,6 +24,10 @@ export class ViewPortfolioComponent implements OnInit, OnDestroy {
     let d = new Date(date);
     return d.getFullYear();
   }
+  formatDate(date:Date){
+    let d = new Date(date);
+    return d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear();
+  }
 
   click(){
     window.scroll(0,0);

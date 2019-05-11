@@ -1,3 +1,12 @@
+<div *ngIf="showMsg">  
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Succesfully Added a work!</strong>
+    
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+</div>
 <div *ngIf="work$ | async as wrk">
   <div class="text-center" *ngIf="wrk.length != 0">
     <h3 class="white-text text-white">
@@ -19,10 +28,13 @@
             <div class="card-body">
               <h5 class="card-title">{{ work.workName }}</h5>
               <p class="card-text">{{ work.description }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
+              
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group ml-2 mb-2">
                   <a
                     href="{{ work.link }}"
+                    target="_blank"
                     class="btn btn-sm btn-outline-secondary"
                     >View</a
                   >
@@ -32,9 +44,8 @@
                   >delete</a
                 >
                 </div>
-                <small class="text-muted">{{ work.timePublished }}</small>
+                <small class="text-muted mr-2 mb-2">{{ formatDate(work.timePublished) }}</small>
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -127,6 +138,7 @@
             </span>
           </div>
           <input
+           [matDatepicker]="myDatepicker"
             type="text"
             onfocus="(this.type='date')"
             onblur="(this.type='text')"
@@ -136,6 +148,7 @@
             aria-describedby="basic-addon2"
             formControlName="timePublished"
           />
+          <mat-datepicker #myDatepicker></mat-datepicker>
         </div>
       </div>
     </div>

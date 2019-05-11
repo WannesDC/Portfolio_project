@@ -31,7 +31,7 @@ export class ViewByUserComponent implements OnInit {
     }
 
   ngOnInit() {
-    
+
     this.router.events.subscribe(event => {
       if (event instanceof RouteConfigLoadStart) {
           this.loadingRouteConfig = true;
@@ -96,4 +96,6 @@ export class ViewByUserComponent implements OnInit {
     }
     
   }
+
+
 }

@@ -1,3 +1,12 @@
+<div *ngIf="showMsg">  
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Succesfully Added an Education!</strong>
+    
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+</div>
 <div *ngIf="education$ | async as ed">
     <div class="text-center" *ngIf="ed.length != 0">
         <h3 class="white-text text-white">
@@ -5,33 +14,48 @@
         </h3>
         <hr class="hr-light" />
       </div>
-      <div class="container text-white">
-        <div class="row education">
-          <div class="nine columns main-col">
-            <div *ngFor="let edu of education$ | async">
-              <div class="row item mt-2">
-                <div class="twelve columns">
-                  <h3>{{ edu.institute }}</h3>
-                  <p class="info">
-                    {{ edu.course }} <span>&bull;</span>
-                    <em class="date">
-                      {{ getYear(edu.startYear) }} -
-                      {{ getYear(edu.endYear) }}</em
-                    >
-                  </p>
-
-                  <p>{{ edu.description }}</p>
-                  <a href="{{ edu.link }}"> {{ edu.link }} </a>
+      <div class="container">
+          <div class="row work">
+            <div class="nine columns main-col">
+              <div *ngFor="let edu of education$ | async">
+                <div class="card h-100 mb-4 shadow-sm">
+                  <div class="card-body">
+                
+                  <div class="card-title">
+                    <h3>{{ edu.institute }}</h3>
+                  </div>
+                  <div class="card-text">
+                      <p class="info">
+                          {{ edu.course }} <span>&bull;</span>
+                      <em class="date">
+                        {{ getYear(edu.startYear) }} -
+                        {{ getYear(edu.endYear) }}</em
+                      >
+                    </p>
+                    <p>{{ edu.description }}</p>
+                    <a href="{{ edu.link }}">{{ edu.link }}</a>
+                  </div>
+                
                 </div>
+                <div class="d-flex ml-2 mb-2 justify-content-between align-items-center">
+                    <div class="btn-group mt-auto">
+                      
+                      <a
+                      (click)="delete(edu.id)"
+                      class=" btn btn-sm btn-outline-warning"
+                      >delete</a
+                    >
+                    </div>
+                    
+                  </div>
+                </div>
+                <!-- item end -->
               </div>
-              <!-- item end -->
             </div>
+            <!-- main-col end -->
           </div>
-          <!-- main-col end -->
+          <!-- End Work -->
         </div>
-        <!-- End Education -->
-      </div>
-    </div>
 
 
 <div class="text-center">

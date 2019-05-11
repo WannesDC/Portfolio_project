@@ -14,6 +14,7 @@ export class SkillComponent implements OnInit {
   @Input() id:number;
   skill$:Observable<Skill>
   public skill: FormGroup;
+  public showMsg: boolean;
   constructor(private fb:FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
@@ -29,17 +30,19 @@ export class SkillComponent implements OnInit {
   }
 
   onSubmit(){
-    this.skill$=this._portfolioDataService.postSkill(this.id,{
+    this._portfolioDataService.postSkill(this.id,{
       type: this.skill.value.type,
       description: this.skill.value.description,
       iconPath: this.skill.value.iconPath
-    } as Skill).pipe();
+    } as Skill).subscribe(val => this.showMsg=true);
     this.skill$ = this._portfolioDataService.getSkill(this.id);
 
   }
 
   delete(id:number){
+    if(confirm("Are you sure you want to delete this skill?")) {
     this._portfolioDataService.deleteSkill(this.id, id);
     this.skill$ = this._portfolioDataService.getSkill(this.id);
+    }
   }
 }

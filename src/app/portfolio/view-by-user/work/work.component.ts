@@ -13,7 +13,7 @@ export class WorkComponent implements OnInit {
 
   @Input() id:number;
   work$: Observable<Work>
-
+  public showMsg: boolean;
   public work: FormGroup;
   constructor(private fb: FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 
@@ -28,8 +28,12 @@ export class WorkComponent implements OnInit {
     this.work$ = this._portfolioDataService.getWork(this.id);
   }
 
+  formatDate(date:Date){
+    let d = new Date(date);
+    return d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear();
+  }
   onSubmit(){
-    this.work$ = this._portfolioDataService.postWork(this.id,
+    this._portfolioDataService.postWork(this.id,
       {
         workName: this.work.value.name,
         description: this.work.value.description,
@@ -37,11 +41,14 @@ export class WorkComponent implements OnInit {
         link: this.work.value.link,
         timePublished: this.work.value.timePublished
       } as Work
-    ).pipe();
+    ).subscribe(val => this.showMsg=true);
+    this.work$ = this._portfolioDataService.getWork(this.id);
   }
 
   delete(id:number){
+    if(confirm("Are you sure you want to delete this work?")) {
     this._portfolioDataService.deleteWork(this.id, id);
     this.work$ = this._portfolioDataService.getWork(this.id);
+    }
   }
 }

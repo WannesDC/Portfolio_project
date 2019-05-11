@@ -100,14 +100,22 @@ namespace dotnet_backend.Controllers
     /// Modifies a Portfolio
     /// </summary>
     /// <param name="id">id of the Portfolio to be modified</param>
-    /// <param name="portfolio">the modified portfolio</param>
     [HttpPut("{id}")]
-    public IActionResult putPortfolio(int id, Portfolio p)
+    public IActionResult putPortfolio(int id, PortfolioDTO por)
     {
-      if (id != p.Id)
+
+      Portfolio p = _pRepository.GetBy(id);
+      if(p == null)
       {
-        return BadRequest();
+        return NotFound();
       }
+
+      if (por.Name != "") { p.Name = por.Name; }
+      if (por.Description != "") { p.Description = por.Description; }
+      if (por.PicturePath != "") { p.PicturePath = por.PicturePath; }
+      if (por.ResumePath != "") { p.ResumePath = por.ResumePath;  }
+      
+
       _pRepository.Update(p);
       _pRepository.SaveChanges();
       return NoContent();

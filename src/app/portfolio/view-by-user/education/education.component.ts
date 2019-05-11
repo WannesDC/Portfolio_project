@@ -13,7 +13,7 @@ export class EducationComponent implements OnInit {
 
   @Input() id:number;
   education$ : Observable<Education>;
-  
+  public showMsg: boolean;  
   public education: FormGroup;
   constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
@@ -32,7 +32,7 @@ export class EducationComponent implements OnInit {
 
   onSubmit(){
     
-    this.education$=this._portfolioDataService.postEducation(this.id,
+    this._portfolioDataService.postEducation(this.id,
       {
         institute: this.education.value.institute,
         description: this.education.value.description,
@@ -40,7 +40,9 @@ export class EducationComponent implements OnInit {
         course: this.education.value.course,
         startYear: this.education.value.startYear,
         endYear: this.education.value.endYear
-      } as Education).pipe();
+      } as Education).subscribe(val => this.showMsg=true);
+
+      this.education$= this._portfolioDataService.getEducation(this.id);
   }
 
   
@@ -50,8 +52,10 @@ export class EducationComponent implements OnInit {
   }
 
   delete(id:number){
+    if(confirm("Are you sure you want to delete this education?")) {
     this._portfolioDataService.deleteEducation(this.id, id);
     this._portfolioDataService.getEducation(this.id);
+    }
   }
 
 }

@@ -14,9 +14,9 @@ import { SkillComponent } from './view-by-user/skill/skill.component';
 import { ExperienceComponent } from './view-by-user/experience/experience.component';
 import { EducationComponent } from './view-by-user/education/education.component';
 import { WorkComponent } from './view-by-user/work/work.component';
-import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
-import { AppModule } from '../app.module';
 import { NotFoundComponent } from './view-portfolio/not-found/not-found.component';
+import { EditPortfolioComponent } from './view-by-user/edit-portfolio/edit-portfolio.component';
+
 
 const routes: Routes = [
   { path: 'main-portfolio', component: MainPortfolioComponent },
@@ -31,14 +31,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent, SkillComponent, ExperienceComponent, EducationComponent, WorkComponent, NotFoundComponent],
+  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent, SkillComponent, ExperienceComponent, EducationComponent, WorkComponent, NotFoundComponent, EditPortfolioComponent],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ]
 })
 export class PortfolioModule { }

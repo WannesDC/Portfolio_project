@@ -12,7 +12,9 @@ import {
   MatFormFieldModule,
   MatProgressSpinnerModule,
   MatToolbarModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -36,7 +38,10 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatSidenavModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+    
     
   ],
   exports: [
@@ -54,7 +59,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatSidenavModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule {}

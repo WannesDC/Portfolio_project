@@ -1,0 +1,105 @@
+<!--form starts here!!-->
+<!--Add Edit Port Component here, or do it in page, whichever works-->
+<div *ngIf="showMsg">  
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Succesfully Edited Portfolio!</strong>
+      
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  </div>
+<div class="text-center">
+    <h3 class="white-text text-white">
+      Edit Portfolio:
+    </h3>
+    <hr class="hr-light" />
+  </div>
+<div *ngIf="portfolio$ | async as item">
+<form [formGroup]="saveP" (ngSubmit)="onSubmit(item.id)">
+  <div class="row mt-2">
+    <div class="col-lg-6 mx-auto">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>person</mat-icon>
+          </span>
+        </div>
+        <input
+          type="text"
+          class="form-control mr-sm-2"
+          [value]="item.name"
+          placeholder="Name"
+          aria-label="Name"
+          aria-describedby="basic-addon1"
+          formControlName="pName"
+        />
+      </div>
+      <br />
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>description</mat-icon>
+          </span>
+        </div>
+        <textarea
+          class="form-control mr-sm-2"
+          rows="5"
+          id="comment"
+          [value]="item.description"
+          placeholder="About Me"
+          aria-label="About Me"
+          aria-describedby="basic-addon1"
+          formControlName="description"
+        ></textarea>
+      </div>
+      <br />
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon>add_a_photo</mat-icon>
+          </span>
+        </div>
+        <input
+          type="url"
+          class="form-control mr-sm-2"
+          [value]="item.picturePath"
+          placeholder="image"
+          aria-label="image"
+          aria-describedby="basic-addon1"
+          formControlName="picturePath"
+        />
+      </div>
+      <br />
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class=" input-group-text" id="basic-addon2">
+            <mat-icon>attach_file</mat-icon>
+          </span>
+        </div>
+        <input
+          type="url"
+          class="form-control mr-sm-2"
+          [value]="item.resumePath"
+          placeholder="resume"
+          aria-label="resume"
+          aria-describedby="basic-addon2"
+          formControlName="resumePath"
+        />
+      </div>
+      <br />
+    </div>
+  </div>
+
+  <div class="btn-group flex-wrap mt-auto" data-toggle="buttons" role="group">
+    <button
+      type="submit"
+      (click)="onSubmit(item.id)"
+      class="btn btn-sm btn-outline-light "
+    >
+      Save Changes
+    </button>
+  </div>
+</form>
+</div>

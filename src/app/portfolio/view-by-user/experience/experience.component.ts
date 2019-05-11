@@ -13,6 +13,8 @@ export class ExperienceComponent implements OnInit {
 
   @Input() id:number;
   experience$: Observable<Experience>;
+  public showMsg: boolean;
+
   public experience : FormGroup;
   constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
@@ -31,7 +33,7 @@ export class ExperienceComponent implements OnInit {
   }
 
   onSubmit(){
-    this.experience$ = this._portfolioDataService.postExperience(this.id,
+    this._portfolioDataService.postExperience(this.id,
       {
         company: this.experience.value.company,
         jobPos: this.experience.value.jobPos,
@@ -39,7 +41,9 @@ export class ExperienceComponent implements OnInit {
         description: this.experience.value.description,
         startYear: this.experience.value.startYear,
         endYear: this.experience.value.endYear
-      }as Experience).pipe()
+      }as Experience).subscribe(val => this.showMsg=true);
+
+    this.experience$ = this._portfolioDataService.getExperience(this.id);
   }
 
   getYear(date:Date){
@@ -48,7 +52,9 @@ export class ExperienceComponent implements OnInit {
   }
 
   delete(id:number){
+    if(confirm("Are you sure you want to delete this work experience?")) {
     this._portfolioDataService.deleteExperience(this.id, id);
     this.experience$ = this._portfolioDataService.getExperience(this.id);
+    }
   }
 }

@@ -276,19 +276,21 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ work.workName }}</h5>
                     <p class="card-text">{{ work.description }}</p>
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    >
-                      <div class="btn-group">
-                        <a
-                          href="{{ work.link }}"
-                          class="btn btn-sm btn-outline-secondary"
-                          >View</a
-                        >
-                      </div>
-                      <small class="text-muted">{{ work.timePublished }}</small>
-                    </div>
+                   
                   </div>
+                  <div
+                  class="d-flex justify-content-between align-items-center"
+                >
+                  <div class="btn-group ml-2 mb-2">
+                    <a
+                      href="{{work.link}}"
+                      target="_blank"
+                      class="btn btn-sm btn-outline-secondary"
+                      >View</a
+                    >
+                  </div>
+                  <small class="text-muted mr-2 mb-2">{{ formatDate(work.timePublished) }}</small>
+                </div>
                 </div>
               </div>
             </div>
