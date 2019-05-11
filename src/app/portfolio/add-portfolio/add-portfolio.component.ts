@@ -57,8 +57,7 @@ export class AddPortfolioComponent implements OnInit {
               this.router.navigateByUrl(this._portfolioDataService.redirectUrl);
               this._portfolioDataService.redirectUrl = undefined;
             } else {
-              this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true}).then(()=>
-    this.router.navigate(['']));
+              this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true}).then(()=>this.router.navigate(['/portfolio/main-portfolio']));
             }
           } else {
             this.errorMsg = `Could not add Portfolio`;

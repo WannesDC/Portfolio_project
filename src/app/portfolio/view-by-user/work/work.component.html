@@ -74,7 +74,11 @@
             aria-label="Name"
             aria-describedby="basic-addon1"
             formControlName="name"
+            [ngClass]="fieldClass('name')"
           />
+          <div class="invalid-feedback" *ngIf="isValid('name')">
+              name {{ getErrorMessage(work.get("name").errors) }}
+            </div>
         </div>
         <br />
         <div class="input-group">
@@ -91,7 +95,11 @@
             aria-label="About Me"
             aria-describedby="basic-addon1"
             formControlName="description"
+            [ngClass]="fieldClass('description')"
           ></textarea>
+          <div class="invalid-feedback" *ngIf="isValid('description')">
+              description {{ getErrorMessage(work.get("description").errors) }}
+            </div>
         </div>
         <br />
       </div>
@@ -109,7 +117,11 @@
             aria-label="image"
             aria-describedby="basic-addon1"
             formControlName="imagePath"
+            [ngClass]="fieldClass('imagePath')"
           />
+          <div class="invalid-feedback" *ngIf="isValid('imagePath')">
+              image {{ getErrorMessage(work.get("imagePath").errors) }}
+            </div>
         </div>
         <br />
 
@@ -126,7 +138,11 @@
             aria-label="Link"
             aria-describedby="basic-addon2"
             formControlName="link"
+            [ngClass]="fieldClass('link')"
           />
+          <div class="invalid-feedback" *ngIf="isValid('link')">
+              link {{ getErrorMessage(work.get("link").errors) }}
+            </div>
         </div>
 
         <br />
@@ -147,13 +163,17 @@
             aria-label="Published"
             aria-describedby="basic-addon2"
             formControlName="timePublished"
+            [ngClass]="fieldClass('timePublished')"
           />
+          <div class="invalid-feedback" *ngIf="isValid('timePublished')">
+              Published {{ getErrorMessage(work.get("timePublished").errors) }}
+            </div>
           <mat-datepicker #myDatepicker></mat-datepicker>
         </div>
       </div>
     </div>
     <div class="mt-4">
-      <button type="submit" class="btn btn-outline-light ">Add Work</button>
+      <button type="submit" class="btn btn-outline-light " [disabled]="work.invalid">Add Work</button>
     </div>
   </form>
 </div>

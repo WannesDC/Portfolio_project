@@ -18,12 +18,13 @@ export class WorkComponent implements OnInit {
   constructor(private fb: FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.work = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      description:['', [Validators.required, Validators.minLength(2)]],
-      imagePath:['', [Validators.required, Validators.minLength(2)]],
-      link:['', [Validators.required, Validators.minLength(2)]],
-      timePublished:['', [Validators.required, Validators.minLength(2)]]
+      name: ['', [Validators.required]],
+      description:['', [Validators.required]],
+      imagePath:['', [Validators.required, Validators.pattern(reg)]],
+      link:['', [Validators.required,Validators.pattern(reg) ]],
+      timePublished:['', [Validators.required ]]
     });
     this.work$ = this._portfolioDataService.getWork(this.id);
   }
@@ -32,6 +33,7 @@ export class WorkComponent implements OnInit {
     let d = new Date(date);
     return d.getDate()+"-"+d.getMonth()+"-"+d.getFullYear();
   }
+  
   onSubmit(){
     this._portfolioDataService.postWork(this.id,
       {
@@ -50,5 +52,28 @@ export class WorkComponent implements OnInit {
     this._portfolioDataService.deleteWork(this.id, id);
     this.work$ = this._portfolioDataService.getWork(this.id);
     }
+  }
+  getErrorMessage(errors: any) {
+    if (!errors) {
+      return null;
+    }
+    if (errors.required) {
+      return 'is required';
+    } else if (errors.minlength) {
+      return `needs at least ${
+        errors.minlength.requiredLength
+      } characters (got ${errors.minlength.actualLength})`;
+    } else if (errors.pattern) {
+      return `You must provide an URL`;
+    }
+  }
+
+  isValid(field: string) {
+    const input = this.work.get(field);
+    return input.dirty && input.invalid;
+  }
+
+  fieldClass(field: string) {
+    return { "is-invalid": this.isValid(field) };
   }
 }

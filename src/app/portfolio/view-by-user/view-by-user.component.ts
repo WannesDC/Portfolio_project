@@ -86,7 +86,7 @@ export class ViewByUserComponent implements OnInit {
     if(confirm("Are you sure you want to delete your portfolio?")) {
       this._portfolioDataService.deletePortfolio(id);
       this.portfolio$=null;
-      this.router.navigate(['portfolio/add-portfolio']);
+      this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true}).then(()=>this.router.navigate(['/portfolio/main-portfolio']));
     }
     
   }
@@ -98,5 +98,28 @@ export class ViewByUserComponent implements OnInit {
     
   }
 
+  getErrorMessage(errors: any) {
+    if (!errors) {
+      return null;
+    }
+    if (errors.required) {
+      return 'is required';
+    } else if (errors.minlength) {
+      return `needs at least ${
+        errors.minlength.requiredLength
+      } characters (got ${errors.minlength.actualLength})`;
+    } else if (errors.pattern) {
+      return `You must provide an URL`;
+    }
+  }
+
+  isValid(field: string) {
+    const input = this.contact.get(field);
+    return input.dirty && input.invalid;
+  }
+
+  fieldClass(field: string) {
+    return { "is-invalid": this.isValid(field) };
+  }
 
 }

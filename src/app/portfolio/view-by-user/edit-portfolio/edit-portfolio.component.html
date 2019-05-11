@@ -2,7 +2,7 @@
 <!--Add Edit Port Component here, or do it in page, whichever works-->
 <div *ngIf="showMsg">  
       <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Succesfully Edited Portfolio!</strong>
+          <strong>Succesfully Edited Portfolio! You'll see the changes once you reload the page!</strong>
       
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -33,7 +33,11 @@
           aria-label="Name"
           aria-describedby="basic-addon1"
           formControlName="pName"
+          [ngClass]="fieldClass('pName')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('pName')">
+            name {{ getErrorMessage(saveP.get("pName").errors) }}
+          </div>
       </div>
       <br />
       <div class="input-group">
@@ -51,7 +55,11 @@
           aria-label="About Me"
           aria-describedby="basic-addon1"
           formControlName="description"
+          [ngClass]="fieldClass('description')"
         ></textarea>
+        <div class="invalid-feedback" *ngIf="isValid('description')">
+            description {{ getErrorMessage(saveP.get("description").errors) }}
+          </div>
       </div>
       <br />
       <div class="input-group">
@@ -68,7 +76,11 @@
           aria-label="image"
           aria-describedby="basic-addon1"
           formControlName="picturePath"
+          [ngClass]="fieldClass('picturePath')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('picturePath')">
+            description {{ getErrorMessage(saveP.get("picturePath").errors) }}
+          </div>
       </div>
       <br />
 
@@ -86,7 +98,11 @@
           aria-label="resume"
           aria-describedby="basic-addon2"
           formControlName="resumePath"
+          [ngClass]="fieldClass('resumePath')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('resumePath')">
+            description {{ getErrorMessage(saveP.get("resumePath").errors) }}
+          </div>
       </div>
       <br />
     </div>
@@ -97,6 +113,7 @@
       type="submit"
       (click)="onSubmit(item.id)"
       class="btn btn-sm btn-outline-light "
+      [disabled]="saveP.invalid"
     >
       Save Changes
     </button>

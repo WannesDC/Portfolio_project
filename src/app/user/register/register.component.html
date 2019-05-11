@@ -1,30 +1,23 @@
-<div *ngIf="user.invalid">
-<div *ngIf="user.dirty">
-<div class="alert alert-danger mr-sm-2" role="alert">
-    <div *ngIf="isValid('lastname')"> Surname {{getErrorMessage(user.get("lastname").errors)}} </div>
-    <div *ngIf="isValid('firstname')"> Firstname {{getErrorMessage(user.get("firstname").errors)}} </div>
-    <div *ngIf="isValid('email')"> User {{getErrorMessage(user.get("email").errors)}} </div>
-    <div *ngIf="isValid('passwordGroup.password')"> Password {{getErrorMessage(user.get("passwordGroup.password").errors)}} </div>
-    <div *ngIf="isValid('passwordGroup.confirmPassword')"> Password Confirmation {{getErrorMessage(user.get("passwordGroup.confirmPassword").errors)}} </div>
-    <div
-  *ngIf="
-    user.get('passwordGroup').errors &&
-    user.get('passwordGroup').get('confirmPassword').touched &&
-    user.get('passwordGroup').get('password').touched
-  "
->
+
+<div class="alert alert-danger mr-sm-2" role="alert" *ngIf="
+user.get('passwordGroup').errors &&
+user.get('passwordGroup').get('confirmPassword').touched &&
+user.get('passwordGroup').get('password').touched
+">
+
+
   {{ getErrorMessage(user.get("passwordGroup").errors) }}
+
 </div>
-</div>
-</div>
-</div>
+
 
 <div class="alert alert-danger mr-sm-2" *ngIf="errorMsg">
   {{errorMsg}}
 </div>
 
 <form [formGroup]="user" (ngSubmit)="onSubmit()">
-  <div class="input-group">
+<div class="form-row">
+  <div class="col-sm-6 input-group ">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">
         <mat-icon>account_circle</mat-icon>
@@ -40,6 +33,12 @@
       formControlName="firstname"
       [ngClass]="fieldClass('firstname')"
     />
+    <div class="invalid-feedback" *ngIf="isValid('firstname')">
+        Firstname {{getErrorMessage(user.get("firstname").errors)}}
+    </div>
+  </div>
+
+    <div class="col-sm-6 input-group ">
     <input
       type="text"
       class="form-control mr-sm-2"
@@ -50,7 +49,11 @@
       formControlName="lastname"
       [ngClass]="fieldClass('lastname')"
     />
+    <div class="invalid-feedback" *ngIf="isValid('lastname')">
+        Lastname {{getErrorMessage(user.get("lastname").errors)}}
+    </div>
   </div>
+</div>
   <br />
   <div class="input-group">
     <div class="input-group-prepend">
@@ -68,6 +71,9 @@
       formControlName="email"
       [ngClass]="fieldClass('email')"
     />
+    <div class="invalid-feedback" *ngIf="isValid('email')">
+        User {{getErrorMessage(user.get("email").errors)}}
+    </div>
   </div>
   <br />
   <span formGroupName="passwordGroup">
@@ -88,6 +94,9 @@
         [ngClass]="fieldClass('passwordGroup.password')"
         
       />
+      <div class="invalid-feedback" *ngIf="isValid('passwordGroup.password')">
+          User {{getErrorMessage(user.get("passwordGroup.password").errors)}}
+      </div>
     </div>
     <br />
     <div class="input-group">
@@ -106,6 +115,9 @@
         formControlName="confirmPassword"
         [ngClass]="fieldClass('passwordGroup.confirmPassword')"
       />
+      <div class="invalid-feedback" *ngIf="isValid('passwordGroup.confirmPassword')">
+          User {{getErrorMessage(user.get("passwordGroup.confirmPassword").errors)}}
+      </div>
     </div>
   </span>
   <div class="text-center mt-4">

@@ -43,7 +43,6 @@ export class PortfolioDataService {
   }
 
   deletePortfolio(id:number){
-    console.log(id);
     return this.http.delete<Portfolio>(`${environment.apiUrl}/Portfolios/${id}`).subscribe();
   }
 

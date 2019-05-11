@@ -18,13 +18,14 @@ export class EducationComponent implements OnInit {
   constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.education = this.fb.group({
-      institute: ['', [Validators.required, Validators.minLength(2)]],
-      description:['', [Validators.required, Validators.minLength(2)]],
-      link:['', [Validators.required, Validators.minLength(2)]],
-      course:['', [Validators.required, Validators.minLength(2)]],
-      startYear:['', [Validators.required, Validators.minLength(2)]],
-      endYear:['', [Validators.required, Validators.minLength(2)]]
+      institute: ['', [Validators.required]],
+      description:['', [Validators.required]],
+      link:['', [Validators.required, Validators.pattern(reg)]],
+      course:['', [Validators.required]],
+      startYear:['', [Validators.required]],
+      endYear:['', [Validators.required]]
     });
 
     this.education$ = this._portfolioDataService.getEducation(this.id);
@@ -56,6 +57,30 @@ export class EducationComponent implements OnInit {
     this._portfolioDataService.deleteEducation(this.id, id);
     this._portfolioDataService.getEducation(this.id);
     }
+  }
+
+  getErrorMessage(errors: any) {
+    if (!errors) {
+      return null;
+    }
+    if (errors.required) {
+      return 'is required';
+    } else if (errors.minlength) {
+      return `needs at least ${
+        errors.minlength.requiredLength
+      } characters (got ${errors.minlength.actualLength})`;
+    } else if (errors.pattern) {
+      return `You must provide an URL`;
+    }
+  }
+
+  isValid(field: string) {
+    const input = this.education.get(field);
+    return input.dirty && input.invalid;
+  }
+
+  fieldClass(field: string) {
+    return { "is-invalid": this.isValid(field) };
   }
 
 }

@@ -80,7 +80,11 @@
           aria-label="Institute"
           aria-describedby="basic-addon1"
           formControlName="institute"
+          [ngClass]="fieldClass('institute')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('institute')">
+            institute {{ getErrorMessage(education.get("institute").errors) }}
+          </div>
       </div>
       <br />
       <div class="input-group">
@@ -97,7 +101,11 @@
           aria-label="About Me"
           aria-describedby="basic-addon1"
           formControlName="description"
+          [ngClass]="fieldClass('description')"
         ></textarea>
+        <div class="invalid-feedback" *ngIf="isValid('description')">
+            description {{ getErrorMessage(education.get("description").errors) }}
+          </div>
       </div>
       <br />
     </div>
@@ -115,7 +123,11 @@
           aria-label="Link"
           aria-describedby="basic-addon1"
           formControlName="link"
+          [ngClass]="fieldClass('link')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('link')">
+            link {{ getErrorMessage(education.get("link").errors) }}
+          </div>
       </div>
       <br />
 
@@ -132,11 +144,15 @@
           aria-label="Course"
           aria-describedby="basic-addon2"
           formControlName="course"
+          [ngClass]="fieldClass('course')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('course')">
+            course {{ getErrorMessage(education.get("course").errors) }}
+          </div>
       </div>
       <br />
-
-      <div class="input-group">
+      <div class="form-row">
+      <div class="col-sm-6 input-group">
         <div class="input-group-prepend">
           <span class=" input-group-text" id="basic-addon2">
             <mat-icon>date_range</mat-icon>
@@ -151,7 +167,13 @@
           aria-label="Starting Year"
           aria-describedby="basic-addon2"
           formControlName="startYear"
+          [ngClass]="fieldClass('startYear')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('startYear')">
+            Starting Year {{ getErrorMessage(education.get("startYear").errors) }}
+          </div>
+        </div>
+        <div class="col-sm-6 input-group">
         <input
           type="text"
           onfocus="(this.type='date')"
@@ -161,13 +183,18 @@
           aria-label="Ending Year"
           aria-describedby="basic-addon2"
           formControlName="endYear"
+          [ngClass]="fieldClass('startYear')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('startYear')">
+            Ending Year {{ getErrorMessage(education.get("startYear").errors) }}
+          </div>
+      </div>
       </div>
       <br />
     </div>
   </div>
 
   <div class="mt-4">
-    <button type="submit" class="btn btn-outline-light ">Add Education</button>
+    <button type="submit" class="btn btn-outline-light " [disabled]="education.invalid">Add Education</button>
   </div>
 </form>

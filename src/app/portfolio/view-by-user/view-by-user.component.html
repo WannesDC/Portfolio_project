@@ -228,7 +228,8 @@
               <form [formGroup]="contact" (ngSubmit)="onSubmit(item.id)">
                 <div class="row mt-2">
                   <div class="col-lg-6 mx-auto">
-                    <div class="input-group">
+                      <div class="form-row">
+                          <div class="col-sm-6 input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                           <mat-icon>person</mat-icon>
@@ -241,7 +242,13 @@
                         aria-label="Name"
                         aria-describedby="basic-addon1"
                         formControlName="name"
+                        [ngClass]="fieldClass('name')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('name')">
+                          link {{ getErrorMessage(contact.get("name").errors) }}
+                        </div>
+                    </div>
+                    <div class="col-sm-6 input-group">
                       <input
                         type="text"
                         class="form-control mr-sm-2"
@@ -249,7 +256,12 @@
                         aria-label="Surname"
                         aria-describedby="basic-addon1"
                         formControlName="surname"
+                        [ngClass]="fieldClass('surname')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('surname')">
+                          link {{ getErrorMessage(contact.get("surname").errors) }}
+                        </div>
+                    </div>
                     </div>
                     <br />
 
@@ -266,7 +278,11 @@
                         aria-label="email"
                         aria-describedby="basic-addon1"
                         formControlName="email"
+                        [ngClass]="fieldClass('email')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('email')">
+                          link {{ getErrorMessage(contact.get("email").errors) }}
+                        </div>
                     </div>
                     <br />
 
@@ -285,7 +301,11 @@
                         aria-label="Birth Date"
                         aria-describedby="basic-addon2"
                         formControlName="birthDate"
+                        [ngClass]="fieldClass('birthDate')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('birthDate')">
+                          link {{ getErrorMessage(contact.get("birthDate").errors) }}
+                        </div>
                     </div>
                     <br />
                   </div>
@@ -304,10 +324,15 @@
                         aria-label="Street"
                         aria-describedby="basic-addon1"
                         formControlName="street"
+                        [ngClass]="fieldClass('street')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('street')">
+                          Street {{ getErrorMessage(contact.get("street").errors) }}
+                        </div>
                     </div>
                     <br />
-                    <div class="input-group">
+                    <div class="form-row">
+                    <div class="col-sm-6 input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                           <mat-icon>location_city</mat-icon>
@@ -320,7 +345,13 @@
                         aria-label="City"
                         aria-describedby="basic-addon1"
                         formControlName="city"
+                        [ngClass]="fieldClass('city')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('city')">
+                          City {{ getErrorMessage(contact.get("city").errors) }}
+                        </div>
+                    </div>
+                      <div class="col-sm-6 input-group">
                       <input
                         type="number"
                         class="form-control mr-sm-2"
@@ -328,9 +359,13 @@
                         aria-label="PostalCode"
                         aria-describedby="basic-addon2"
                         formControlName="postalCode"
+                        [ngClass]="fieldClass('postalCode')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('postalCode')">
+                          PostalCode {{ getErrorMessage(contact.get("postalCode").errors) }}
+                        </div>
                     </div>
-
+                  </div>
                     <br />
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -345,7 +380,11 @@
                         aria-label="Country"
                         aria-describedby="basic-addon1"
                         formControlName="country"
+                        [ngClass]="fieldClass('country')"
                       />
+                      <div class="invalid-feedback" *ngIf="isValid('country')">
+                          Country {{ getErrorMessage(contact.get("country").errors) }}
+                        </div>
                     </div>
                     <br />
                   </div>
@@ -360,14 +399,15 @@
                     type="submit"
                     (click)="onSubmit(item.id)"
                     class="btn btn-sm btn-outline-light "
+                    [disabled]="contact.invalid"
                   >
                     Add Contact
                   </button>
 
-                  <button
+                  <button *ngIf="contact$ | async as c"
                     class="btn btn-sm btn-outline-warning"
                     type="button"
-                    (click)="deleteC(item.id, item.contact.id)"
+                    (click)="deleteC(item.id, c.id)"
                   >
                     Delete Contact Details
                   </button>

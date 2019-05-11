@@ -18,10 +18,11 @@ export class SkillComponent implements OnInit {
   constructor(private fb:FormBuilder,private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.skill = this.fb.group({
-      type: ['', [Validators.required, Validators.minLength(2)]],
-      description:['', [Validators.required, Validators.minLength(2)]],
-      iconPath:['', [Validators.required, Validators.minLength(2)]]
+      type: ['', [Validators.required]],
+      description:['', [Validators.required]],
+      iconPath:['', [Validators.required, Validators.pattern(reg)]]
       
     });
 
@@ -44,5 +45,28 @@ export class SkillComponent implements OnInit {
     this._portfolioDataService.deleteSkill(this.id, id);
     this.skill$ = this._portfolioDataService.getSkill(this.id);
     }
+  }
+  getErrorMessage(errors: any) {
+    if (!errors) {
+      return null;
+    }
+    if (errors.required) {
+      return 'is required';
+    } else if (errors.minlength) {
+      return `needs at least ${
+        errors.minlength.requiredLength
+      } characters (got ${errors.minlength.actualLength})`;
+    } else if (errors.pattern) {
+      return `You must provide an URL`;
+    }
+  }
+
+  isValid(field: string) {
+    const input = this.skill.get(field);
+    return input.dirty && input.invalid;
+  }
+
+  fieldClass(field: string) {
+    return { "is-invalid": this.isValid(field) };
   }
 }

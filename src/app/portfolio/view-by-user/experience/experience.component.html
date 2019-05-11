@@ -86,7 +86,11 @@
           aria-label="Company"
           aria-describedby="basic-addon1"
           formControlName="company"
+          [ngClass]="fieldClass('company')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('company')">
+            company {{ getErrorMessage(experience.get("company").errors) }}
+          </div>
       </div>
       <br />
       <div class="input-group">
@@ -102,7 +106,11 @@
           aria-label="Position"
           aria-describedby="basic-addon1"
           formControlName="jobPos"
+          [ngClass]="fieldClass('jobPos')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('jobPos')">
+            Position {{ getErrorMessage(experience.get("jobPos").errors) }}
+          </div>
       </div>
       <br />
       <div class="input-group">
@@ -118,7 +126,11 @@
           aria-label="Link"
           aria-describedby="basic-addon1"
           formControlName="link"
+          [ngClass]="fieldClass('link')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('link')">
+            link {{ getErrorMessage(experience.get("link").errors) }}
+          </div>
       </div>
       <br />
     </div>
@@ -137,11 +149,15 @@
           aria-label="About Me"
           aria-describedby="basic-addon1"
           formControlName="description"
+          [ngClass]="fieldClass('description')"
         ></textarea>
+        <div class="invalid-feedback" *ngIf="isValid('description')">
+            description {{ getErrorMessage(experience.get("description").errors) }}
+          </div>
       </div>
       <br />
-
-      <div class="input-group">
+      <div class="form-row">
+      <div class="col-sm-6 input-group">
         <div class="input-group-prepend">
           <span class=" input-group-text" id="basic-addon2">
             <mat-icon>date_range</mat-icon>
@@ -156,7 +172,13 @@
           aria-label="Starting Date"
           aria-describedby="basic-addon2"
           formControlName="startYear"
+          [ngClass]="fieldClass('startYear')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('startYear')">
+            Starting Date {{ getErrorMessage(experience.get("startYear").errors) }}
+          </div>
+      </div>
+      <div class="col-sm-6 input-group">
         <input
           type="text"
           onfocus="(this.type='date')"
@@ -166,13 +188,18 @@
           aria-label="Ending Date"
           aria-describedby="basic-addon2"
           formControlName="endYear"
+          [ngClass]="fieldClass('endYear')"
         />
+        <div class="invalid-feedback" *ngIf="isValid('endYear')">
+            Ending Date {{ getErrorMessage(experience.get("endYear").errors) }}
+          </div>
+      </div>
       </div>
       <br />
     </div>
   </div>
 
   <div class="mt-4">
-    <button type="submit" class="btn btn-outline-light ">Add Experience</button>
+    <button type="submit" class="btn btn-outline-light " [disabled]="experience.invalid">Add Experience</button>
   </div>
 </form>

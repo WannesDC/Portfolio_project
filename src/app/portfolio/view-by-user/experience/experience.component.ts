@@ -19,13 +19,14 @@ export class ExperienceComponent implements OnInit {
   constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
 
   ngOnInit() {
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.experience = this.fb.group({
-      company: ['', [Validators.required, Validators.minLength(2)]],
-      jobPos: ['', [Validators.required, Validators.minLength(2)]],
-      link:['', [Validators.required, Validators.minLength(2)]],
-      description:['', [Validators.required, Validators.minLength(2)]],
-      startYear:['', [Validators.required, Validators.minLength(2)]],
-      endYear:['', [Validators.required, Validators.minLength(2)]]
+      company: ['', [Validators.required]],
+      jobPos: ['', [Validators.required]],
+      link:['', [Validators.required, Validators.pattern(reg)]],
+      description:['', [Validators.required]],
+      startYear:['', [Validators.required]],
+      endYear:['', [Validators.required]]
     });
 
     this.experience$ = this._portfolioDataService.getExperience(this.id);
@@ -56,5 +57,29 @@ export class ExperienceComponent implements OnInit {
     this._portfolioDataService.deleteExperience(this.id, id);
     this.experience$ = this._portfolioDataService.getExperience(this.id);
     }
+  }
+
+  getErrorMessage(errors: any) {
+    if (!errors) {
+      return null;
+    }
+    if (errors.required) {
+      return 'is required';
+    } else if (errors.minlength) {
+      return `needs at least ${
+        errors.minlength.requiredLength
+      } characters (got ${errors.minlength.actualLength})`;
+    } else if (errors.pattern) {
+      return `You must provide an URL`;
+    }
+  }
+
+  isValid(field: string) {
+    const input = this.experience.get(field);
+    return input.dirty && input.invalid;
+  }
+
+  fieldClass(field: string) {
+    return { "is-invalid": this.isValid(field) };
   }
 }

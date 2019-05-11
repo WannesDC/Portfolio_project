@@ -11,24 +11,6 @@
           <hr class="hr-light" />
         </div>
         <!--form starts here!!-->
-        <div *ngIf="portfolio.invalid">
-          <div *ngIf="portfolio.dirty">
-            <div class="alert alert-danger mr-sm-2" role="alert">
-              <div *ngIf="isValid('pName')">
-                name {{ getErrorMessage(portfolio.get("pName").errors) }}
-              </div>
-              <div *ngIf="isValid('description')">
-                  description {{ getErrorMessage(portfolio.get("description").errors) }}
-                </div>
-                <div *ngIf="isValid('picturePath')">
-                     {{ getErrorMessage(portfolio.get("picturePath").errors) }}
-                  </div>
-                  <div *ngIf="isValid('resumePath')">
-                       {{ getErrorMessage(portfolio.get("resumePath").errors) }}
-                    </div>
-            </div>
-          </div>
-        </div>
 
         <div class="alert alert-danger mr-sm-2" *ngIf="errorMsg">
           {{ errorMsg }}
@@ -50,6 +32,9 @@
               formControlName="pName"
               [ngClass]="fieldClass('pName')"
             />
+            <div class="invalid-feedback" *ngIf="isValid('pName')">
+                name {{ getErrorMessage(portfolio.get("pName").errors) }}
+              </div>
           </div>
           <br />
           <div class="input-group">
@@ -68,7 +53,11 @@
               formControlName="description"
               [ngClass]="fieldClass('description')"
             ></textarea>
+            <div class="invalid-feedback" *ngIf="isValid('description')">
+                description {{ getErrorMessage(portfolio.get("description").errors) }}
+              </div>
           </div>
+
           <br />
           <div class="input-group">
             <div class="input-group-prepend">
@@ -85,6 +74,9 @@
               formControlName="picturePath"
               [ngClass]="fieldClass('picturePath')"
             />
+            <div class="invalid-feedback" *ngIf="isValid('picturePath')">
+                {{ getErrorMessage(portfolio.get("picturePath").errors) }}
+              </div>
           </div>
           <br />
 
@@ -103,10 +95,13 @@
               formControlName="resumePath"
               [ngClass]="fieldClass('resumePath')"
             />
+            <div class="invalid-feedback" *ngIf="isValid('resumePath')">
+                {{ getErrorMessage(portfolio.get("resumePath").errors) }}
+              </div>
           </div>
 
           <div class="text-center mt-4">
-            <button type="submit" class="btn btn-outline-light ">Save</button>
+            <button type="submit" class="btn btn-outline-light " [disabled]="portfolio.invalid">Save</button>
           </div>
         </form>
       </div>
