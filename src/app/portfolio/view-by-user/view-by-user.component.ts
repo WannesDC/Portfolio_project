@@ -25,8 +25,8 @@ export class ViewByUserComponent implements OnInit {
   
 
 
-  constructor(private fb: FormBuilder,private _portfolioDataService : PortfolioDataService,
-    private router:Router) { 
+  constructor(private router:Router,private fb: FormBuilder,private _portfolioDataService : PortfolioDataService,
+    ) { 
 
     }
 
@@ -85,7 +85,8 @@ export class ViewByUserComponent implements OnInit {
   delete(id:number){
     if(confirm("Are you sure you want to delete your portfolio?")) {
       this._portfolioDataService.deletePortfolio(id);
-      this.router.navigate(['portfolio']);
+      this.portfolio$=null;
+      this.router.navigate(['portfolio/add-portfolio']);
     }
     
   }

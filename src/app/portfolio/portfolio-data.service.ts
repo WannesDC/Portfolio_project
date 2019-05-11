@@ -19,6 +19,7 @@ export class PortfolioDataService {
   public loadingError$ = new Subject<string>();
   public token : string;
   private readonly _tokenKey = 'currentUser';
+  public redirectUrl: string;
   
 
   constructor(private http: HttpClient) { 
