@@ -95,7 +95,7 @@ user.get('passwordGroup').get('password').touched
         
       />
       <div class="invalid-feedback" *ngIf="isValid('passwordGroup.password')">
-          User {{getErrorMessage(user.get("passwordGroup.password").errors)}}
+          Password {{getErrorMessage(user.get("passwordGroup.password").errors)}}
       </div>
     </div>
   
@@ -116,7 +116,7 @@ user.get('passwordGroup').get('password').touched
         [ngClass]="fieldClass('passwordGroup.confirmPassword')"
       />
       <div class="invalid-feedback" *ngIf="isValid('passwordGroup.confirmPassword')">
-          User {{getErrorMessage(user.get("passwordGroup.confirmPassword").errors)}}
+          Password {{getErrorMessage(user.get("passwordGroup.confirmPassword").errors)}}
       </div>
     </div>
   </span>

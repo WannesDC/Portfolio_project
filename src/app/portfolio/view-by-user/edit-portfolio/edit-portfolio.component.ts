@@ -24,10 +24,10 @@ export class EditPortfolioComponent implements OnInit {
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.portfolio$ = this.port;
     this.saveP = this.fb.group({
-      pName: ['', [Validators.required]],
-      description:['', [Validators.required]],
-      picturePath:['', [Validators.required, Validators.pattern(reg)]],
-      resumePath:['', [Validators.required, Validators.pattern(reg)]]
+      pName: ['', []],
+      description:['', []],
+      picturePath:['', [Validators.pattern(reg)]],
+      resumePath:['', [Validators.pattern(reg)]]
     });
   }
 

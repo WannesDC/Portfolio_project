@@ -109,10 +109,11 @@
       formControlName="iconPath"
       [ngClass]="fieldClass('iconPath')"
     />
+    <div class="invalid-feedback" *ngIf="isValid('iconPath')">
+        image {{ getErrorMessage(skill.get("iconPath").errors) }}
+      </div>
   </div>
-  <div class="invalid-feedback" *ngIf="isValid('iconPath')">
-      image {{ getErrorMessage(skill.get("iconPath").errors) }}
-    </div>
+
 
   <div class="mt-auto">
     <button type="submit" class="btn btn-outline-light " [disabled]="skill.invalid">Add Skill</button>

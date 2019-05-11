@@ -78,7 +78,7 @@
           [ngClass]="fieldClass('picturePath')"
         />
         <div class="invalid-feedback" *ngIf="isValid('picturePath')">
-            description {{ getErrorMessage(saveP.get("picturePath").errors) }}
+            image {{ getErrorMessage(saveP.get("picturePath").errors) }}
           </div>
       </div>
 
@@ -99,7 +99,7 @@
           [ngClass]="fieldClass('resumePath')"
         />
         <div class="invalid-feedback" *ngIf="isValid('resumePath')">
-            description {{ getErrorMessage(saveP.get("resumePath").errors) }}
+            resume {{ getErrorMessage(saveP.get("resumePath").errors) }}
           </div>
       </div>
 

@@ -41,14 +41,14 @@ export class ViewByUserComponent implements OnInit {
   });
 
     this.contact = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      surname:['', [Validators.required, Validators.minLength(2)]],
+      name: ['', [Validators.required]],
+      surname:['', [Validators.required]],
       email:['', [Validators.required, Validators.email]],
-      birthDate:['', [Validators.required, Validators.minLength(2)]],
-      street:['', [Validators.required, Validators.minLength(2)]],
-      city:['', [Validators.required, Validators.minLength(2)]],
-      country:['', [Validators.required, Validators.minLength(2)]],
-      postalCode:['', [Validators.required, Validators.minLength(2)]]
+      birthDate:['', [Validators.required]],
+      street:['', [Validators.required]],
+      city:['', [Validators.required]],
+      country:['', [Validators.required]],
+      postalCode:['', [Validators.required, Validators.minLength(4)]]
     });
 
     this.contact$=this._portfolioDataService.getContact(this.id);
@@ -110,6 +110,8 @@ export class ViewByUserComponent implements OnInit {
       } characters (got ${errors.minlength.actualLength})`;
     } else if (errors.pattern) {
       return `You must provide an URL`;
+    } else if (errors.email) {
+      return `Not valid`;
     }
   }
 
