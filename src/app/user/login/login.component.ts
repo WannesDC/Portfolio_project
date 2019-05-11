@@ -1,27 +1,19 @@
-import { AuthenticationService } from '../authentication.service';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthenticationService } from "../authentication.service";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   ValidatorFn,
   Validators
-} from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
-
-function comparePasswords(control: AbstractControl): { [key: string]: any } {
-  const password = control.get('password');
-  const confirmPassword = control.get('confirmPassword');
-  return password.value === confirmPassword.value
-    ? null
-    : { passwordsDiffer: true };
-}
+} from "@angular/forms";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
   public user: FormGroup;
@@ -35,8 +27,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required]
     });
   }
 
@@ -51,7 +43,7 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl(this.authService.redirectUrl);
               this.authService.redirectUrl = undefined;
             } else {
-              this.router.navigate(['/portfolio/main-portfolio']);
+              this.router.navigate(["/portfolio/main-portfolio"]);
             }
           } else {
             this.errorMsg = `Could not login`;
@@ -70,5 +62,14 @@ export class LoginComponent implements OnInit {
           }
         }
       );
+  }
+
+  isValid(field: string) {
+    const input = this.user.get(field);
+    return input.dirty && input.invalid;
+  }
+
+  fieldClass(field: string) {
+    return { "is-invalid": this.isValid(field) };
   }
 }

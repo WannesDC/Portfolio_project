@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
      }
 
   ngOnInit() {
+    let signRegex = /[!@#$%^&*(),.?":{}|<>_-]/;
     this.user = this.fb.group({
       firstname:['', Validators.required],
       lastname:['', Validators.required],
@@ -56,7 +57,14 @@ export class RegisterComponent implements OnInit {
       ],
       passwordGroup: this.fb.group(
         {
-          password: ['', [Validators.required, Validators.minLength(8)]],
+          password: ['', 
+            [Validators.required,
+              Validators.pattern(/\d/),
+              Validators.pattern(/[A-Z]/),
+              Validators.pattern(/[a-z]/),
+              Validators.pattern(signRegex),
+              Validators.minLength(8)              
+           ]],
           confirmPassword:['',Validators.required]
         },
         {validator: comparePasswords}
@@ -74,11 +82,13 @@ export class RegisterComponent implements OnInit {
         errors.minlength.requiredLength
       } characters (got ${errors.minlength.actualLength})`;
     } else if (errors.userAlreadyExists) {
-      return `user already exists`;
+      return `User already exists`;
     } else if (errors.email) {
-      return `not a valid email address`;
+      return `Not a valid email address`;
     } else if (errors.passwordsDiffer) {
-      return `passwords are not the same`;
+      return `Passwords are not the same`;
+    } else if (errors.pattern){
+      return `Passwords need at least 8 characters, one number, one capital, one lower case and one special symbol`
     }
   }
   onSubmit() {
@@ -116,5 +126,15 @@ export class RegisterComponent implements OnInit {
           }
         }
       );
+  }
+
+
+  isValid(field: string) {
+    const input = this.user.get(field);
+    return input.dirty && input.invalid;
+  }
+
+  fieldClass(field: string) {
+    return { "is-invalid": this.isValid(field) };
   }
 }

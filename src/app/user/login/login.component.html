@@ -1,10 +1,19 @@
 <form class="form-inline" [formGroup]="user" (ngSubmit)="onSubmit()">
+
+    <div *ngIf="user.invalid">
+      <div *ngIf="user.dirty">
+        <div class="m-auto mr-2 text-white" *ngIf="isValid('username')">Email is required</div>
+        <div class="m-auto mr-2 text-white" *ngIf="isValid('password')">Password is required</div>
+      </div>
+    </div>
+
   <div class="input-group p-1">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">
         <mat-icon>person</mat-icon>
       </span>
     </div>
+    
     <input
       type="email"
       class="form-control mr-sm-2 "
@@ -13,8 +22,12 @@
       aria-describedby="basic-addon1"
       data-cy="login-email"
       formControlName="username"
+      [ngClass]="fieldClass('username')"
     />
+    
   </div>
+
+
   <div class="input-group p-1">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon2">
@@ -29,6 +42,7 @@
       aria-describedby="basic-addon2"
       data-cy="login-password"
       formControlName="password"
+      [ngClass]="fieldClass('password')"
     />
   </div>
 
@@ -37,6 +51,7 @@
       class="btn btn-outline-light mr-sm-2"
       type="submit"
       data-cy="login-button"
+      [disabled]="user.invalid"
     >
       Login
     </button>
