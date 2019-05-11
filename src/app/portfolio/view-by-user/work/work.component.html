@@ -61,7 +61,7 @@
   <form [formGroup]="work" (ngSubmit)="onSubmit()">
     <div class="row mt-2">
       <div class="col-lg-6 mx-auto">
-        <div class="input-group">
+        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">
               <mat-icon>assignment</mat-icon>
@@ -80,8 +80,8 @@
               name {{ getErrorMessage(work.get("name").errors) }}
             </div>
         </div>
-        <br />
-        <div class="input-group">
+        
+        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">
               <mat-icon>description</mat-icon>
@@ -101,10 +101,10 @@
               description {{ getErrorMessage(work.get("description").errors) }}
             </div>
         </div>
-        <br />
+        
       </div>
       <div class="col-lg-6 mx-auto">
-        <div class="input-group">
+        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">
               <mat-icon>add_a_photo</mat-icon>
@@ -123,9 +123,9 @@
               image {{ getErrorMessage(work.get("imagePath").errors) }}
             </div>
         </div>
-        <br />
+        
 
-        <div class="input-group">
+        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class=" input-group-text" id="basic-addon2">
               <mat-icon>link</mat-icon>
@@ -145,9 +145,9 @@
             </div>
         </div>
 
-        <br />
+        
 
-        <div class="input-group">
+        <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class=" input-group-text" id="basic-addon2">
               <mat-icon>timeline</mat-icon>
@@ -172,7 +172,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-4">
+    <div class="mt-auto">
       <button type="submit" class="btn btn-outline-light " [disabled]="work.invalid">Add Work</button>
     </div>
   </form>

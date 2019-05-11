@@ -73,7 +73,7 @@
 <form [formGroup]="experience" (ngSubmit)="onSubmit()">
   <div class="row mt-2">
     <div class="col-lg-6 mx-auto">
-      <div class="input-group">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>business</mat-icon>
@@ -92,8 +92,7 @@
             company {{ getErrorMessage(experience.get("company").errors) }}
           </div>
       </div>
-      <br />
-      <div class="input-group">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>person</mat-icon>
@@ -112,8 +111,7 @@
             Position {{ getErrorMessage(experience.get("jobPos").errors) }}
           </div>
       </div>
-      <br />
-      <div class="input-group">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>link</mat-icon>
@@ -132,10 +130,9 @@
             link {{ getErrorMessage(experience.get("link").errors) }}
           </div>
       </div>
-      <br />
     </div>
     <div class="col-lg-6 mx-auto">
-      <div class="input-group">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>description</mat-icon>
@@ -155,9 +152,9 @@
             description {{ getErrorMessage(experience.get("description").errors) }}
           </div>
       </div>
-      <br />
+
       <div class="form-row">
-      <div class="col-sm-6 input-group">
+      <div class="col-sm-6 input-group mb-3">
         <div class="input-group-prepend">
           <span class=" input-group-text" id="basic-addon2">
             <mat-icon>date_range</mat-icon>
@@ -178,7 +175,7 @@
             Starting Date {{ getErrorMessage(experience.get("startYear").errors) }}
           </div>
       </div>
-      <div class="col-sm-6 input-group">
+      <div class="col-sm-6 input-group mb-3">
         <input
           type="text"
           onfocus="(this.type='date')"
@@ -195,11 +192,10 @@
           </div>
       </div>
       </div>
-      <br />
     </div>
   </div>
 
-  <div class="mt-4">
+  <div class="mt-auto">
     <button type="submit" class="btn btn-outline-light " [disabled]="experience.invalid">Add Experience</button>
   </div>
 </form>

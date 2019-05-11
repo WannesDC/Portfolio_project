@@ -19,7 +19,7 @@
 <form [formGroup]="saveP" (ngSubmit)="onSubmit(item.id)">
   <div class="row mt-2">
     <div class="col-lg-6 mx-auto">
-      <div class="input-group">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>person</mat-icon>
@@ -39,8 +39,8 @@
             name {{ getErrorMessage(saveP.get("pName").errors) }}
           </div>
       </div>
-      <br />
-      <div class="input-group">
+
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>description</mat-icon>
@@ -61,8 +61,7 @@
             description {{ getErrorMessage(saveP.get("description").errors) }}
           </div>
       </div>
-      <br />
-      <div class="input-group">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">
             <mat-icon>add_a_photo</mat-icon>
@@ -82,9 +81,8 @@
             description {{ getErrorMessage(saveP.get("picturePath").errors) }}
           </div>
       </div>
-      <br />
 
-      <div class="input-group">
+      <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class=" input-group-text" id="basic-addon2">
             <mat-icon>attach_file</mat-icon>
@@ -104,7 +102,7 @@
             description {{ getErrorMessage(saveP.get("resumePath").errors) }}
           </div>
       </div>
-      <br />
+
     </div>
   </div>
 

@@ -53,7 +53,7 @@
     <hr class="hr-light" />
 </div>
 <form class="col-md-6 mx-auto" [formGroup]="skill" (ngSubmit)="onSubmit()">
-  <div class="input-group ">
+  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">
         <mat-icon>build</mat-icon>
@@ -72,8 +72,8 @@
         Skill {{ getErrorMessage(skill.get("type").errors) }}
       </div>
   </div>
-  <br />
-  <div class="input-group">
+
+  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">
         <mat-icon>description</mat-icon>
@@ -93,8 +93,8 @@
         description {{ getErrorMessage(skill.get("description").errors) }}
       </div>
   </div>
-  <br />
-  <div class="input-group">
+
+  <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon1">
         <mat-icon>add_a_photo</mat-icon>
@@ -114,7 +114,7 @@
       image {{ getErrorMessage(skill.get("iconPath").errors) }}
     </div>
 
-  <div class="mt-4">
+  <div class="mt-auto">
     <button type="submit" class="btn btn-outline-light " [disabled]="skill.invalid">Add Skill</button>
   </div>
 </form>

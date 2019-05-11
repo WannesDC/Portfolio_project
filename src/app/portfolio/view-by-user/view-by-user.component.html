@@ -229,8 +229,8 @@
                 <div class="row mt-2">
                   <div class="col-lg-6 mx-auto">
                       <div class="form-row">
-                          <div class="col-sm-6 input-group">
-                      <div class="input-group-prepend">
+                          <div class="col-sm-6 input-group mb-3">
+                      <div class="input-group-prepend ">
                         <span class="input-group-text" id="basic-addon1">
                           <mat-icon>person</mat-icon>
                         </span>
@@ -248,7 +248,7 @@
                           link {{ getErrorMessage(contact.get("name").errors) }}
                         </div>
                     </div>
-                    <div class="col-sm-6 input-group">
+                    <div class="col-sm-6 input-group mb-3">
                       <input
                         type="text"
                         class="form-control mr-sm-2"
@@ -263,10 +263,10 @@
                         </div>
                     </div>
                     </div>
-                    <br />
+                    
 
-                    <div class="input-group">
-                      <div class="input-group-prepend">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend ">
                         <span class="input-group-text" id="basic-addon1">
                           <mat-icon>contact_mail</mat-icon>
                         </span>
@@ -284,10 +284,10 @@
                           link {{ getErrorMessage(contact.get("email").errors) }}
                         </div>
                     </div>
-                    <br />
+                    
 
-                    <div class="input-group">
-                      <div class="input-group-prepend">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend ">
                         <span class=" input-group-text" id="basic-addon2">
                           <mat-icon>cake</mat-icon>
                         </span>
@@ -307,11 +307,11 @@
                           link {{ getErrorMessage(contact.get("birthDate").errors) }}
                         </div>
                     </div>
-                    <br />
+                    
                   </div>
 
                   <div class="col-lg-6 mx-auto">
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                           <mat-icon>home</mat-icon>
@@ -330,9 +330,9 @@
                           Street {{ getErrorMessage(contact.get("street").errors) }}
                         </div>
                     </div>
-                    <br />
+                    
                     <div class="form-row">
-                    <div class="col-sm-6 input-group">
+                    <div class="col-sm-6 input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                           <mat-icon>location_city</mat-icon>
@@ -351,7 +351,7 @@
                           City {{ getErrorMessage(contact.get("city").errors) }}
                         </div>
                     </div>
-                      <div class="col-sm-6 input-group">
+                      <div class="col-sm-6 input-group mb-3">
                       <input
                         type="number"
                         class="form-control mr-sm-2"
@@ -366,8 +366,8 @@
                         </div>
                     </div>
                   </div>
-                    <br />
-                    <div class="input-group">
+                    
+                    <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">
                           <mat-icon>public</mat-icon>
@@ -386,7 +386,6 @@
                           Country {{ getErrorMessage(contact.get("country").errors) }}
                         </div>
                     </div>
-                    <br />
                   </div>
                 </div>
 
