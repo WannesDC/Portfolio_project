@@ -1,7 +1,11 @@
 .card {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.507);
   }
 
   h6 {
     line-height: 1.7;
+  }
+
+  .custom-file{
+    text-align: left;
   }
