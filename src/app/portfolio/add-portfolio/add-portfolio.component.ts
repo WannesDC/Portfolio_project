@@ -31,7 +31,7 @@ export class AddPortfolioComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    const reg = '@"^[\w\-. ]+$"';
     this.portfolio = this.fb.group({
       pName: ['', [Validators.required]],
       description:['', [Validators.required]],
@@ -91,7 +91,7 @@ export class AddPortfolioComponent implements OnInit {
         errors.minlength.requiredLength
       } characters (got ${errors.minlength.actualLength})`;
     } else if (errors.pattern) {
-      return `You must provide an URL`;
+      return `You must provide a valid file`;
     }
   }
 
@@ -104,4 +104,7 @@ export class AddPortfolioComponent implements OnInit {
     return { "is-invalid": this.isValid(field) };
   }
 
+  onFileChanged(event) {
+    const file = event.target.files[0]
+  }
 }

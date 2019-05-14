@@ -263,6 +263,7 @@ namespace dotnet_backend.Controllers
 
 
     #endregion
+
     #region Contact
     /// <summary>
     /// Get Contact for a Portfolio

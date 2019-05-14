@@ -38,7 +38,7 @@ namespace dotnet_backend.Data
       Portfolio p = new Portfolio
       {
         Name = "testjes",
-        PicturePath = "randompath",
+        //PicturePath = "randompath",
         Description = "test the db"
       };
 

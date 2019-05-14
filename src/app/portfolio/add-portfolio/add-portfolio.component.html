@@ -33,8 +33,8 @@
               [ngClass]="fieldClass('pName')"
             />
             <div class="invalid-feedback" *ngIf="isValid('pName')">
-                name {{ getErrorMessage(portfolio.get("pName").errors) }}
-              </div>
+              name {{ getErrorMessage(portfolio.get("pName").errors) }}
+            </div>
           </div>
           <br />
           <div class="input-group">
@@ -54,54 +54,71 @@
               [ngClass]="fieldClass('description')"
             ></textarea>
             <div class="invalid-feedback" *ngIf="isValid('description')">
-                description {{ getErrorMessage(portfolio.get("description").errors) }}
-              </div>
+              description
+              {{ getErrorMessage(portfolio.get("description").errors) }}
+            </div>
           </div>
 
           <br />
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">
-                <mat-icon>add_a_photo</mat-icon>
-              </span>
-            </div>
-            <input
-              type="url"
-              class="form-control mr-sm-2"
-              placeholder="image"
-              aria-label="image"
-              aria-describedby="basic-addon1"
-              formControlName="picturePath"
-              [ngClass]="fieldClass('picturePath')"
-            />
+                <span class="input-group-text" id="basic-addon1">
+                  <mat-icon>attach_file</mat-icon>
+                </span>
+              </div>
+            <div class="custom-file">
+          <input  
+            type="file"
+            class="form-control custom-file-input mr-sm-2"
+            placeholder="image"
+            aria-label="image"
+            aria-describedby="basic-addon1"
+            formControlName="picturePath"
+            (change)="onFileChanged($event)"
+            [ngClass]="fieldClass('picturePath')"
+            id="customFile"
+          />              
+          <label class="custom-file-label" for="customFile">Choose file</label>
+          </div>
             <div class="invalid-feedback" *ngIf="isValid('picturePath')">
-                {{ getErrorMessage(portfolio.get("picturePath").errors) }}
-              </div>
+              {{ getErrorMessage(portfolio.get("picturePath").errors) }}
+            </div>
           </div>
           <br />
 
           <div class="input-group">
-            <div class="input-group-prepend">
-              <span class=" input-group-text" id="basic-addon2">
-                <mat-icon>attach_file</mat-icon>
-              </span>
-            </div>
-            <input
-              type="url"
-              class="form-control mr-sm-2"
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">
+                    <mat-icon>attach_file</mat-icon>
+                  </span>
+                </div>
+              <div class="custom-file">
+            <input  
+              type="file"
+              class="form-control custom-file-input mr-sm-2"
               placeholder="resume"
               aria-label="resume"
               aria-describedby="basic-addon2"
               formControlName="resumePath"
+              (change)="onFileChanged($event)"
               [ngClass]="fieldClass('resumePath')"
-            />
+              id="customFileR"
+            />              
+            <label class="custom-file-label" for="customFileR">Choose file</label>
+            </div>
             <div class="invalid-feedback" *ngIf="isValid('resumePath')">
-                {{ getErrorMessage(portfolio.get("resumePath").errors) }}
-              </div>
+              {{ getErrorMessage(portfolio.get("resumePath").errors) }}
+            </div>
           </div>
 
           <div class="text-center mt-4">
-            <button type="submit" class="btn btn-outline-light " [disabled]="portfolio.invalid">Save</button>
+            <button
+              type="submit"
+              class="btn btn-outline-light "
+              [disabled]="portfolio.invalid"
+            >
+              Save
+            </button>
           </div>
         </form>
       </div>
