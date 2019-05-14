@@ -35,6 +35,8 @@ namespace dotnet_backend.Data.Repositories
     public Portfolio GetBy(int id)
     {
       return _portfolios
+        .Include(p => p.UserImage)
+        .Include(p => p.Resume)
         .Include(p => p.Contact)
         .Include(p => p.Educations)
         .Include(p => p.Experiences)
@@ -47,6 +49,8 @@ namespace dotnet_backend.Data.Repositories
     public bool TryGetPortfolio(int id, out Portfolio portfolio)
     {
       portfolio = _context.Portfolios
+        .Include(p => p.UserImage)
+        .Include(p => p.Resume)
         .Include(p => p.Contact)
         .Include(p => p.Educations)
         .Include(p => p.Experiences)

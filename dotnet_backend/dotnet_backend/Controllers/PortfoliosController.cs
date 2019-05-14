@@ -1,11 +1,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using dotnet_backend.DTOs;
 using dotnet_backend.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -20,6 +23,8 @@ namespace dotnet_backend.Controllers
   {
     private readonly IUserRepisitory _uRepository;
     private readonly IPortfolioRepository _pRepository;
+    public static string[] ALLOWED_IMAGE_EXT = { "jpg", "jpeg", "gif", "tiff", "bmp", "png" };
+    public static string[] ALLOWED_PDF_EXT = { "pdf"};
     public PortfoliosController(IPortfolioRepository context, IUserRepisitory uContext)
     {
       _uRepository = uContext;
@@ -54,7 +59,7 @@ namespace dotnet_backend.Controllers
 
       Portfolio p = u.Portfolio;
       if (p == null) return NoContent();
-      PortfolioDTO pdto = new PortfolioDTO { Id = p.Id, Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
+      PortfolioDTO pdto = new PortfolioDTO { Id = p.Id, Name = p.Name, Description = p.Description, UserImage = p.UserImage, Resume = p.Resume /*PicturePath = p.PicturePath, ResumePath = p.ResumePath*/ };
       return pdto;
     }
 
@@ -89,7 +94,7 @@ namespace dotnet_backend.Controllers
       _pRepository.Add(p);
       _pRepository.SaveChanges();
 
-      PortfolioDTO pdto = new PortfolioDTO {Name = p.Name, Description = p.Description, PicturePath = p.PicturePath, ResumePath = p.ResumePath };
+      PortfolioDTO pdto = new PortfolioDTO {Name = p.Name, Description = p.Description /*PicturePath = p.PicturePath, ResumePath = p.ResumePath*/ };
 
       return CreatedAtAction(nameof(GetPortfolio), new { id = p.Id }, pdto);
     }
@@ -112,8 +117,8 @@ namespace dotnet_backend.Controllers
 
       if (por.Name != "") { p.Name = por.Name; }
       if (por.Description != "") { p.Description = por.Description; }
-      if (por.PicturePath != "") { p.PicturePath = por.PicturePath; }
-      if (por.ResumePath != "") { p.ResumePath = por.ResumePath;  }
+      //if (por.UserImage != null) { p.UserImage = por.UserImage; }
+      //if (por.Resume != null) { p.Resume = por.Resume;  }
       
 
       _pRepository.Update(p);
@@ -142,6 +147,122 @@ namespace dotnet_backend.Controllers
     }
     #endregion
 
+    #region Image & PDF
+
+    [HttpPost("image")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> PostUserImage([FromForm]IFormFile file)
+    {
+      if (file.Length > 20000000)
+      {
+        return BadRequest("Your file is too big.");
+      }
+      var fileNameSplit = file.FileName.Split(".");
+      string extension = fileNameSplit[fileNameSplit.Length - 1];
+      if (!ALLOWED_IMAGE_EXT.Contains(extension.ToLower()))
+      {
+        return BadRequest("Your file is not an image.");
+      }
+      string email = Request.HttpContext.User.Identity.Name;
+      User u = _uRepository.GetBy(email);
+
+      Portfolio por = u.Portfolio;
+
+      string name = file.FileName.Substring(0, file.FileName.Length - extension.Length - 2);
+      using (var ms = new MemoryStream())
+      {
+        file.CopyTo(ms);
+        var fileBytes = ms.ToArray();
+        por.UserImage = new UserImage { Image = fileBytes, Portfolio = por, FileName = name, Extension = extension };
+      }
+      _pRepository.SaveChanges();
+      return NoContent();
+    }
+
+    [HttpGet("image/{id}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> GetUserImage(int id)
+    {
+      Portfolio por = _pRepository.GetBy(id);
+      var image = por.UserImage;
+      if (image == null)
+      {
+        return NotFound();
+      }
+      return File(image.Image, $"image/{image.Extension.ToLower()}", $"{image.FileName}.{image.Extension}");
+    }
+
+    [HttpDelete("image")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public IActionResult ResetUserImage()
+    {
+      string email = Request.HttpContext.User.Identity.Name;
+      User u = _uRepository.GetBy(email);
+
+      Portfolio por = u.Portfolio;
+      por.UserImage = null;
+      _pRepository.SaveChanges();
+      return NoContent();
+    }
+
+
+    [HttpPost("resume")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> PostResume([FromForm]IFormFile file)
+    {
+      if (file.Length > 20000000)
+      {
+        return BadRequest("Your file is too big.");
+      }
+      var fileNameSplit = file.FileName.Split(".");
+      string extension = fileNameSplit[fileNameSplit.Length - 1];
+      if (!ALLOWED_PDF_EXT.Contains(extension.ToLower()))
+      {
+        return BadRequest("Your file is not a pdf.");
+      }
+      string email = Request.HttpContext.User.Identity.Name;
+      User u = _uRepository.GetBy(email);
+      Portfolio por = u.Portfolio;
+
+      string name = file.FileName.Substring(0, file.FileName.Length - extension.Length - 2);
+      using (var ms = new MemoryStream())
+      {
+        file.CopyTo(ms);
+        var fileBytes = ms.ToArray();
+        por.Resume = new Resume { PDF = fileBytes, Portfolio = por, FileName = name, Extension = extension };
+      }
+      _pRepository.SaveChanges();
+      return NoContent();
+    }
+
+    [HttpGet("resume/{id}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> GetResume(int id)
+    {
+      Portfolio por = _pRepository.GetBy(id);
+      var image = por.UserImage;
+      if (image == null)
+      {
+        return NotFound();
+      }
+      return File(image.Image, $"image/{image.Extension.ToLower()}", $"{image.FileName}.{image.Extension}");
+    }
+
+    [HttpDelete("resume")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public IActionResult ResetResume()
+    {
+      string email = Request.HttpContext.User.Identity.Name;
+      User u = _uRepository.GetBy(email);
+
+      Portfolio por = u.Portfolio;
+      por.UserImage = null;
+      _pRepository.SaveChanges();
+      return NoContent();
+    }
+
+
+    #endregion
     #region Contact
     /// <summary>
     /// Get Contact for a Portfolio
@@ -223,7 +344,6 @@ namespace dotnet_backend.Controllers
 
     }
     #endregion
-
 
     #region Experience
     /// <summary>

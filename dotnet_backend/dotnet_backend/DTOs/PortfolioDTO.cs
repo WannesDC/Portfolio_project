@@ -1,3 +1,4 @@
+using dotnet_backend.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,9 +15,12 @@ namespace dotnet_backend.DTOs
     public string Name { get; set; }
     
     public string Description { get; set; }
-    
-    public string PicturePath { get; set; }
-    
-    public string ResumePath { get; set; }
+
+    //public string PicturePath { get; set; }
+
+    //public string ResumePath { get; set; }
+
+    public UserImage UserImage { get; set; }
+    public Resume Resume { get; set; }
   }
 }

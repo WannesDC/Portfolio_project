@@ -42,7 +42,19 @@ namespace dotnet_backend.Data
         .IsRequired()
         .HasMaxLength(50);
 
+      mb.Entity<UserImage>().ToTable("UserImage");
+      mb.Entity<UserImage>().HasKey(p => p.PortfolioId);
+      mb.Entity<UserImage>().Property(p => p.Image).HasColumnType("varbinary(max)").IsRequired();
+      mb.Entity<UserImage>().Property(p => p.Extension).IsRequired();
+      mb.Entity<UserImage>().Property(p => p.FileName).IsRequired();
+      mb.Entity<UserImage>().HasOne(p => p.Portfolio).WithOne(i => i.UserImage).IsRequired();
 
+      mb.Entity<Resume>().ToTable("Resume");
+      mb.Entity<Resume>().HasKey(p => p.PortfolioId);
+      mb.Entity<Resume>().Property(p => p.PDF).HasColumnType("varbinary(max)").IsRequired();
+      mb.Entity<Resume>().Property(p => p.Extension).IsRequired();
+      mb.Entity<Resume>().Property(p => p.FileName).IsRequired();
+      mb.Entity<Resume>().HasOne(p => p.Portfolio).WithOne(i => i.Resume).IsRequired();
       //Portfolio
       //associations
       mb.Entity<Portfolio>()

@@ -11,10 +11,13 @@ namespace dotnet_backend.Models
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
-		public string PicturePath { get; set; } //?
-		public string ResumePath { get; set; }
-		public Contact Contact { get; set; }
-		public ICollection<Experience> Experiences { get; set; }
+    //public string PicturePath { get; set; } //?
+    //public string ResumePath { get; set; }
+    public UserImage UserImage { get; set; }
+    public Resume Resume { get; set; }
+    public Contact Contact { get; set; }
+
+    public ICollection<Experience> Experiences { get; set; }
 		public ICollection<Skill> Skills { get; set; }
 		public ICollection<Work> Works { get; set; }
 		public ICollection<Education> Educations { get; set; }
@@ -22,25 +25,31 @@ namespace dotnet_backend.Models
     public int IdOfUser { get; set; }
     public User User { get; set; }
 
+    public static string[] IMGEXTENSIONS = new string[] { "jpg", "gif", "jpeg", "png" };
+
     #endregion
 
     #region Constructors
 
 
-    public Portfolio(string name, string picturePath, string description) : this()
+    /*public Portfolio(string name, string picturePath, string description) : this()
 		{
 			Name = name;
 			PicturePath = picturePath;
 			Description = description;
-		}
+		}*/
 
 		public Portfolio()
 		{
-		}
+    }
     #endregion
 
     #region Methods
-    public void AddExperience(Experience experience) => Experiences.Add(experience);
+
+    
+
+
+public void AddExperience(Experience experience) => Experiences.Add(experience);
 
     public void AddSkill(Skill skill) => Skills.Add(skill);
 
