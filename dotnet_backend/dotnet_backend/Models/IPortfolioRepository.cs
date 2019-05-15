@@ -14,5 +14,6 @@ namespace dotnet_backend.Models
 		void Delete(Portfolio p);
 		void Update(Portfolio p);
 		void SaveChanges();
-	}
+    Portfolio GetBySimple(int id);
+  }
 }

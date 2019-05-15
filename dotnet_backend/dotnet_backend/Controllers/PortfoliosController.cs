@@ -73,7 +73,8 @@ namespace dotnet_backend.Controllers
     [AllowAnonymous]
     public ActionResult<Portfolio> GetPortfolio(int id)
     {
-      Portfolio p = _pRepository.GetBy(id);
+      Portfolio p = _pRepository.GetBySimple(id);
+
       if (p == null) return NotFound();
       return p;
     }

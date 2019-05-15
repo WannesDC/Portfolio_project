@@ -69,5 +69,16 @@ namespace dotnet_backend.Data.Repositories
       _context.SaveChanges();
     }
 
+    public Portfolio GetBySimple(int id)
+    {
+      return _portfolios
+
+  .Include(p => p.Contact)
+  .Include(p => p.Educations)
+  .Include(p => p.Experiences)
+  .Include(p => p.Skills)
+  .Include(p => p.Works)
+  .SingleOrDefault(p => p.Id == id);
+    }
   }
 }
