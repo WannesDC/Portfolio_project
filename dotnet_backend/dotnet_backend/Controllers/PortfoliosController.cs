@@ -240,12 +240,12 @@ namespace dotnet_backend.Controllers
     public async Task<IActionResult> GetResume(int id)
     {
       Portfolio por = _pRepository.GetBy(id);
-      var image = por.UserImage;
-      if (image == null)
+      var resume = por.Resume;
+      if (resume == null)
       {
         return NotFound();
       }
-      return File(image.Image, $"image/{image.Extension.ToLower()}", $"{image.FileName}.{image.Extension}");
+      return File(resume.PDF, $"application/{resume.Extension.ToLower()}", $"{resume.FileName}.{resume.Extension}");
     }
 
     [HttpDelete("resume")]
@@ -256,7 +256,7 @@ namespace dotnet_backend.Controllers
       User u = _uRepository.GetBy(email);
 
       Portfolio por = u.Portfolio;
-      por.UserImage = null;
+      por.Resume = null;
       _pRepository.SaveChanges();
       return NoContent();
     }

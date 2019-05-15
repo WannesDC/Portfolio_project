@@ -1,10 +1,9 @@
-import { AuthenticationService } from './../user/authentication.service';
-import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { NavbarService } from '../navbar.service';
+import { AuthenticationService } from './../user/authentication.service';
 
 
 @Component({
@@ -18,19 +17,20 @@ export class NavbarComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
-  
+
     visible$: boolean;
 
   constructor(
     private _authenticationService: AuthenticationService,
     private breakpointObserver: BreakpointObserver,
     private nav: NavbarService,
-    
+
   ) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.nav.visible.subscribe(x => this.visible$ = x);
+
   }
 
   logout() {

@@ -1,22 +1,15 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-  FormArray
-} from "@angular/forms";
-import { PortfolioDataService } from "../portfolio-data.service";
-import { Portfolio } from "../data-types/portfolio";
-import { debounceTime, distinctUntilChanged } from "rxjs/operators";
-import { AuthenticationService } from "../../user/authentication.service";
-import { Router } from "@angular/router";
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../user/authentication.service';
+import { Portfolio } from '../data-types/portfolio';
+import { PortfolioDataService } from '../portfolio-data.service';
 
 @Component({
-  selector: "app-add-portfolio",
-  templateUrl: "./add-portfolio.component.html",
-  styleUrls: ["./add-portfolio.component.css"]
+  selector: 'app-add-portfolio',
+  templateUrl: './add-portfolio.component.html',
+  styleUrls: ['./add-portfolio.component.css']
 })
 export class AddPortfolioComponent implements OnInit {
   public portfolio: FormGroup;
@@ -29,6 +22,9 @@ export class AddPortfolioComponent implements OnInit {
   public isFileChosen2: boolean;
   public fileName2: string;
 
+  public Image: File;
+  public Resume: File;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -38,10 +34,10 @@ export class AddPortfolioComponent implements OnInit {
 
   ngOnInit() {
     this.portfolio = this.fb.group({
-      pName: ["", [Validators.required]],
-      description: ["", [Validators.required]],
-      picturePath: ["", [Validators.required]],
-      resumePath: ["", [Validators.required]]
+      pName: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      picturePath: ['', [Validators.required]],
+      resumePath: ['', [Validators.required]]
     });
   }
 
@@ -49,29 +45,9 @@ export class AddPortfolioComponent implements OnInit {
     this._portfolioDataService
       .addNewPortfolio(this.loggedInUser$.value, {
         name: this.portfolio.value.pName,
-        description: this.portfolio.value.description,
-        picturePath: this.portfolio.value.picturePath,
-        resumePath: this.portfolio.value.resumePath
+        description: this.portfolio.value.description
       } as Portfolio)
       .subscribe(
-        val => {
-          if (val) {
-            if (this._portfolioDataService.redirectUrl) {
-              this.router.navigateByUrl(this._portfolioDataService.redirectUrl);
-              this._portfolioDataService.redirectUrl = undefined;
-            } else {
-              this.router
-                .navigateByUrl("/RefreshComponent", {
-                  skipLocationChange: true
-                })
-                .then(() =>
-                  this.router.navigate(["/portfolio/main-portfolio"])
-                );
-            }
-          } else {
-            this.errorMsg = `Could not add Portfolio`;
-          }
-        },
         (err: HttpErrorResponse) => {
           console.log(err);
           if (err.error instanceof Error) {
@@ -87,6 +63,60 @@ export class AddPortfolioComponent implements OnInit {
           }
         }
       );
+
+    const uploadImage = new FormData();
+    uploadImage.append('file', this.Image, this.Image.name);
+    const uploadResume = new FormData();
+    uploadResume.append('file', this.Resume, this.Resume.name);
+
+    this._portfolioDataService.postImage(uploadImage)
+    .subscribe(
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        if (err.error instanceof Error) {
+          this.errorMsg = `Error while trying to add Image: ${err.error.message}`;
+        } else {
+          this.errorMsg = `Error ${
+            err.status
+          } while trying to add Image: ${
+            err.error
+          }`;
+        }
+      }
+    );
+    this._portfolioDataService.postResume(uploadResume)
+    .subscribe(
+      val => {
+        if (val) {
+          if (this._portfolioDataService.redirectUrl) {
+            this.router.navigateByUrl(this._portfolioDataService.redirectUrl);
+            this._portfolioDataService.redirectUrl = undefined;
+          } else {
+            this.router
+              .navigateByUrl('/RefreshComponent', {
+                skipLocationChange: true
+              })
+              .then(() =>
+                this.router.navigate(['/portfolio/main-portfolio'])
+              );
+          }
+        } else {
+          this.errorMsg = `Could not add Resume`;
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        if (err.error instanceof Error) {
+          this.errorMsg = `Error while trying to add Resume: ${err.error.message}`;
+        } else {
+          this.errorMsg = `Error ${
+            err.status
+          } while trying to add Resume: ${
+            err.error
+          }`;
+        }
+      }
+    );
   }
 
   getErrorMessage(errors: any) {
@@ -94,7 +124,7 @@ export class AddPortfolioComponent implements OnInit {
       return null;
     }
     if (errors.required) {
-      return "is required";
+      return 'is required';
     } else if (errors.minlength) {
       return `needs at least ${
         errors.minlength.requiredLength
@@ -110,21 +140,21 @@ export class AddPortfolioComponent implements OnInit {
   }
 
   fieldClass(field: string) {
-    return { "is-invalid": this.isValid(field) };
+    return { 'is-invalid': this.isValid(field) };
   }
 
   preUpload(event) {
-    const file = event.target.files[0];
+    this.Image = event.target.files[0];
     if (event.target.files.length > 0) {
       this.isFileChosen = true;
     }
-    this.fileName = file.name;
+    this.fileName = this.Image.name;
   }
   preUpload2(event) {
-    const file = event.target.files[0];
+    this.Resume = event.target.files[0];
     if (event.target.files.length > 0) {
       this.isFileChosen2 = true;
     }
-    this.fileName2 = file.name;
+    this.fileName2 = this.Resume.name;
   }
 }
