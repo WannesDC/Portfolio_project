@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Sanitizer } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -60,10 +60,12 @@ export class ViewByUserComponent implements OnInit {
 
     this._portfolioDataService.getResume(this.id).subscribe(
       data => {
-        //const file = new Blob([data], { type: 'application/pdf' });
-        //this.createPDFFromBlob(file);
+        const file = new Blob([data], { type: 'application/pdf' });
+        const something = URL.createObjectURL(file);
+        console.log(something);
+        this.pdfToShow = this.sanitizer.bypassSecurityTrustResourceUrl(something);
+        console.log(this.pdfToShow);
         
-        this.pdfToShow = URL.createObjectURL(data);
         this.isPDFLoading = false;
       }, error => {
         this.isPDFLoading = true;
@@ -181,7 +183,7 @@ export class ViewByUserComponent implements OnInit {
     }
  }
 
- get pdf(): string {
+ /*get pdf(): string {
     if (this.pdfToShow == null ) {
       return '../../../assets/files/default-pdf.pdf';
     } else {
@@ -199,5 +201,5 @@ export class ViewByUserComponent implements OnInit {
   if (pdf) {
      reader.readAsDataURL(pdf);
   }
-}
+}*/
 }
