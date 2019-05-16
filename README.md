@@ -1,5 +1,14 @@
 # Project
 
+The site can be found here:
+
+https://portfoliow.azurewebsites.net/
+
+Due to different password requirements the user and password for the teacher is:
+
+web4
+1234_PieterVDH
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
 In essence this project is an application which you can use to generate your own portfolio without needing any knowledge at all surrounding IT. All you need to be able to do is register an account, fill in some forms, and voila, your portfolio will be generated for you!
