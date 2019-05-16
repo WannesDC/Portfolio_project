@@ -6,7 +6,7 @@ https://portfoliow.azurewebsites.net/
 
 Due to different password requirements the user and password for the teacher is:
 
-web4
+web4@hotmail.com
 1234_PieterVDH
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
