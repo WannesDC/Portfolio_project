@@ -98,6 +98,13 @@ export class PortfolioDataService {
       })
     );
   }
+
+  deleteImage(){
+    return this.http.delete(`${environment.apiUrl}/Portfolios/image`);
+  }
+  deleteResume(){
+    return this.http.delete(`${environment.apiUrl}/Portfolios/resume`);
+  }
   // POST PORTFOLIO DETAILS
   postContact(pid: number, contact: Contact) {
     return this.http.post<Contact>(`${environment.apiUrl}/Portfolios/${pid}/contact`, contact);

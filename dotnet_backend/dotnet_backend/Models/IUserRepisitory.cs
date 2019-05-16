@@ -10,6 +10,6 @@ namespace dotnet_backend.Models
 		User GetBy(string email);
 		void Add(User user);
 		void SaveChanges();
-    
+    User GetByFull(string email);
   }
 }

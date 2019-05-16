@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PortfolioDataService } from '../../portfolio-data.service';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../../data-types/portfolio';
+import { HttpErrorResponse } from '@angular/common/http';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-edit-portfolio',
@@ -12,36 +14,95 @@ import { Portfolio } from '../../data-types/portfolio';
 export class EditPortfolioComponent implements OnInit {
 
   public portfolio$: Observable<Portfolio>;
-  public saveP:FormGroup;
+  public saveP: FormGroup;
   public showMsg: boolean;
+  public errorMsg: string;
 
-  @Input() id:number;
+  @Input() id: number;
   @Input() port: Observable<Portfolio>;
 
-  constructor(private fb: FormBuilder, private _portfolioDataService : PortfolioDataService) { }
+  public isFileChosen = false;
+  public fileName: string;
+
+  public isFileChosen2 = false;
+  public fileName2: string;
+
+  public uploading: boolean;
+
+  public Image: File;
+  public Resume: File;
+
+  constructor(private fb: FormBuilder, private _portfolioDataService: PortfolioDataService) { }
 
   ngOnInit() {
-    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    const reg = '[^.]+\.(jpg|jpeg|gif|tiff|bmp|png)';
+    const regP = '[^.]+\.(pdf)';
     this.portfolio$ = this.port;
     this.saveP = this.fb.group({
       pName: ['', []],
-      description:['', []],
-      picturePath:['', [Validators.pattern(reg)]],
-      resumePath:['', [Validators.pattern(reg)]]
+      description: ['', []],
+      picturePath: ['', [Validators.pattern(reg)]],
+      resumePath: ['', [Validators.pattern(regP)]]
     });
+
   }
 
 
 
-  onSubmit(){
+  onSubmit() {
+
+    if (this.saveP.value.pName || this.saveP.value.description) {
     this._portfolioDataService.putPortfolio(this.id,
       {
         name: this.saveP.value.pName,
-        description: this.saveP.value.description,
-        picturePath: this.saveP.value.picturePath,
-        resumePath: this.saveP.value.resumePath
-      } as Portfolio).subscribe(val => this.showMsg= true);
+        description: this.saveP.value.description
+      } as Portfolio).subscribe(val => this.showMsg = true);
+    }
 
+
+    if (this.isFileChosen) {
+
+      this._portfolioDataService.deleteImage().subscribe(val => this.uploading = true);
+      
+      delay(1500);
+      const uploadImage = new FormData();
+      uploadImage.append('file', this.Image, this.Image.name);
+
+      this._portfolioDataService.postImage(uploadImage)
+    .subscribe(
+      val => {return this.showMsg = true, this.uploading = false},
+      (err: HttpErrorResponse) => {
+        console.log(err);
+        if (err.error instanceof Error) {
+          this.errorMsg = `Error while trying to add Image: ${err.error.message}`;
+        } else {
+          this.errorMsg = `Error ${
+            err.status
+          } while trying to add Image: ${
+            err.error
+          }`;
+        }
+      }
+    );
+      
+  }
+
+    if (this.isFileChosen2) {
+
+      this._portfolioDataService.deleteResume().subscribe(val => this.uploading = true);
+
+      delay(1500);
+      const uploadResume = new FormData();
+      uploadResume.append('file', this.Resume, this.Resume.name);
+
+      this._portfolioDataService.postResume(uploadResume)
+    .subscribe(
+      val =>{return this.showMsg = true, this.uploading = false},
+        error => {
+        console.log(error);
+        }
+    );
+      }
   }
 
   getErrorMessage(errors: any) {
@@ -65,6 +126,21 @@ export class EditPortfolioComponent implements OnInit {
   }
 
   fieldClass(field: string) {
-    return { "is-invalid": this.isValid(field) };
+    return { 'is-invalid': this.isValid(field) };
+  }
+
+  preUpload(event) {
+    this.Image = event.target.files[0];
+    if (event.target.files.length > 0) {
+      this.isFileChosen = true;
+    }
+    this.fileName = this.Image.name;
+  }
+  preUpload2(event) {
+    this.Resume = event.target.files[0];
+    if (event.target.files.length > 0) {
+      this.isFileChosen2 = true;
+    }
+    this.fileName2 = this.Resume.name;
   }
 }

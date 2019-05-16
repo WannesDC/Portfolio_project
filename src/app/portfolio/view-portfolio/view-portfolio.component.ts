@@ -27,15 +27,20 @@ export class ViewPortfolioComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private nav: NavbarService, 
-              private _portfolioDataService: PortfolioDataService, 
+              private nav: NavbarService,
+              private _portfolioDataService: PortfolioDataService,
               private sanitizer: DomSanitizer) {
 
   }
 
   getYear(date: Date) {
     const d = new Date(date);
+    const today = new Date();
+    if (d > today) {
+    return 'ongoing';
+  } else {
     return d.getFullYear();
+  }
   }
   formatDate(date: Date) {
     const d = new Date(date);
@@ -59,8 +64,8 @@ export class ViewPortfolioComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(item => (this.portfolio = item.portfolio));
 
     this.route.paramMap.subscribe(params => {
-      this.pid = Number(params.get("id"));
-    })
+      this.pid = Number(params.get('id'));
+    });
 
     this._portfolioDataService.getImage(this.pid).subscribe(
       data => {
@@ -77,7 +82,7 @@ export class ViewPortfolioComponent implements OnInit, OnDestroy {
       data => {
         const file = new Blob([data], { type: 'application/pdf' });
         const something = URL.createObjectURL(file);
-        this.pdfToShow = this.sanitizer.bypassSecurityTrustResourceUrl(something);  
+        this.pdfToShow = this.sanitizer.bypassSecurityTrustResourceUrl(something);
         this.isPDFLoading = false;
       }, error => {
         this.isPDFLoading = true;
@@ -110,6 +115,14 @@ export class ViewPortfolioComponent implements OnInit, OnDestroy {
        reader.readAsDataURL(image);
     }
  }
+
+ get pdf(): string {
+  if (this.pdfToShow == null ) {
+    return '../../../assets/files/default-pdf.pdf';
+  } else {
+    return this.pdfToShow;
+  }
+}
 
   ngOnDestroy() {
     this.nav.show();

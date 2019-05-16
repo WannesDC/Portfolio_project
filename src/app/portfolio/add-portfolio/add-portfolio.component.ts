@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../user/authentication.service';
 import { Portfolio } from '../data-types/portfolio';
 import { PortfolioDataService } from '../portfolio-data.service';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-add-portfolio',
@@ -33,11 +34,13 @@ export class AddPortfolioComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    const reg = '[^.]+\.(jpg|jpeg|gif|tiff|bmp|png)';
+    const regP = '[^.]+\.(pdf)';
     this.portfolio = this.fb.group({
       pName: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      picturePath: ['', [Validators.required]],
-      resumePath: ['', [Validators.required]]
+      picturePath: ['', [Validators.required, Validators.pattern(reg)]],
+      resumePath: ['', [Validators.required, Validators.pattern(regP)]]
     });
   }
 
@@ -63,7 +66,7 @@ export class AddPortfolioComponent implements OnInit {
           }
         }
       );
-
+    delay(500);
     const uploadImage = new FormData();
     uploadImage.append('file', this.Image, this.Image.name);
     const uploadResume = new FormData();

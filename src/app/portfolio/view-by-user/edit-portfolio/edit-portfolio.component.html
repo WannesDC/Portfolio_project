@@ -67,16 +67,32 @@
             <mat-icon>add_a_photo</mat-icon>
           </span>
         </div>
-        <input
-          type="url"
-          class="form-control mr-sm-2"
-          [value]="item.picturePath"
-          placeholder="image"
-          aria-label="image"
-          aria-describedby="basic-addon1"
-          formControlName="picturePath"
-          [ngClass]="fieldClass('picturePath')"
-        />
+        <div class="custom-file">
+          <input
+            type="file"
+            class="form-control-file custom-file-input mr-sm-2"
+            id="inputGroupFile01"
+            aria-describedby="inputGroupFileAddon01"
+            #fileInput
+            (change)="preUpload($event)"
+            placeholder="image"
+            aria-label="image"
+            formControlName="picturePath"
+            [ngClass]="fieldClass('picturePath')"
+          />
+          <label
+            class="custom-file-label"
+            for="inputGroupFile01"
+            *ngIf="!isFileChosen"
+            >Choose Image</label
+          >
+          <label
+            class="custom-file-label"
+            for="inputGroupFile01"
+            *ngIf="isFileChosen"
+            >{{ fileName }}</label
+          >
+        </div>
         <div class="invalid-feedback" *ngIf="isValid('picturePath')">
             image {{ getErrorMessage(saveP.get("picturePath").errors) }}
           </div>
@@ -88,16 +104,32 @@
             <mat-icon>attach_file</mat-icon>
           </span>
         </div>
-        <input
-          type="url"
-          class="form-control mr-sm-2"
-          [value]="item.resumePath"
-          placeholder="resume"
-          aria-label="resume"
-          aria-describedby="basic-addon2"
-          formControlName="resumePath"
-          [ngClass]="fieldClass('resumePath')"
-        />
+        <div class="custom-file">
+          <input
+            type="file"
+            class="form-control-file custom-file-input mr-sm-2"
+            id="inputGroupFile02"
+            aria-describedby="inputGroupFileAddon02"
+            placeholder="resume"
+            aria-label="resume"
+            formControlName="resumePath"
+            [ngClass]="fieldClass('resumePath')"
+            #fileInput
+            (change)="preUpload2($event)"
+          />
+          <label
+            class="custom-file-label"
+            for="inputGroupFile02"
+            *ngIf="!isFileChosen2"
+            >Choose PDF</label
+          >
+          <label
+            class="custom-file-label"
+            for="inputGroupFile02"
+            *ngIf="isFileChosen2"
+            >{{ fileName2 }}</label
+          >
+        </div>
         <div class="invalid-feedback" *ngIf="isValid('resumePath')">
             resume {{ getErrorMessage(saveP.get("resumePath").errors) }}
           </div>
@@ -112,8 +144,14 @@
       (click)="onSubmit(item.id)"
       class="btn btn-sm btn-outline-light "
       [disabled]="saveP.invalid"
+      *ngIf="!uploading"
     >
       Save Changes
+    </button>
+
+    <button class="btn btn-primary" type="button" disabled *ngIf="uploading">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Loading...
     </button>
   </div>
 </form>

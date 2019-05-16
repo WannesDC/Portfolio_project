@@ -62,10 +62,7 @@ export class ViewByUserComponent implements OnInit {
       data => {
         const file = new Blob([data], { type: 'application/pdf' });
         const something = URL.createObjectURL(file);
-        console.log(something);
-        this.pdfToShow = this.sanitizer.bypassSecurityTrustResourceUrl(something);
-        console.log(this.pdfToShow);
-        
+        this.pdfToShow = this.sanitizer.bypassSecurityTrustResourceUrl(something);  
         this.isPDFLoading = false;
       }, error => {
         this.isPDFLoading = true;
@@ -87,7 +84,11 @@ export class ViewByUserComponent implements OnInit {
       postalCode: ['', [Validators.required, Validators.minLength(4)]]
     });
 
-    this.contact$ = this._portfolioDataService.getContact(this.id);
+    let test;
+    this.portfolio$.subscribe(val => test = val.contact)
+    if(test){
+      this.contact$ = this._portfolioDataService.getContact(this.id);
+    }
 
   }
 
@@ -183,14 +184,14 @@ export class ViewByUserComponent implements OnInit {
     }
  }
 
- /*get pdf(): string {
+ get pdf(): string {
     if (this.pdfToShow == null ) {
       return '../../../assets/files/default-pdf.pdf';
     } else {
       return this.pdfToShow;
     }
 }
-
+/*
  private createPDFFromBlob(pdf: Blob) {
   const reader = new FileReader();
   

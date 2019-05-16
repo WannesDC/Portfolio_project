@@ -38,7 +38,27 @@ namespace dotnet_backend.Data.Repositories
 				.SingleOrDefault(u => u.Email == email);
 		}
 
-		public void SaveChanges()
+    public User GetByFull(string email)
+    {
+      return _users
+                .Include(u => u.Portfolio)
+                  .ThenInclude(p => p.UserImage)
+                 .Include(u => u.Portfolio)
+                  .ThenInclude(p => p.Resume)
+                .Include(u => u.Portfolio)
+                    .ThenInclude(p => p.Contact)
+                .Include(u => u.Portfolio)
+                    .ThenInclude(p => p.Educations)
+                .Include(u => u.Portfolio)
+                    .ThenInclude(p => p.Experiences)
+                .Include(u => u.Portfolio)
+                    .ThenInclude(p => p.Skills)
+                .Include(u => u.Portfolio)
+                    .ThenInclude(p => p.Works)
+                .SingleOrDefault(u => u.Email == email);
+    }
+
+    public void SaveChanges()
 		{
 			_context.SaveChanges();
 		}

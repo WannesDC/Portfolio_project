@@ -48,8 +48,13 @@ export class ExperienceComponent implements OnInit {
   }
 
   getYear(date:Date){
-    let d = new Date(date);
+    const d = new Date(date);
+    const today = new Date();
+    if (d > today) {
+    return 'ongoing';
+  } else {
     return d.getFullYear();
+  }
   }
 
   delete(id:number){

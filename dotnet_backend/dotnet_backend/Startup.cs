@@ -102,7 +102,13 @@ namespace dotnet_backend
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, DataInitializer dataInitializer)
 		{
-			if (env.IsDevelopment())
+      DefaultFilesOptions options = new DefaultFilesOptions();
+      options.DefaultFileNames.Clear();
+      options.DefaultFileNames.Add("index.html");
+      app.UseDefaultFiles();
+      app.UseStaticFiles();
+
+      if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
@@ -120,6 +126,7 @@ namespace dotnet_backend
       app.UseSwaggerUi3();
       app.UseSwagger();
 
+      
       //dataInitializer.InitializeData().Wait();
 		}
 	}

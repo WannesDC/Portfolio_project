@@ -198,7 +198,7 @@ namespace dotnet_backend.Controllers
     public IActionResult ResetUserImage()
     {
       string email = Request.HttpContext.User.Identity.Name;
-      User u = _uRepository.GetBy(email);
+      User u = _uRepository.GetByFull(email);
 
       Portfolio por = u.Portfolio;
       por.UserImage = null;
@@ -254,7 +254,7 @@ namespace dotnet_backend.Controllers
     public IActionResult ResetResume()
     {
       string email = Request.HttpContext.User.Identity.Name;
-      User u = _uRepository.GetBy(email);
+      User u = _uRepository.GetByFull(email);
 
       Portfolio por = u.Portfolio;
       por.Resume = null;
