@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="portfoliow" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\wanne\\Documents\\school\\TI\\Jaar\ 2\\web4\\project\\new\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\obj\\Release\\netcoreapp2\.2\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="dotnet_backend.Data.ApplicationDbContext" description="" value="Data Source=tcp:portfoliowdbserver.database.windows.net,1433;Initial Catalog=portfoliow_db;User Id=Wadmin@portfoliowdbserver;Password=Informatica_400m_50.30_Atletiek_Is_Leuk" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\wanne\\Documents\\school\\TI\\Jaar\ 2\\web4\\project\\new\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\obj\\Release\\netcoreapp2\.2\\PubTmp\\EFSQLScripts\\dotnet_backend\.Data\.ApplicationDbContext\.sql$" />
+  </parameter>
+</parameters>

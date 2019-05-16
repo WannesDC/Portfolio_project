@@ -12303,11 +12303,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wanne\\Documents\\school\\TI\\Jaar 2\\web4\\project\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\dotnet_backend.csproj",
+      "projectUniqueName": "C:\\Users\\wanne\\Documents\\school\\TI\\Jaar 2\\web4\\project\\new\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\dotnet_backend.csproj",
       "projectName": "dotnet_backend",
-      "projectPath": "C:\\Users\\wanne\\Documents\\school\\TI\\Jaar 2\\web4\\project\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\dotnet_backend.csproj",
+      "projectPath": "C:\\Users\\wanne\\Documents\\school\\TI\\Jaar 2\\web4\\project\\new\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\dotnet_backend.csproj",
       "packagesPath": "C:\\Users\\wanne\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wanne\\Documents\\school\\TI\\Jaar 2\\web4\\project\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\obj\\",
+      "outputPath": "C:\\Users\\wanne\\Documents\\school\\TI\\Jaar 2\\web4\\project\\new\\web4-20182019-gent-2b32c3ic-WannesDC\\dotnet_backend\\dotnet_backend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

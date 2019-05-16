@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Release\netcoreapp2.2\PubTmp\Out\" />
+  <dbfullsql path="C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Release\netcoreapp2.2\PubTmp\EFSQLScripts\dotnet_backend.Data.ApplicationDbContext.sql" />
+</sitemanifest>

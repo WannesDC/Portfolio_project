@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQytHcUw2oU6tHfK7A7EyTwAAAAACAAAAAAAQZgAAAAEAACAAAADv5dSIkgwDGddPezJPiwmwakAbDA5SLPoaBL9hOVG1egAAAAAOgAAAAAIAACAAAAC+tG4qD8LDebKzKk1IXHoPno9DVdrmjLdql+KaGbijfYAAAADcTyN/WcHsow/OEfZQxs6X1oLLMZn3wPx/eUQ2hD0BLGeENDDck4MiSK0OWgy4usf6v/6SXLFmquCRAFdGIHdOw72qkpiUR3SfAPYvXkDSrE91S/74iQ0m99ncjYlkM0JTrRVE6ioVONzy//E1qFNkS5eEpq6HzVx4xMlSBRTw9EAAAAAS/y2wM5SRUcwflrHZiK+olY8OeLUSNNTMuV+3ilLtdvmFb7NEzOhgRNVdpNhENyrj6IjbpXvNBOz2izkiDIos</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="ApplicationDbContext">
+      <Value>Data Source=tcp:portfoliowdbserver.database.windows.net,1433%3bInitial Catalog=portfoliow_db%3bUser Id=Wadmin%40portfoliowdbserver%3bPassword=Informatica_400m_50.30_Atletiek_Is_Leuk</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="dotnet_backend.Data.ApplicationDbContext">
+      <Value>Data Source=tcp:portfoliowdbserver.database.windows.net,1433%3bInitial Catalog=portfoliow_db%3bUser Id=Wadmin%40portfoliowdbserver%3bPassword=Informatica_400m_50.30_Atletiek_Is_Leuk</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

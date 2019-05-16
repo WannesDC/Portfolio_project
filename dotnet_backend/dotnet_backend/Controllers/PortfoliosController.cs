@@ -181,7 +181,7 @@ namespace dotnet_backend.Controllers
     }
 
     [HttpGet("image/{id}")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [AllowAnonymous]
     public async Task<IActionResult> GetUserImage(int id)
     {
       Portfolio por = _pRepository.GetBy(id);
@@ -237,7 +237,7 @@ namespace dotnet_backend.Controllers
     }
 
     [HttpGet("resume/{id}")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [AllowAnonymous]
     public async Task<IActionResult> GetResume(int id)
     {
       Portfolio por = _pRepository.GetBy(id);

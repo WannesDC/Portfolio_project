@@ -12,3 +12,17 @@ C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\web4-20182019-gent-2b32c3
 C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.RazorTargetAssemblyInfo.cache
 C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.dll
 C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.pdb
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.csproj.CoreCompileInputs.cache
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.RazorAssemblyInfo.cache
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.RazorAssemblyInfo.cs
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.AssemblyInfoInputs.cache
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.AssemblyInfo.cs
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.dll
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.pdb
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\bin\Debug\netcoreapp2.2\dotnet_backend.deps.json
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\bin\Debug\netcoreapp2.2\dotnet_backend.runtimeconfig.json
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\bin\Debug\netcoreapp2.2\dotnet_backend.runtimeconfig.dev.json
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\bin\Debug\netcoreapp2.2\dotnet_backend.dll
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\bin\Debug\netcoreapp2.2\dotnet_backend.pdb
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.RazorTargetAssemblyInfo.cache
+C:\Users\wanne\Documents\school\TI\Jaar 2\web4\project\new\web4-20182019-gent-2b32c3ic-WannesDC\dotnet_backend\dotnet_backend\obj\Debug\netcoreapp2.2\dotnet_backend.csprojAssemblyReference.cache
