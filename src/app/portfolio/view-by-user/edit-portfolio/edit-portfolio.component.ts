@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PortfolioDataService } from '../../portfolio-data.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { delay } from 'q';
 import { Observable } from 'rxjs';
 import { Portfolio } from '../../data-types/portfolio';
-import { HttpErrorResponse } from '@angular/common/http';
-import { delay } from 'q';
+import { PortfolioDataService } from '../../portfolio-data.service';
 
 @Component({
   selector: 'app-edit-portfolio',
@@ -63,14 +63,17 @@ export class EditPortfolioComponent implements OnInit {
     if (this.isFileChosen) {
 
       this._portfolioDataService.deleteImage().subscribe(val => this.uploading = true);
-      
+
       delay(1500);
       const uploadImage = new FormData();
       uploadImage.append('file', this.Image, this.Image.name);
 
       this._portfolioDataService.postImage(uploadImage)
     .subscribe(
-      val => {return this.showMsg = true, this.uploading = false},
+      val => {
+        this.showMsg = true;
+        this.uploading = false;
+        },
       (err: HttpErrorResponse) => {
         console.log(err);
         if (err.error instanceof Error) {
@@ -84,7 +87,7 @@ export class EditPortfolioComponent implements OnInit {
         }
       }
     );
-      
+
   }
 
     if (this.isFileChosen2) {
@@ -97,7 +100,9 @@ export class EditPortfolioComponent implements OnInit {
 
       this._portfolioDataService.postResume(uploadResume)
     .subscribe(
-      val =>{return this.showMsg = true, this.uploading = false},
+      val => {this.showMsg = true;
+             this.uploading = false;
+        },
         error => {
         console.log(error);
         }

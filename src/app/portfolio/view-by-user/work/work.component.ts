@@ -43,7 +43,10 @@ export class WorkComponent implements OnInit {
         link: this.work.value.link,
         timePublished: this.work.value.timePublished
       } as Work
-    ).subscribe(val => this.showMsg=true);
+    ).subscribe(val => {
+      this.showMsg=true;
+      this.work.reset();
+    });
     this.work$ = this._portfolioDataService.getWork(this.id);
   }
 

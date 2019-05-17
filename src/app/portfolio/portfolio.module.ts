@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'add-portfolio', component: AddPortfolioComponent },
   { path: 'view', component: ViewByUserComponent },
   { path: '', redirectTo: 'main-portfolio', pathMatch: 'full' },
-  { 
+  {
     path: 'viewPortfolio/:id',
     component: ViewPortfolioComponent,
     resolve: {portfolio: PortfolioResolver}
@@ -31,11 +31,23 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [MainPortfolioComponent, AddPortfolioComponent, ViewPortfolioComponent, ViewByUserComponent, SettingsComponent, SkillComponent, ExperienceComponent, EducationComponent, WorkComponent, NotFoundComponent, EditPortfolioComponent],
+  declarations: [
+    MainPortfolioComponent,
+    AddPortfolioComponent,
+    ViewPortfolioComponent,
+    ViewByUserComponent,
+    SettingsComponent,
+    SkillComponent,
+    ExperienceComponent,
+    EducationComponent,
+    WorkComponent,
+    NotFoundComponent,
+    EditPortfolioComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     RouterModule.forChild(routes)

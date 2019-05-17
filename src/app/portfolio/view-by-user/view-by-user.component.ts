@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, Sanitizer } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Contact } from '../data-types/contact';
 import { Portfolio } from '../data-types/portfolio';
 import { PortfolioDataService } from '../portfolio-data.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -18,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class ViewByUserComponent implements OnInit {
 
   public contact: FormGroup;
-  contact$: Observable<Contact>;
+  
 
   public imageToShow: any;
   public isImageLoading = true;
@@ -29,10 +29,14 @@ export class ViewByUserComponent implements OnInit {
   loadingRouteConfig: boolean;
   @Input() id: number;
   @Input() portfolio$: Observable<Portfolio>;
+  
+  public contact$: Observable<Contact>;
 
 
-
-  constructor(private router: Router, private fb: FormBuilder, private _portfolioDataService: PortfolioDataService, private sanitizer: DomSanitizer
+  constructor(private router: Router,
+              private fb: FormBuilder,
+              private _portfolioDataService: PortfolioDataService,
+              private sanitizer: DomSanitizer
     ) {
 
     }
@@ -46,6 +50,8 @@ export class ViewByUserComponent implements OnInit {
           this.loadingRouteConfig = false;
       }
     });
+
+    this.contact$ = this._portfolioDataService.getContact(this.id).pipe();
 
     this._portfolioDataService.getImage(this.id).subscribe(
       data => {
@@ -62,7 +68,7 @@ export class ViewByUserComponent implements OnInit {
       data => {
         const file = new Blob([data], { type: 'application/pdf' });
         const something = URL.createObjectURL(file);
-        this.pdfToShow = this.sanitizer.bypassSecurityTrustResourceUrl(something);  
+        this.pdfToShow = this.sanitizer.bypassSecurityTrustResourceUrl(something);
         this.isPDFLoading = false;
       }, error => {
         this.isPDFLoading = true;
@@ -70,6 +76,7 @@ export class ViewByUserComponent implements OnInit {
       }
 
     );
+
 
 
 
@@ -84,11 +91,8 @@ export class ViewByUserComponent implements OnInit {
       postalCode: ['', [Validators.required, Validators.minLength(4)]]
     });
 
-    let test;
-    this.portfolio$.subscribe(val => test = val.contact)
-    if(test){
-      this.contact$ = this._portfolioDataService.getContact(this.id);
-    }
+
+
 
   }
 
@@ -124,7 +128,7 @@ export class ViewByUserComponent implements OnInit {
       this._portfolioDataService.deletePortfolio(id);
       this.portfolio$ = null;
       this.router.navigate(['/portfolio/add-portfolio']);
-      //this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true})/*.then(() => this.router.navigate(['/portfolio/']))*/;
+      // this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true})/*.then(() => this.router.navigate(['/portfolio/']))*/;
     }
 
   }
@@ -192,16 +196,4 @@ export class ViewByUserComponent implements OnInit {
       return this.pdfToShow;
     }
 }
-/*
- private createPDFFromBlob(pdf: Blob) {
-  const reader = new FileReader();
-  
-  reader.addEventListener('load', () => {
-     this.pdfToShow = reader.result;
-  }, false);
-
-  if (pdf) {
-     reader.readAsDataURL(pdf);
-  }
-}*/
 }

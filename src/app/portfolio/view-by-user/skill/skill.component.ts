@@ -35,7 +35,10 @@ export class SkillComponent implements OnInit {
       type: this.skill.value.type,
       description: this.skill.value.description,
       iconPath: this.skill.value.iconPath
-    } as Skill).subscribe(val => this.showMsg=true);
+    } as Skill).subscribe(val => {
+      this.showMsg=true;
+      this.skill.reset();
+    });
     this.skill$ = this._portfolioDataService.getSkill(this.id);
 
   }

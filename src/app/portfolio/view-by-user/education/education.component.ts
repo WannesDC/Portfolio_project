@@ -41,7 +41,10 @@ export class EducationComponent implements OnInit {
         course: this.education.value.course,
         startYear: this.education.value.startYear,
         endYear: this.education.value.endYear
-      } as Education).subscribe(val => this.showMsg=true);
+      } as Education).subscribe(val => {
+        this.showMsg=true;
+        this.education.reset();
+      });
 
       this.education$= this._portfolioDataService.getEducation(this.id);
   }

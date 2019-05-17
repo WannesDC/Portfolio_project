@@ -48,6 +48,9 @@ body, html {
   }
 }
 
+.styleImg {
+  object-fit: contain;
+}
 .modal.in .modal-dialog {
   transform: none; /*translate(0px, 0px);*/
 }

@@ -17,19 +17,56 @@
 <ng-template #weergave>
   <body>
     <header>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container d-flex justify-content-between">
+              <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  aria-hidden="true"
+                  class="mr-2"
+                  viewBox="0 0 24 24"
+                  focusable="false"
+                >
+                  <path
+                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                  ></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                <strong>Portfolio</strong>
+              </a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarHeader"
+                aria-controls="navbarHeader"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </div>
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
             <div class="card my-2" style="width: 13rem">
               <img
-                class="card-img"
+                class="card-img styleImg"
                 [src]="image"
                 alt="Card image cap"
               />
               <div class="card-body">
                 <h5 class="card-title text-white">{{ portfolio.name }}</h5>
                 <button
-                  class="btn btn-outline-dark"
+                  class="btn btn-outline-light"
                   data-toggle="modal"
                   data-target="#myModal"
                 >
@@ -102,43 +139,7 @@
           </div>
         </div>
       </div>
-      <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              aria-hidden="true"
-              class="mr-2"
-              viewBox="0 0 24 24"
-              focusable="false"
-            >
-              <path
-                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
-              ></path>
-              <circle cx="12" cy="13" r="4"></circle>
-            </svg>
-            <strong>Portfolio</strong>
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarHeader"
-            aria-controls="navbarHeader"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+
     </header>
 
     <main role="main ">
@@ -236,7 +237,7 @@
               <div class="col-md-3 mb-4" *ngFor="let sk of portfolio.skills">
                 <div class="card h-100 mb-4 shadow-sm">
                   <img
-                    class="card-img"
+                    class="card-img styleImg"
                     src="{{ sk.iconPath }}"
                     height="200"
                     alt="{{ sk.type }}"
@@ -268,7 +269,7 @@
               <div class="col-md-4 mb-4" *ngFor="let work of portfolio.works">
                 <div class="card h-100 mb-4 shadow-sm">
                   <img
-                    class="card-img"
+                    class="card-img styleImg"
                     src="{{ work.imagePath }}"
                     height="225"
                     alt="{{ work.workName }}"
@@ -299,16 +300,16 @@
       </div>
     </main>
 
-    <footer class="text-muted">
+    <footer>
       <div class="container">
         <p class="float-right">
-          <a (click)="click()" class="btn btn-outline-dark">Back to top</a>
+          <a (click)="click()" class="btn btn-outline-secondary">Back to top</a>
         </p>
-        <p *ngIf="portfolio.contact">
+        <p *ngIf="portfolio.contact" class="text-muted">
           Copyright © Wannes De Craene - Portfolio of
           {{ portfolio.contact.name }} {{ portfolio.contact.surname }}
         </p>
-        <p>
+        <p class="text-muted"> 
           Would you like to create your own portfolio? Do not hesitate to create
           your own account <a href="#">here</a>!
         </p>

@@ -47,6 +47,10 @@ body, html {
     stroke-dashoffset: -124px;
   }
 }
+.styleImg {
+  object-fit: contain;
+}
+
 .card {
     background-color: rgba(0, 0, 0, 0.507);
   }

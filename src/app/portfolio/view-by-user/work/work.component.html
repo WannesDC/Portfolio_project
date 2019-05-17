@@ -20,7 +20,8 @@
         <div class="col-md-4 mb-4" *ngFor="let work of work$ | async">
           <div class="card h-100 mb-4 shadow-sm">
             <img
-              class="card-img"
+              class="card-img styleImg"
+              
               src="{{ work.imagePath }}"
               height="225"
               alt="{{ work.workName }}"
