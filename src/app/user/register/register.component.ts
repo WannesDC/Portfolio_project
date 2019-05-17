@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
      }
 
   ngOnInit() {
-    let signRegex = /[!@#$%^&*(),.?":{}|<>_-]/;
+    
     this.user = this.fb.group({
       firstname:['', Validators.required],
       lastname:['', Validators.required],
@@ -59,10 +59,6 @@ export class RegisterComponent implements OnInit {
         {
           password: ['', 
             [Validators.required,
-              Validators.pattern(/\d/),
-              Validators.pattern(/[A-Z]/),
-              Validators.pattern(/[a-z]/),
-              Validators.pattern(signRegex),
               Validators.minLength(8)              
            ]],
           confirmPassword:['',Validators.required]

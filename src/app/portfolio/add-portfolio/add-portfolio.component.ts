@@ -39,18 +39,38 @@ export class AddPortfolioComponent implements OnInit {
     this.portfolio = this.fb.group({
       pName: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      picturePath: ['', [Validators.required, Validators.pattern(reg)]],
-      resumePath: ['', [Validators.required, Validators.pattern(regP)]]
+      picturePath: ['', [Validators.pattern(reg)]],
+      resumePath: ['', [Validators.pattern(regP)]]
     });
   }
 
   onSubmit() {
+
     this._portfolioDataService
       .addNewPortfolio(this.loggedInUser$.value, {
         name: this.portfolio.value.pName,
         description: this.portfolio.value.description
       } as Portfolio)
       .subscribe(
+        val => {
+          if (!this.isFileChosen2 && !this.isFileChosen) {
+        if (val) {
+          if (this._portfolioDataService.redirectUrl) {
+            this.router.navigateByUrl(this._portfolioDataService.redirectUrl);
+            this._portfolioDataService.redirectUrl = undefined;
+          } else {
+            this.router
+              .navigateByUrl('/RefreshComponent', {
+                skipLocationChange: true
+              })
+              .then(() =>
+                this.router.navigate(['/portfolio/main-portfolio'])
+              );
+          }
+        } else {
+          this.errorMsg = `Could not add Resume`;
+        }
+      }},
         (err: HttpErrorResponse) => {
           console.log(err);
           if (err.error instanceof Error) {
@@ -67,13 +87,32 @@ export class AddPortfolioComponent implements OnInit {
         }
       );
     delay(500);
+
+    if (this.isFileChosen) {
     const uploadImage = new FormData();
     uploadImage.append('file', this.Image, this.Image.name);
-    const uploadResume = new FormData();
-    uploadResume.append('file', this.Resume, this.Resume.name);
+
 
     this._portfolioDataService.postImage(uploadImage)
-    .subscribe(
+    .subscribe(val => {
+      if (!this.isFileChosen2) {
+    if (val) {
+      if (this._portfolioDataService.redirectUrl) {
+        this.router.navigateByUrl(this._portfolioDataService.redirectUrl);
+        this._portfolioDataService.redirectUrl = undefined;
+      } else {
+        this.router
+          .navigateByUrl('/RefreshComponent', {
+            skipLocationChange: true
+          })
+          .then(() =>
+            this.router.navigate(['/portfolio/main-portfolio'])
+          );
+      }
+    } else {
+      this.errorMsg = `Could not add Resume`;
+    }
+  }},
       (err: HttpErrorResponse) => {
         console.log(err);
         if (err.error instanceof Error) {
@@ -87,6 +126,10 @@ export class AddPortfolioComponent implements OnInit {
         }
       }
     );
+    }
+    if (this.isFileChosen2) {
+    const uploadResume = new FormData();
+    uploadResume.append('file', this.Resume, this.Resume.name);
     this._portfolioDataService.postResume(uploadResume)
     .subscribe(
       val => {
@@ -120,6 +163,7 @@ export class AddPortfolioComponent implements OnInit {
         }
       }
     );
+    }
   }
 
   getErrorMessage(errors: any) {

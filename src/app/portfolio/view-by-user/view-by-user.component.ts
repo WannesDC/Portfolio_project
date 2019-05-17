@@ -123,7 +123,8 @@ export class ViewByUserComponent implements OnInit {
     if (confirm('Are you sure you want to delete your portfolio?')) {
       this._portfolioDataService.deletePortfolio(id);
       this.portfolio$ = null;
-      this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true}).then(() => this.router.navigate(['/portfolio/main-portfolio']));
+      this.router.navigate(['/portfolio/add-portfolio']);
+      //this.router.navigateByUrl('/RefreshComponent', {skipLocationChange: true})/*.then(() => this.router.navigate(['/portfolio/']))*/;
     }
 
   }

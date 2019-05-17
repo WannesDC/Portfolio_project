@@ -57,7 +57,14 @@ namespace dotnet_backend
       });
 
       //no UI will be added (<-> AddDefaultIdentity)
-      services.AddIdentity<IdentityUser, IdentityRole>(cfg => cfg.User.RequireUniqueEmail = true).AddEntityFrameworkStores<ApplicationDbContext>();
+      services.AddIdentity<IdentityUser, IdentityRole>(cfg => {
+        cfg.User.RequireUniqueEmail = true;
+        cfg.Password.RequireDigit = false;
+        cfg.Password.RequiredLength = 6;
+        cfg.Password.RequireNonAlphanumeric = false;
+        cfg.Password.RequireUppercase = false;
+        cfg.Password.RequireLowercase = false;
+      }).AddEntityFrameworkStores<ApplicationDbContext>();
 
       services.AddAuthentication(x =>
       {
@@ -80,10 +87,10 @@ namespace dotnet_backend
       services.Configure<IdentityOptions>(options =>
       {
         // Password settings.
-        options.Password.RequireDigit = true;
-        options.Password.RequireLowercase = true;
-        options.Password.RequireNonAlphanumeric = true;
-        options.Password.RequireUppercase = true;
+        options.Password.RequireDigit = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
         options.Password.RequiredLength = 6;
         options.Password.RequiredUniqueChars = 1;
 
