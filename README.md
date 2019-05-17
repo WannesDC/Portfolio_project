@@ -4,7 +4,7 @@ The site can be found here:
 
 https://portfoliow.azurewebsites.net/
 
-Due to different password requirements the user and password for the teacher is:
+Due to different requirements the user and password, at one point in time, for the teacher is:
 
 web4@hotmail.com
 1234_PieterVDH
@@ -19,7 +19,7 @@ Run `npm start` for a dev server that includes all custom scripts that are neede
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `wwwroot/` directory of `dotnet_backend` . Only Use this with `--prod`, the flag that indicates this is the production build.
 
 ## Running cypress tests
 
