@@ -46,8 +46,10 @@ export class SkillComponent implements OnInit {
 
   delete(id:number){
     if(confirm("Are you sure you want to delete this skill?")) {
-    this._portfolioDataService.deleteSkill(this.id, id);
-    this.skill$ = this._portfolioDataService.getSkill(this.id);
+    this._portfolioDataService.deleteSkill(this.id, id).subscribe(val => {
+      this.skill$ = this._portfolioDataService.getSkill(this.id);
+    });
+    
     }
   }
   getErrorMessage(errors: any) {

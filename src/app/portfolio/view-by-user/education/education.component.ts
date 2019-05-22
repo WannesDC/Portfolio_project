@@ -63,8 +63,10 @@ export class EducationComponent implements OnInit {
 
   delete(id: number) {
     if (confirm('Are you sure you want to delete this education?')) {
-    this._portfolioDataService.deleteEducation(this.id, id);
-    this._portfolioDataService.getEducation(this.id);
+    this._portfolioDataService.deleteEducation(this.id, id).subscribe(val => {
+      this._portfolioDataService.getEducation(this.id);
+    });
+    
     }
   }
 

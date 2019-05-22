@@ -63,8 +63,10 @@ export class ExperienceComponent implements OnInit {
 
   delete(id:number){
     if(confirm("Are you sure you want to delete this work experience?")) {
-    this._portfolioDataService.deleteExperience(this.id, id);
-    this.experience$ = this._portfolioDataService.getExperience(this.id);
+    this._portfolioDataService.deleteExperience(this.id, id).subscribe(val => {
+      this.experience$ = this._portfolioDataService.getExperience(this.id);
+    });
+    
     }
   }
 

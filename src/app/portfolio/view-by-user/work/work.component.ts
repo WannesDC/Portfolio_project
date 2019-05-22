@@ -55,8 +55,12 @@ export class WorkComponent implements OnInit {
 
   delete(id: number) {
     if (confirm('Are you sure you want to delete this work?')) {
-    this._portfolioDataService.deleteWork(this.id, id);
-    this.work$ = this._portfolioDataService.getWork(this.id);
+    this._portfolioDataService.deleteWork(this.id, id).subscribe(
+      val => {
+        this.work$ = this._portfolioDataService.getWork(this.id);
+      }
+    );
+    
     }
   }
   getErrorMessage(errors: any) {

@@ -142,16 +142,16 @@ export class PortfolioDataService {
     return this.http.delete<Contact>(`${environment.apiUrl}/Portfolios/${pid}/contact/${cid}`).subscribe();
   }
   deleteExperience(pid: number, eid: number) {
-    return this.http.delete<Experience>(`${environment.apiUrl}/Portfolios/${pid}/experiences/${eid}`).subscribe();
+    return this.http.delete<Experience>(`${environment.apiUrl}/Portfolios/${pid}/experiences/${eid}`);
   }
   deleteEducation(pid: number, eid: number) {
-    return this.http.delete<Education>(`${environment.apiUrl}/Portfolios/${pid}/educations/${eid}`).subscribe();
+    return this.http.delete<Education>(`${environment.apiUrl}/Portfolios/${pid}/educations/${eid}`);
   }
   deleteWork(pid: number, wid: number) {
-    return this.http.delete<Work>(`${environment.apiUrl}/Portfolios/${pid}/works/${wid}`).subscribe();
+    return this.http.delete<Work>(`${environment.apiUrl}/Portfolios/${pid}/works/${wid}`);
   }
   deleteSkill(pid: number, sid: number) {
-    return this.http.delete<Skill>(`${environment.apiUrl}/Portfolios/${pid}/skills/${sid}`).subscribe();
+    return this.http.delete<Skill>(`${environment.apiUrl}/Portfolios/${pid}/skills/${sid}`);
   }
 
   // PUT PORTFOLIO DETAILS
