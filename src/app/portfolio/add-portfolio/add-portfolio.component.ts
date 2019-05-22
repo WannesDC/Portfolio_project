@@ -53,6 +53,12 @@ export class AddPortfolioComponent implements OnInit {
       } as Portfolio)
       .subscribe(
         val => {
+          if (this.isFileChosen) {
+            this.addImage();
+          }
+          if (this.isFileChosen2) {
+            this.addResume();
+          }
           if (!this.isFileChosen2 && !this.isFileChosen) {
         if (val) {
           if (this._portfolioDataService.redirectUrl) {
@@ -71,6 +77,7 @@ export class AddPortfolioComponent implements OnInit {
           this.errorMsg = `Could not add Resume`;
         }
       }},
+
         (err: HttpErrorResponse) => {
           console.log(err);
           if (err.error instanceof Error) {
@@ -86,9 +93,10 @@ export class AddPortfolioComponent implements OnInit {
           }
         }
       );
-    delay(500);
+    
+  }
 
-    if (this.isFileChosen) {
+  addImage() {
     const uploadImage = new FormData();
     uploadImage.append('file', this.Image, this.Image.name);
 
@@ -126,8 +134,9 @@ export class AddPortfolioComponent implements OnInit {
         }
       }
     );
-    }
-    if (this.isFileChosen2) {
+  }
+
+  addResume() {
     const uploadResume = new FormData();
     uploadResume.append('file', this.Resume, this.Resume.name);
     this._portfolioDataService.postResume(uploadResume)
@@ -163,8 +172,8 @@ export class AddPortfolioComponent implements OnInit {
         }
       }
     );
-    }
   }
+
 
   getErrorMessage(errors: any) {
     if (!errors) {

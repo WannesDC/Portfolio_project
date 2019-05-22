@@ -1,6 +1,6 @@
 <div *ngIf="showMsg">  
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Succesfully Added a work!</strong>
+        <strong>Succesfully Added a project!</strong>
     
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -10,14 +10,14 @@
 <div *ngIf="work$ | async as wrk">
   <div class="text-center" *ngIf="wrk.length != 0">
     <h3 class="white-text text-white">
-      Works
+      Projects
     </h3>
     <hr class="hr-light" />
   </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let work of work$ | async">
+        <div class="col-md-4 mb-4" *ngFor="let work of wrk">
           <div class="card h-100 mb-4 shadow-sm">
             <img
               class="card-img styleImg"
@@ -55,7 +55,7 @@
 
   <div class="text-center">
     <h3 class="white-text text-white">
-      Add Work:
+      Add Project:
     </h3>
     <hr class="hr-light" />
   </div>

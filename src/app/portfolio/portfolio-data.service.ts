@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
+import { catchError, switchMap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Contact } from './data-types/contact';
 import { Education } from './data-types/education';
@@ -20,7 +20,7 @@ export class PortfolioDataService {
   public token: string;
   private readonly _tokenKey = 'currentUser';
   public redirectUrl: string;
-
+  public refresh$ = new BehaviorSubject<boolean>(true);
   
 
 
@@ -41,7 +41,13 @@ export class PortfolioDataService {
   putPortfolio(id: number, portfolio: Portfolio) {
 
     return this.http
-    .put<Portfolio>(`${environment.apiUrl}/Portfolios/${id}/`, portfolio);
+    .put<Portfolio>(`${environment.apiUrl}/Portfolios/${id}/`, portfolio)
+    .pipe(
+      map(p => {
+        this.refresh$.next(true);
+        return p;
+      })
+    );
   }
 
   deletePortfolio(id: number) {
@@ -62,12 +68,18 @@ export class PortfolioDataService {
     }));
   }
 
-  getPortfolioByUser$(): Observable<Portfolio> {
-  return this.http.get<Portfolio>(`${environment.apiUrl}/Portfolios/byUser`)
+  retreivePortByUser$(): Observable<Portfolio>{
+    return this.http.get<Portfolio>(`${environment.apiUrl}/Portfolios/byUser`)
   .pipe(catchError(error => {
     this.loadingError$.next(error.statusText);
     return of(null);
   }));
+  }
+
+  getPortfolioByUser$(): Observable<Portfolio> {
+    return this.refresh$.pipe(
+      switchMap(() => this.retreivePortByUser$())
+    );
   }
 
   // Image & Resume stuff
@@ -166,6 +178,7 @@ export class PortfolioDataService {
     return this.http.get<Contact>(`${environment.apiUrl}/Portfolios/${pid}/contact/`).pipe(
       catchError(error => {
         this.loadingError$.next(error.statusText);
+        console.log(error);
         return of(null);
       })
     );

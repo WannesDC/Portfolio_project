@@ -35,7 +35,7 @@ export class NavbarComponent {
 
   logout() {
     this._authenticationService.logout();
-    location.reload();
+    //location.reload();
   }
 
 }

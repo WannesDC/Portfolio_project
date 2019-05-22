@@ -62,52 +62,66 @@ export class EditPortfolioComponent implements OnInit {
 
     if (this.isFileChosen) {
 
-      this._portfolioDataService.deleteImage().subscribe(val => this.uploading = true);
+      this._portfolioDataService.deleteImage().subscribe(val => {
+        this.uploading = true;
+        this.editImage();
+      });
 
-      delay(1500);
-      const uploadImage = new FormData();
-      uploadImage.append('file', this.Image, this.Image.name);
 
-      this._portfolioDataService.postImage(uploadImage)
-    .subscribe(
-      val => {
-        this.showMsg = true;
-        this.uploading = false;
-        },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-        if (err.error instanceof Error) {
-          this.errorMsg = `Error while trying to add Image: ${err.error.message}`;
-        } else {
-          this.errorMsg = `Error ${
-            err.status
-          } while trying to add Image: ${
-            err.error
-          }`;
-        }
-      }
-    );
+
 
   }
 
     if (this.isFileChosen2) {
 
-      this._portfolioDataService.deleteResume().subscribe(val => this.uploading = true);
+      this._portfolioDataService.deleteResume().subscribe(val => {
+        this.uploading = true;
+        this.EditResume();
+      });
 
-      delay(1500);
-      const uploadResume = new FormData();
-      uploadResume.append('file', this.Resume, this.Resume.name);
 
-      this._portfolioDataService.postResume(uploadResume)
-    .subscribe(
-      val => {this.showMsg = true;
-             this.uploading = false;
-        },
-        error => {
-        console.log(error);
-        }
-    );
+
       }
+  }
+
+  editImage() {
+    const uploadImage = new FormData();
+    uploadImage.append('file', this.Image, this.Image.name);
+
+    this._portfolioDataService.postImage(uploadImage)
+  .subscribe(
+    val => {
+      this.showMsg = true;
+      this.uploading = false;
+      },
+    (err: HttpErrorResponse) => {
+      console.log(err);
+      if (err.error instanceof Error) {
+        this.errorMsg = `Error while trying to add Image: ${err.error.message}`;
+      } else {
+        this.errorMsg = `Error ${
+          err.status
+        } while trying to add Image: ${
+          err.error
+        }`;
+      }
+    }
+  );
+  }
+
+  EditResume() {
+    const uploadResume = new FormData();
+    uploadResume.append('file', this.Resume, this.Resume.name);
+
+    this._portfolioDataService.postResume(uploadResume)
+  .subscribe(
+    val => {this.showMsg = true;
+            this.uploading = false;
+      },
+      error => {
+      console.log(error);
+      }
+  );
   }
 
   getErrorMessage(errors: any) {

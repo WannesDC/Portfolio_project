@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay } from 'q';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class MainPageComponent implements OnInit {
   }
 
   scroll(el: HTMLElement) {
+    //bootstrap collapse scrollintoview angular
     el.scrollIntoView();
   }
 

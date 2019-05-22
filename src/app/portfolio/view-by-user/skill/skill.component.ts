@@ -22,7 +22,7 @@ export class SkillComponent implements OnInit {
     this.skill = this.fb.group({
       type: ['', [Validators.required]],
       description:['', [Validators.required]],
-      iconPath:['', [Validators.required, Validators.pattern(reg)]]
+      iconPath:['', [Validators.pattern(reg)]]
       
     });
 
@@ -34,7 +34,7 @@ export class SkillComponent implements OnInit {
     this._portfolioDataService.postSkill(this.id,{
       type: this.skill.value.type,
       description: this.skill.value.description,
-      iconPath: this.skill.value.iconPath
+      iconPath: this.skill.value.iconPath || 'https://i.gyazo.com/862c7ad89834f48d3f5505b68e6a4297.png'
     } as Skill).subscribe(val => {
       this.showMsg=true;
       this.skill.reset();
@@ -60,7 +60,7 @@ export class SkillComponent implements OnInit {
         errors.minlength.requiredLength
       } characters (got ${errors.minlength.actualLength})`;
     } else if (errors.pattern) {
-      return `You must provide an URL`;
+      return `You must provide an image URL, right click on an image and copy source!`;
     }
   }
 

@@ -188,7 +188,7 @@ namespace dotnet_backend.Controllers
       var image = por.UserImage;
       if (image == null)
       {
-        return NotFound();
+        return NoContent();
       }
       return File(image.Image, $"image/{image.Extension.ToLower()}", $"{image.FileName}.{image.Extension}");
     }
@@ -244,7 +244,7 @@ namespace dotnet_backend.Controllers
       var resume = por.Resume;
       if (resume == null)
       {
-        return NotFound();
+        return NoContent();
       }
       return File(resume.PDF, $"application/{resume.Extension.ToLower()}", $"{resume.FileName}.{resume.Extension}");
     }
@@ -279,7 +279,7 @@ namespace dotnet_backend.Controllers
       }
       Contact c = portfolio.GetContact();
       if (c == null)
-        return NotFound();
+        return NoContent();
       return c;
     }
 

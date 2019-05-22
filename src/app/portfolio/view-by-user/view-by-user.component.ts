@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Contact } from '../data-types/contact';
 import { Portfolio } from '../data-types/portfolio';
 import { PortfolioDataService } from '../portfolio-data.service';
+import { publishReplay, refCount } from 'rxjs/operators';
 
 
 
@@ -18,7 +19,6 @@ import { PortfolioDataService } from '../portfolio-data.service';
 export class ViewByUserComponent implements OnInit {
 
   public contact: FormGroup;
-  
 
   public imageToShow: any;
   public isImageLoading = true;
@@ -29,8 +29,9 @@ export class ViewByUserComponent implements OnInit {
   loadingRouteConfig: boolean;
   @Input() id: number;
   @Input() portfolio$: Observable<Portfolio>;
-  
+
   public contact$: Observable<Contact>;
+  public contactSub: Contact;
 
 
   constructor(private router: Router,
@@ -51,7 +52,13 @@ export class ViewByUserComponent implements OnInit {
       }
     });
 
-    this.contact$ = this._portfolioDataService.getContact(this.id).pipe();
+    this.contact$ = this._portfolioDataService.getContact(this.id).pipe(
+      publishReplay(1),
+      refCount()
+      );
+    // maakt een buffer aan van mogelijke waarden (hier met lengte 1),
+    // iedereen die daar op subscribed gebruikt de laatste waarde dat erin zit en voor te volledige pipe niet opnieuw uit
+
 
     this._portfolioDataService.getImage(this.id).subscribe(
       data => {
@@ -98,6 +105,7 @@ export class ViewByUserComponent implements OnInit {
 
   scroll(el: HTMLElement) {
     el.scrollIntoView();
+    
   }
 
   onSubmit(id: number) {
@@ -112,7 +120,10 @@ export class ViewByUserComponent implements OnInit {
       city: this.contact.value.city,
       country: this.contact.value.country,
       postalcode: this.contact.value.postalCode
-    } as Contact).pipe();
+    } as Contact).pipe(
+      publishReplay(1),
+      refCount()
+    );
 
 
   }

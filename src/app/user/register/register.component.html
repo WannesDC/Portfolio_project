@@ -72,7 +72,7 @@ user.get('passwordGroup').get('password').touched
       [ngClass]="fieldClass('email')"
     />
     <div class="invalid-feedback" *ngIf="isValid('email')">
-        User {{getErrorMessage(user.get("email").errors)}}
+        Email {{getErrorMessage(user.get("email").errors)}}
     </div>
   </div>
  

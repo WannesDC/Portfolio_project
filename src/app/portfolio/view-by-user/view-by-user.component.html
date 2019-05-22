@@ -1,5 +1,6 @@
 <!--contact form-->
 <ng-container *ngIf="portfolio$ | async as item">
+  <div >
   <div class="container">
     <div class="row">
       <div class="col-sm-12 mx-auto">
@@ -148,7 +149,7 @@
                     data-target="#collapseWork"
                     (click)="scroll(targetWorks)"
                   >
-                    Works
+                    Projects
                   </button>
                   <button
                     class="btn btn-sm  btn-outline-light"
@@ -500,6 +501,7 @@
       </div>
     </div>
   </div>
+</div>
 </ng-container>
 
 <div class="app-loading" *ngIf="loadingRouteConfig">

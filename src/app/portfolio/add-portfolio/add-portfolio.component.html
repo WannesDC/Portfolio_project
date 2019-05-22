@@ -17,7 +17,7 @@
         </div>
 
         <form [formGroup]="portfolio" (ngSubmit)="onSubmit()">
-          <div class="input-group">
+          <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">
                 <mat-icon>person</mat-icon>
@@ -36,8 +36,8 @@
               name {{ getErrorMessage(portfolio.get("pName").errors) }}
             </div>
           </div>
-          <br />
-          <div class="input-group">
+          
+          <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">
                 <mat-icon>description</mat-icon>
@@ -59,8 +59,8 @@
             </div>
           </div>
 
-          <br />
-          <div class="input-group">
+          
+          <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">
                 <mat-icon>attach_file</mat-icon>
@@ -91,12 +91,13 @@
                 *ngIf="isFileChosen"
                 >{{ fileName }}</label
               >
+           
             </div>
-            <div class="invalid-feedback" *ngIf="isValid('picturePath')">
-              {{ getErrorMessage(portfolio.get("picturePath").errors) }}
+            <div class="invalid-feedback d-block" *ngIf="isValid('picturePath')">
+                {{ getErrorMessage(portfolio.get("picturePath").errors) }}
             </div>
           </div>
-          <br />
+          
 
           <div class="input-group">
             <div class="input-group-prepend">
@@ -131,7 +132,7 @@
               >
             </div>
 
-            <div class="invalid-feedback" *ngIf="isValid('resumePath')">
+            <div class="invalid-feedback d-block" *ngIf="isValid('resumePath')">
               {{ getErrorMessage(portfolio.get("resumePath").errors) }}
             </div>
 
