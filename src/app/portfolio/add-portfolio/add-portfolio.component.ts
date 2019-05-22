@@ -45,7 +45,6 @@ export class AddPortfolioComponent implements OnInit {
   }
 
   onSubmit() {
-
     this._portfolioDataService
       .addNewPortfolio(this.loggedInUser$.value, {
         name: this.portfolio.value.pName,
@@ -93,7 +92,7 @@ export class AddPortfolioComponent implements OnInit {
           }
         }
       );
-    
+
   }
 
   addImage() {

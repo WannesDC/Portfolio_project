@@ -77,6 +77,7 @@
                   >
                   <button
                     class="btn btn-sm  btn-outline-light"
+                    data-cy="open-edit"
                     data-toggle="collapse"
                     data-target="#collapsePort"
                     (click)="scroll(targetPort)"
@@ -85,6 +86,7 @@
                   </button>
                   <button
                     class="btn btn-sm  btn-outline-warning"
+                    data-cy="delete-portfolio"
                     (click)="delete(item.id)"
                   >
                     Delete
@@ -137,6 +139,7 @@
                   </button>
                   <button
                     class="btn btn-sm  btn-outline-light"
+                    data-cy="open-exp"
                     data-toggle="collapse"
                     data-target="#collapseExp"
                     (click)="scroll(targetExp)"
@@ -145,6 +148,7 @@
                   </button>
                   <button
                     class="btn btn-sm  btn-outline-light"
+                    data-cy="open-works"
                     data-toggle="collapse"
                     data-target="#collapseWork"
                     (click)="scroll(targetWorks)"
@@ -181,6 +185,7 @@
               <button
                 type="button"
                 class="close"
+                data-cy="close-edit"
                 data-toggle="collapse"
                 data-target="#collapsePort"
                 aria-label="Close"
@@ -463,6 +468,7 @@
               <button
                 type="button"
                 class="close"
+                data-cy="close-exp"
                 data-toggle="collapse"
                 data-target="#collapseExp"
                 aria-label="Close"
@@ -483,6 +489,7 @@
               <button
                 type="button"
                 class="close"
+                data-cy="close-works"
                 data-toggle="collapse"
                 data-target="#collapseWork"
                 aria-label="Close"

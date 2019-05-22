@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NavbarService } from '../navbar.service';
 import { AuthenticationService } from './../user/authentication.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class NavbarComponent {
     visible$: boolean;
 
   constructor(
+    private router: Router,
     private _authenticationService: AuthenticationService,
     private breakpointObserver: BreakpointObserver,
     private nav: NavbarService,
@@ -35,6 +37,7 @@ export class NavbarComponent {
 
   logout() {
     this._authenticationService.logout();
+    this.router.navigate(['/main-page'])
     //location.reload();
   }
 

@@ -48,8 +48,9 @@ export class WorkComponent implements OnInit {
     ).subscribe(val => {
       this.showMsg = true;
       this.work.reset();
+      this.work$ = this._portfolioDataService.getWork(this.id);
     });
-    this.work$ = this._portfolioDataService.getWork(this.id);
+    
   }
 
   delete(id: number) {

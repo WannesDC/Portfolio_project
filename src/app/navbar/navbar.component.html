@@ -46,7 +46,10 @@
     </ul>
     <span class="navbar-dark navbar-text mr-2 ">{{ user }}</span>
 
-    <button class="btn btn-outline-light mr-sm-2" (click)="logout()">
+    <button 
+    class="btn btn-outline-light mr-sm-2" 
+    data-cy="logout"
+    (click)="logout()">
       logout
     </button>
   </div>

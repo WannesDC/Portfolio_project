@@ -83,6 +83,7 @@
           type="text"
           class="form-control mr-sm-2"
           placeholder="Company"
+          data-cy="exp-comp"
           aria-label="Company"
           aria-describedby="basic-addon1"
           formControlName="company"
@@ -99,9 +100,10 @@
           </span>
         </div>
         <input
-          type="url"
+          type="text"
           class="form-control mr-sm-2"
           placeholder="Position"
+          data-cy="exp-pos"
           aria-label="Position"
           aria-describedby="basic-addon1"
           formControlName="jobPos"
@@ -121,6 +123,7 @@
           type="url"
           class="form-control mr-sm-2"
           placeholder="Link"
+          data-cy="exp-link"
           aria-label="Link"
           aria-describedby="basic-addon1"
           formControlName="link"
@@ -143,6 +146,7 @@
           rows="4"
           id="comment"
           placeholder="Why was this experience useful to you, what did this job position include..."
+          data-cy="exp-desc"
           aria-label="About Me"
           aria-describedby="basic-addon1"
           formControlName="description"
@@ -165,6 +169,7 @@
           onfocus="(this.type='date')"
           onblur="(this.type='text')"
           class="form-control mr-sm-2"
+          data-cy="exp-time-start"
           placeholder="Starting Date"
           aria-label="Starting Date"
           aria-describedby="basic-addon2"
@@ -182,6 +187,7 @@
           onblur="(this.type='text')"
           class="form-control mr-sm-2"
           placeholder="Ending Date"
+          data-cy="exp-time-end"
           aria-label="Ending Date"
           aria-describedby="basic-addon2"
           formControlName="endYear"
@@ -196,6 +202,6 @@
   </div>
 
   <div class="mt-auto">
-    <button type="submit" class="btn btn-outline-light " [disabled]="experience.invalid">Add Experience</button>
+    <button type="submit" data-cy="exp-submit" class="btn btn-outline-light " [disabled]="experience.invalid">Add Experience</button>
   </div>
 </form>

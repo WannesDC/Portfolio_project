@@ -45,9 +45,10 @@ export class ExperienceComponent implements OnInit {
       }as Experience).subscribe(val => {
         this.showMsg=true;
         this.experience.reset();
+        this.experience$ = this._portfolioDataService.getExperience(this.id);
       });
 
-    this.experience$ = this._portfolioDataService.getExperience(this.id);
+    
   }
 
   getYear(date:Date){

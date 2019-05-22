@@ -28,6 +28,7 @@
               class="form-control mr-sm-2"
               placeholder="Name"
               aria-label="Name"
+              data-cy="portfolio-name"
               aria-describedby="basic-addon1"
               formControlName="pName"
               [ngClass]="fieldClass('pName')"
@@ -48,6 +49,7 @@
               rows="5"
               id="comment"
               placeholder="About Me"
+              data-cy="portfolio-desc"
               aria-label="About Me"
               aria-describedby="basic-addon1"
               formControlName="description"
@@ -141,6 +143,7 @@
           <div class="text-center mt-4">
             <button
               type="submit"
+              data-cy="portfolio-submit"
               class="btn btn-outline-light "
               [disabled]="portfolio.invalid"
             >

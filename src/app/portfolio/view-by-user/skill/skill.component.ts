@@ -38,8 +38,9 @@ export class SkillComponent implements OnInit {
     } as Skill).subscribe(val => {
       this.showMsg=true;
       this.skill.reset();
+      this.skill$ = this._portfolioDataService.getSkill(this.id);
     });
-    this.skill$ = this._portfolioDataService.getSkill(this.id);
+    
 
   }
 

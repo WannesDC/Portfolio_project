@@ -30,6 +30,7 @@
           class="form-control"
           [value]="item.name"
           placeholder="Name"
+          data-cy="edit-port-name"
           aria-label="Name"
           aria-describedby="basic-addon1"
           formControlName="pName"
@@ -142,6 +143,7 @@
     <button
       type="submit"
       (click)="onSubmit(item.id)"
+      data-cy="edit-save"
       class="btn btn-sm btn-outline-light "
       [disabled]="saveP.invalid"
       *ngIf="!uploading"
