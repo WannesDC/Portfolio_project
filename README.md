@@ -1,5 +1,7 @@
 # Project
 
+This project belongs to Wannes De Craene - 2C3
+
 The site can be found here:
 
 https://portfoliow.azurewebsites.net/
