@@ -1,15 +1,10 @@
 # Project
 
-This project belongs to Wannes De Craene - 2C3
+This project belongs to Wannes De Craene
 
 The site can be found here:
 
 https://portfoliow.azurewebsites.net/
-
-Due to different requirements the user and password, at one point in time, for the teacher is:
-
-web4@hotmail.com
-1234_PieterVDH
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
